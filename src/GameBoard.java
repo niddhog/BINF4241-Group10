@@ -1,6 +1,7 @@
 public class GameBoard {
 
     public static void main(String[] args){
+
         //how many players 2-4
 
         //What´s their name? e.g. <Player 1>
@@ -13,11 +14,11 @@ public class GameBoard {
 
         //one player rolls dice
 
-        //move the player (position+dice number)
-        public void movePlayer(){
+    }
+    //move the player (position+dice number)
+    public static void movePlayer() { //make sure to define methods outside the main method
 
-            //if
+        //if
 
-        }
     }
 }
