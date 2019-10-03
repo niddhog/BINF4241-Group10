@@ -1,8 +1,14 @@
+import java.util.Scanner;
+
 public class GameBoard {
 
     public static void main(String[] args){
 
         //how many players 2-4
+        Scanner numberObject = new Scanner(Sysem.in);
+        System.out.println("Please enter the number of Players: \n");
+        int numberOfPlayers = numberObject.nextInt();
+
 
         //What´s their name? e.g. <Player 1>
 
