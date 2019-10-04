@@ -1,18 +1,53 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 import java.lang.Math;
 
 public class GameBoard {
 
+    public static void setPlayerNumber(){
+        while (true){
+            Scanner numberObject = new Scanner(System.in);
+            try
+            {
+                System.out.println("Please enter the number of Players (2-4 Players): \n");
+                int p = numberObject.nextInt();
+                if(p>=2 && p<=4){
+                    break;
+                }
+                System.out.println("Please select a min. of 2 Players and a max. of 4 Players...");
+            }
+            catch(InputMismatchException exception)
+            {
+                System.out.println("You did not enter a whole number...");
+            }
+        }
+    }
+
+    public static void setBoardSize(){
+        while (true){
+            Scanner boardObject = new Scanner(System.in);
+            try
+            {
+                System.out.println("Please set the Size of the board (enter a whole Number, min. 7): \n");
+                int n = boardObject.nextInt();
+                if(n<7){
+                    System.out.println("Please enter a board size of at least 7 fields...");
+                }
+                break;
+            }
+            catch(InputMismatchException exception)
+            {
+                System.out.println("You did not enter a whole number...");
+            }
+        }
+    }
+
     public static void main(String[] args){
+        setPlayerNumber();  //Set the player Count
+        setBoardSize(); //Input -> int boardSize = ;
 
-        //Input -> int boardSize = ;
 
-        //how many players 2-4
-        Scanner numberObject = new Scanner(System.in);
-        System.out.println("Please enter the number of Players: \n");
-        int numberOfPlayers = numberObject.nextInt();
-        System.out.println(numberOfPlayers);
 
         //Input -> What´s their name? e.g. <Player 1>
 
