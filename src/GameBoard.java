@@ -12,6 +12,7 @@ public class GameBoard {
         Scanner numberObject = new Scanner(System.in);
         System.out.println("Please enter the number of Players: \n");
         int numberOfPlayers = numberObject.nextInt();
+        System.out.println(numberOfPlayers);
 
         //Input -> What´s their name? e.g. <Player 1>
 
