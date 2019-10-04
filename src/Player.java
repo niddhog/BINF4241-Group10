@@ -3,5 +3,4 @@ public class Player {
     int playernr;
     int position;
 
-
 }
