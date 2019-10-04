@@ -26,7 +26,7 @@ public class GameBoard {
         //print initial state with board and players on the first square
         //String /stateBefore = initial state
 
-        //while game not over
+            //while game not over
 
             // String stateBefore
 
