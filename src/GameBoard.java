@@ -5,6 +5,7 @@ import java.lang.Math;
 
 public class GameBoard {
 
+<<<<<<< Updated upstream
     public static int setPlayerNumber(){
         while (true){
             Scanner numberObject = new Scanner(System.in);
@@ -59,7 +60,11 @@ public class GameBoard {
         }
         return nameArray;
     }
+=======
+    public static void main(String[] args) {
 
+        int boardSize;
+>>>>>>> Stashed changes
     public static void main(String[] args){
         int p = setPlayerNumber();  //Set the player Count
         int n = setBoardSize(); //Input -> int boardSize = ;
@@ -67,6 +72,7 @@ public class GameBoard {
 
         //Input -> What´s their name? e.g. <Player 1>
 
+        //Datastructure array with length boardSize and each cell is a square
 
 
 
@@ -77,6 +83,8 @@ public class GameBoard {
 
         //print initial state with board and players on the first square
         //String /stateBefore = initial state
+
+        //initial state: players on the first square
 
             //while game not over
 
