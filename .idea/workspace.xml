@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36122d03-b5bf-40f4-a64a-b64ab4fb157f" name="Default Changelist" comment="Created Sub-Classes for the Square Superclass&#10;- No need to create StartField and EndField Sub-classes, as the Superclass holds the position of a square and we can check with&#10;this position if a square is End or Start">
+    <list default="true" id="36122d03-b5bf-40f4-a64a-b64ab4fb157f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
     </list>
@@ -64,7 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1570177189424</updated>
       <workItem from="1570177191953" duration="2382000" />
-      <workItem from="1570184645077" duration="3946000" />
+      <workItem from="1570184645077" duration="6295000" />
     </task>
     <task id="LOCAL-00001" summary="Created Sub-Classes for the Square Superclass&#10;- No need to create StartField and EndField Sub-classes, as the Superclass holds the position of a square and we can check with&#10;this position if a square is End or Start">
       <created>1570187276162</created>
@@ -73,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570187276162</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Set up Player count and Board size implemented">
+      <created>1570188619319</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1570188619319</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +101,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created Sub-Classes for the Square Superclass&#10;- No need to create StartField and EndField Sub-classes, as the Superclass holds the position of a square and we can check with&#10;this position if a square is End or Start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Sub-Classes for the Square Superclass&#10;- No need to create StartField and EndField Sub-classes, as the Superclass holds the position of a square and we can check with&#10;this position if a square is End or Start" />
+    <MESSAGE value="Set up Player count and Board size implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set up Player count and Board size implemented" />
   </component>
 </project>

@@ -5,15 +5,15 @@ import java.lang.Math;
 
 public class GameBoard {
 
-    public static void setPlayerNumber(){
+    public static int setPlayerNumber(){
         while (true){
             Scanner numberObject = new Scanner(System.in);
             try
             {
-                System.out.println("Please enter the number of Players (2-4 Players): \n");
+                System.out.println("Please enter the number of Players (2-4 Players): ");
                 int p = numberObject.nextInt();
                 if(p>=2 && p<=4){
-                    break;
+                    return p;
                 }
                 System.out.println("Please select a min. of 2 Players and a max. of 4 Players...");
             }
@@ -24,17 +24,17 @@ public class GameBoard {
         }
     }
 
-    public static void setBoardSize(){
+    public static int setBoardSize(){
         while (true){
             Scanner boardObject = new Scanner(System.in);
             try
             {
-                System.out.println("Please set the Size of the board (enter a whole Number, min. 7): \n");
+                System.out.println("Please set the Size of the board (enter a whole Number, min. 7): ");
                 int n = boardObject.nextInt();
                 if(n<7){
                     System.out.println("Please enter a board size of at least 7 fields...");
                 }
-                break;
+                return n;
             }
             catch(InputMismatchException exception)
             {
@@ -43,11 +43,27 @@ public class GameBoard {
         }
     }
 
+    public static String[] setPlayerName(int p){
+        String[] nameArray = new String[p]; //initialize String array of size p
+        Scanner nameObject = new Scanner(System.in);
+        for(int i = 1; i <= p; i++){
+            System.out.println("Please enter the Name of Player " + i + ": ");
+            nameArray[i-1] = nameObject.nextLine();
+            if(nameArray[i-1].isEmpty()){
+                System.out.println("You did not enter any Name...");
+                i--;
+            }
+            else{
+                System.out.println("\n Player " + i + " name: " + nameArray[i-1]);
+            }
+        }
+        return nameArray;
+    }
+
     public static void main(String[] args){
-        setPlayerNumber();  //Set the player Count
-        setBoardSize(); //Input -> int boardSize = ;
-
-
+        int p = setPlayerNumber();  //Set the player Count
+        int n = setBoardSize(); //Input -> int boardSize = ;
+        String[] playerNames = setPlayerName(p); //Set Player Names
 
         //Input -> What´s their name? e.g. <Player 1>
 
