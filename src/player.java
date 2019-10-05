@@ -21,10 +21,10 @@ public  class player {
         return position;
     }
 
-    public void setPlayernr(int playernr) {
+    public static void setPlayernr(int playernr) {
         player.playernr = playernr;
     }
-    public int getPlaynernr() {
+    public static int getPlaynernr() {
         return playernr;
     }
 

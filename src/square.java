@@ -14,14 +14,23 @@ class square {
         return occupied;
     }
 
+    public static void setOccupied(int occupied) {
+        square.occupied = occupied;
+    }
+
     public static int getSquareNr() {
         return squareNr;
+    }
+
+    public static void setSquareNr(int squareNr) {
+        square.squareNr = squareNr;
     }
 
     //String ladder = "->";
     //String snake = "<-";
     public void printSquare(){
-        System.out.println("[" + this.squareNr + "]");
+
+        System.out.println("[" + square.getSquareNr() + "]");
     }
 }
 

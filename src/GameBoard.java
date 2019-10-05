@@ -2,7 +2,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
-public class GameBoard {
+public class GameBoard {                    /*todo IMPORTANT: in the methods and classes, I don't really understand
+                                                the meaning/behaviour of "static", pls take a look"*/
 
 
     public static void main(String[] args) {
@@ -14,25 +15,23 @@ public class GameBoard {
 
         int boardSize = setBoardSize(); //Input -> int boardSize = ;
 
-
-        //Input -> What´s their name? e.g. <Player 1>
-
-        //Datastructure array with length boardSize and each cell is a square
-
+        //Datastructure array with length boardSize and each cell is a square  
+        square[] table = boardsquares(boardSize);
 
 
         /*
         square image [1][2->6][3][4][5][6][7->9][8][9][10][11->5][..][boardSize]
         randomized # Math.round(boardSize/10)snakes and # Math.round(boardSize/5)ladders
          */
-
+                                                                            //todo method placing snakes and ladders
         //print initial state with board and players on the first square
         //String /stateBefore = initial state
 
         //initial state: players on the first square
 
-        //while game not over
-        for(int m = 1; true; m++) {
+
+        while(true) {                  //while game not over
+            int m=0;
             player playerNow = playerNames[m%p];
 
             //one player rolls dice
@@ -57,19 +56,26 @@ public class GameBoard {
                 }
             }
 
-            //move the player (position+dice number)
-            playerNow.setPosition(playerNow.getPosition()+dice);
+            for(int a=0, a < boardSize, a+1){
+                if(table[a].getSquareNr() == playerNow.getPosition()){
+                    square.setOccupied(0);
+                    break;
+                }
+            }
 
-            /*if(this.player.position == square.squarenr && square.occupied == 1){
-                    this.player.position=1;}
-             */
+            if(playerNow.getPosition() + dice == square.getSquareNr() && square.getOccupied() == 1){ //already occupied
+                    playerNow.setPosition(1);
+                    }
+                else{
+                    playerNow.setPosition(playerNow.getPosition()+dice);}         //move the player (position+dice number)
 
             // updatedState = state with moved player
 
-            if (this.player.position == boardSize){
-                System.out.println("Final state: " + updatedState \n this.player + "wins!");
+            if (playerNow.getPosition() == boardSize){
+                System.out.println("Final state: " + updatedState "\n" + playerNow. + "wins!");
                 break;
                 }
+            m++;
             }
 
 
@@ -101,7 +107,8 @@ public class GameBoard {
         for(int i = 1; i <= p; i++){
             System.out.println("Please enter the Name of Player " + i + ": ");
             nameArray[i-1].setName(nameObject.nextLine());
-            player.setPosition(i);
+            player.setPlayernr(i);
+            player.setPosition(1);
             if(nameArray[i-1].getName().isEmpty()){
                 System.out.println("You did not enter any Name...");
                 i--;
@@ -132,6 +139,15 @@ public class GameBoard {
             }
         }
     }
+
+    public static square[] boardsquares(int p) {
+        square[] boardGame = new square[p]; //initialize String array of size p
+        for (int i = 1; i <= p; i++) {
+            boardGame[i] = new square(i+1, 0);
+        }
+        return boardGame;
+    }
+
 
 
 
