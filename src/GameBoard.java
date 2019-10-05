@@ -58,7 +58,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
 
             for(int i = 0; i< boardSize; i++){                              //boardgame
                 if(table[i].getSquareNr() == playerNow.getPosition()){
-                    square.setOccupied(0);
+                    table[i].setOccupied(0);
                     break;
                 }
             }
@@ -120,8 +120,8 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         for(int i = 1; i <= p; i++){
             System.out.println("Please enter the Name of Player " + i + ": ");
             nameArray[i-1].setName(nameObject.nextLine());
-            player.setPlayernr(i);
-            player.setPosition(1);
+            nameArray[i-1].setPlayernr(i);
+            nameArray[i-1].setPosition(1);
             if(nameArray[i-1].getName().isEmpty()){
                 System.out.println("You did not enter any Name...");
                 i--;
@@ -175,15 +175,15 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
     public static void stateOfTurn(int p, int boardSize, player playerNames[], square table[]){
         for (int i = 1; i <= boardSize; i++) {
 
-            if(boolean isSnake(square table[i-1])){                         //todo identify if it's a snake or ladder
+            if(isSnake(table[i-1])){                         //todo identify if it's a snake or ladder
                 System.out.print("<" + table[i-1].teleportNr() + "<-" + table[i-1].getSquareNr()+">");
             }
 
-            else if(boolean isLadder(square table[i-1])){                    //todo necessary to allocate the snakes and ladders
+            else if(isLadder(table[i-1])){                    //todo necessary to allocate the snakes and ladders
                 System.out.print("<" + table[i-1].teleportNr() +
                         "<-" + table[i-1].getSquareNr()+">");
             }
-                else (i == 1){
+                else{
                     System.out.print("[" + i);
 
                     for (int a = 0; a < p; a++) {
@@ -198,21 +198,19 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         }
     }
      public static boolean isSnake(square test){
-        if(test instanceof SnakeSquare){
-            return true;
-        }
-        else {
-            return false;
-        }
+         return (test instanceof SnakeSquare);
      }
 
     public static boolean isLadder(square test){
-        if(test instanceof SnakeSquare){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (test instanceof SnakeSquare);
+    }
+
+    public void subBySnkake(square table[], int squareNr){
+        table[squareNr-1] = new SnakeSquare(squareNr, 0, randInt(5, 7));        //todo it's only a example of a range(3,5)
+    }
+
+    public void subByLadder(square table[], int squareNr){
+        table[squareNr] = new SnakeSquare(squareNr, 0, randInt(2, 4));        //todo it's only a example of a range(3,5)
     }
 
     /*public static void movePlayer(int oldpostion, int dice, player) { //make sure to define methods outside the main method

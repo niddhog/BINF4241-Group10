@@ -10,15 +10,15 @@ class square {
         this.occupied = occupied;
     }
 
-    public static int getOccupied() {
+    public int getOccupied() {
         return occupied;
     }
 
-    public static void setOccupied(int occupied) {
+    public void setOccupied(int occupied) {
         square.occupied = occupied;
     }
 
-    public static int getSquareNr() {
+    public int getSquareNr() {
         return squareNr;
     }
 
@@ -30,7 +30,7 @@ class square {
     //String snake = "<-";
     public void printSquare(){
 
-        System.out.println("[" + square.getSquareNr() + "]");
+        System.out.println("[" + squareNr + "]");
     }
 }
 
