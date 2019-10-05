@@ -1,12 +1,21 @@
 //subclasses: snake, ladder
 
 class square {
-    public int squareNr; //placement position on board
-    public int occupied; //0 = free 1 = occupied
+
+    private static int squareNr; //placement position on board
+    private static int occupied; //0 = free 1 = occupied
 
     public square(int squareNr, int occupied) {
         this.squareNr = squareNr;
         this.occupied = occupied;
+    }
+
+    public static int getOccupied() {
+        return occupied;
+    }
+
+    public static int getSquareNr() {
+        return squareNr;
     }
 
     //String ladder = "->";
