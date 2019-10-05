@@ -49,6 +49,10 @@ class SnakeSquare extends square{
     public void setBackNr(int val){
         backNr = val;
     }
+
+    public int teleportNr(int squareNr){
+        return squareNr-backNr;
+    }
 }
 
 
@@ -65,5 +69,9 @@ class LadderSquare extends square{
 
     public void setBackNr(int val){
         advanceNr = val;
+    }
+
+    public int teleportNr(int squareNr){
+        return squareNr+advanceNr;
     }
 }

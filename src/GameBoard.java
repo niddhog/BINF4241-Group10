@@ -38,7 +38,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         //initial state: players on the first square
 
         System.out.print("Initial State: ");
-        stateOfTurn(p, boardSize, playerNames);
+        stateOfTurn(p, boardSize, playerNames, table);
 
 
 
@@ -53,7 +53,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
 
             System.out.print(playerNow + " rolls " + dice + ": "); //print state this.player + " rolls " + this.dice + stateBefore
 
-            stateOfTurn(p, boardSize, playerNames);
+            stateOfTurn(p, boardSize, playerNames, table);
 
 
             for(int i = 0; i< boardSize; i++){                              //boardgame
@@ -86,7 +86,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
 
             if (playerNow.getPosition() == boardSize){
                 System.out.println("Final state: ");
-                stateOfTurn(p, boardSize, playerNames);            // updatedState = state with moved player
+                stateOfTurn(p, boardSize, playerNames, table);            // updatedState = state with moved player
                 System.out.println(playerNow.getName() + " wins!");
                 break;
                 }
@@ -172,20 +172,46 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         return r.nextInt((max - min) + 1) + min;
     }
 
-    public static void stateOfTurn(int p, int boardSize, player playerNames[]){
+    public static void stateOfTurn(int p, int boardSize, player playerNames[], square table[]){
         for (int i = 1; i <= boardSize; i++) {
 
-            if (i == 1) {
-                System.out.print("[" + i);
-
-                for (int a = 0; a < p; a++) {
-                    if(playerNames[a].getPosition()== i) {
-
-                        System.out.print("<" + playerNames[a].getName() + ">");
-                    }
-                }
-                System.out.println("]");
+            if(boolean isSnake(square table[i-1])){                         //todo identify if it's a snake or ladder
+                System.out.print("<" + table[i-1].teleportNr() + "<-" + table[i-1].getSquareNr()+">");
             }
+
+            else if(boolean isLadder(square table[i-1])){                    //todo necessary to allocate the snakes and ladders
+                System.out.print("<" + table[i-1].teleportNr() +
+                        "<-" + table[i-1].getSquareNr()+">");
+            }
+                else (i == 1){
+                    System.out.print("[" + i);
+
+                    for (int a = 0; a < p; a++) {
+                        if (playerNames[a].getPosition() == i) {
+
+                            System.out.print("<" + playerNames[a].getName() + ">");
+                        }
+                    }
+                    System.out.println("]");
+                }
+
+        }
+    }
+     public static boolean isSnake(square test){
+        if(test instanceof SnakeSquare){
+            return true;
+        }
+        else {
+            return false;
+        }
+     }
+
+    public static boolean isLadder(square test){
+        if(test instanceof SnakeSquare){
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
