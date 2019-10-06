@@ -1,4 +1,4 @@
 package PACKAGE_NAME;
 
-public class final_square {
+public class FinalSquare {
 }
