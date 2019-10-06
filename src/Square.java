@@ -17,11 +17,10 @@ class square {
 
     public int getSquareNr() {return squareNr; }
 
+    public int getBackNr() {return 0;}
+
     public void setSquareNr(int squareNr) {this.squareNr = squareNr; }
 
-    public void printSquare(){
-        System.out.println("[" + this.squareNr + "]");
-    }
 }
 
 
@@ -32,12 +31,8 @@ class SnakeSquare extends square{
         backNr = leap;
     }
     @Override
-    public void printSquare(){
-        //System.out.println("[" + this.squareNr-this.backNr +"<-"+ this.squareNr + "]");
-    }
-    public void setBackNr(int val){ backNr = val; }
     public int getBackNr(){return backNr; }
-    //public int teleportNr(int squareNr){ return (squareNr-backNr); }
+    public void setBackNr(int val){ backNr = val; }
 }
 
 
@@ -48,11 +43,6 @@ class LadderSquare extends square{
         advanceNr = leap;
     }
     @Override
-    public void printSquare(){
-        //System.out.println("[" + this.squareNr +"->"+ this.squareNr+this.advanceNr + "]");
-    }
-
+    public int getBackNr(){return advanceNr; }
     public void setBackNr(int val){ advanceNr = val; }
-    public int getAdvNr(){return advanceNr; }
-    //public int teleportNr(int squareNr){ return (squareNr+advanceNr); }
 }

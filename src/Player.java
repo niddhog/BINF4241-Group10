@@ -6,7 +6,7 @@ public class Player {
 
 
     public void setName(String myName) {
-        this.myName = myName;                     //players name are player 1, 2, 3 or 4
+        this.myName = myName;
     }
     public String getName(){
         return myName;
