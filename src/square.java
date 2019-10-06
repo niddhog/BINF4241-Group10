@@ -1,4 +1,6 @@
 //subclasses: snake, ladder
+//String ladder = "->";
+//String snake = "<-";
 
 class square {
     public int squareNr; //placement position on board
@@ -9,8 +11,14 @@ class square {
         this.occupied = occupied;
     }
 
-    //String ladder = "->";
-    //String snake = "<-";
+    public int getOccupied() {return occupied; }
+
+    public void setOccupied(int occupied) {this.occupied = occupied; }
+
+    public int getSquareNr() {return squareNr; }
+
+    public void setSquareNr(int squareNr) {this.squareNr = squareNr; }
+
     public void printSquare(){
         System.out.println("[" + this.squareNr + "]");
     }
@@ -28,9 +36,9 @@ class SnakeSquare extends square{
         //System.out.println("[" + this.squareNr-this.backNr +"<-"+ this.squareNr + "]");
     }
 
-    public void setBackNr(int val){
-        backNr = val;
-    }
+    public void setBackNr(int val){ backNr = val; }
+    public int getBackNr(){return backNr; }
+    public int teleportNr(int squareNr){ return (squareNr-backNr); }
 }
 
 
@@ -45,7 +53,7 @@ class LadderSquare extends square{
         //System.out.println("[" + this.squareNr +"->"+ this.squareNr+this.advanceNr + "]");
     }
 
-    public void setBackNr(int val){
-        advanceNr = val;
-    }
+    public void setBackNr(int val){ advanceNr = val; }
+    public int getAdvNr(){return advanceNr; }
+    public int teleportNr(int squareNr){ return (squareNr+advanceNr); }
 }
