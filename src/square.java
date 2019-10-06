@@ -2,8 +2,8 @@
 
 class square {
 
-    private static int squareNr; //placement position on board
-    private static int occupied; //0 = free 1 = occupied
+    private int squareNr; //placement position on board
+    private int occupied; //0 = free 1 = occupied
 
     public square(int squareNr, int occupied) {
         this.squareNr = squareNr;
@@ -15,15 +15,15 @@ class square {
     }
 
     public void setOccupied(int occupied) {
-        square.occupied = occupied;
+        this.occupied = occupied;
     }
 
     public int getSquareNr() {
         return squareNr;
     }
 
-    public static void setSquareNr(int squareNr) {
-        square.squareNr = squareNr;
+    public void setSquareNr(int squareNr) {
+        this.squareNr = squareNr;
     }
 
     //String ladder = "->";
@@ -36,7 +36,7 @@ class square {
 
 
 class SnakeSquare extends square{
-    public int backNr; // holds an integer saying how much a player has to move back
+    private int backNr; // holds an integer saying how much a player has to move back
     public SnakeSquare(int squareNr, int occupied, int leap){
         super(squareNr,occupied);
         backNr = leap;
@@ -49,15 +49,16 @@ class SnakeSquare extends square{
     public void setBackNr(int val){
         backNr = val;
     }
+    public int getBackNr(){return backNr;}
 
     public int teleportNr(int squareNr){
-        return squareNr-backNr;
+        return (squareNr-backNr);
     }
 }
 
 
 class LadderSquare extends square{
-    public int advanceNr; // holds an integer saying how much a player has to move back
+    private int advanceNr; // holds an integer saying how much a player has to move back
     public LadderSquare(int squareNr, int occupied, int leap){
         super(squareNr,occupied);
         advanceNr = leap;
@@ -67,11 +68,12 @@ class LadderSquare extends square{
         //System.out.println("[" + this.squareNr +"->"+ this.squareNr+this.advanceNr + "]");
     }
 
-    public void setBackNr(int val){
+    public void setAdvNr(int val){
         advanceNr = val;
     }
+    public int getAdvNr(){return advanceNr; }
 
     public int teleportNr(int squareNr){
-        return squareNr+advanceNr;
+        return (squareNr+advanceNr);
     }
 }

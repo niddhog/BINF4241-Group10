@@ -2,8 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
-public class GameBoard {                    /*todo IMPORTANT: in the methods and classes, I don't really understand
-                                                the meaning/behaviour of "static", pls take a look"*/
+public class GameBoard {
 
 
     public static void main(String[] args) {
@@ -71,7 +70,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
             }
 
 
-            if(backstep == square.getSquareNr() && square.getOccupied() == 1){ //already occupied
+            if(backstep == table[backstep-1].getSquareNr() && table[backstep-1].getOccupied() == 1){ //already occupied
                     playerNow.setPosition(1);
                     } else{
                     playerNow.setPosition(backstep);}         //move the player (position+dice number)
@@ -175,13 +174,13 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
     public static void stateOfTurn(int p, int boardSize, player playerNames[], square table[]){
         for (int i = 1; i <= boardSize; i++) {
 
-            if(isSnake(table[i-1])){                         //todo identify if it's a snake or ladder
-                System.out.print("<" + table[i-1].teleportNr() + "<-" + table[i-1].getSquareNr()+">");
+            if(isSnake(table[i-1])){                         //todo identify if it's a snake or ladder, but to access subclass method
+                System.out.print("<" + (SnakeSquare(table[i-1])).teleportNr(i-1) + "<-" + table[i-1].getSquareNr()+">");
             }
 
             else if(isLadder(table[i-1])){                    //todo necessary to allocate the snakes and ladders
-                System.out.print("<" + table[i-1].teleportNr() +
-                        "<-" + table[i-1].getSquareNr()+">");
+                System.out.print("<" + table[i-1].getSquareNr() +
+                        "->" + (SnakeSquare(table[i-1])).teleportNr(i-1) +">");
             }
                 else{
                     System.out.print("[" + i);
@@ -206,11 +205,13 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
     }
 
     public void subBySnkake(square table[], int squareNr){
-        table[squareNr-1] = new SnakeSquare(squareNr, 0, randInt(5, 7));        //todo it's only a example of a range(3,5)
+        int a = randInt(5, 7);
+        table[squareNr-1] = new SnakeSquare(squareNr, 0 , a);        //todo it's only a example of a range(3,5)
     }
 
     public void subByLadder(square table[], int squareNr){
-        table[squareNr] = new SnakeSquare(squareNr, 0, randInt(2, 4));        //todo it's only a example of a range(3,5)
+        table[squareNr] = new LadderSquare(squareNr, 0, randInt(2, 4));        //todo it's only a example of a range(3,5)
+
     }
 
     /*public static void movePlayer(int oldpostion, int dice, player) { //make sure to define methods outside the main method
