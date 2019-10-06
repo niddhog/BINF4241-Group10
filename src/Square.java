@@ -26,7 +26,7 @@ class square {
 
 
 class SnakeSquare extends square{
-    public int backNr; // holds an integer saying how much a player has to move back
+    public int backNr; // holds an integer which corresponds to the field this snake leads back to
     public SnakeSquare(int squareNr, int occupied, int leap){
         super(squareNr,occupied);
         backNr = leap;
@@ -35,10 +35,9 @@ class SnakeSquare extends square{
     public void printSquare(){
         //System.out.println("[" + this.squareNr-this.backNr +"<-"+ this.squareNr + "]");
     }
-
     public void setBackNr(int val){ backNr = val; }
     public int getBackNr(){return backNr; }
-    public int teleportNr(int squareNr){ return (squareNr-backNr); }
+    //public int teleportNr(int squareNr){ return (squareNr-backNr); }
 }
 
 
@@ -55,5 +54,5 @@ class LadderSquare extends square{
 
     public void setBackNr(int val){ advanceNr = val; }
     public int getAdvNr(){return advanceNr; }
-    public int teleportNr(int squareNr){ return (squareNr+advanceNr); }
+    //public int teleportNr(int squareNr){ return (squareNr+advanceNr); }
 }

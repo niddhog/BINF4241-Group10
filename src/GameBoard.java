@@ -12,32 +12,24 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
 
 
     public static void main(String[] args) {
-
         //INITIAL GAME SETUP///////////////////////////////////////
         int p = setPlayerNumber();  //Set the player Count
         Player[] playerNames = setPlayerName(p); //Set Player Names
         int boardSize = setBoardSize(); //Input -> int boardSize = ;
-        square[] table = boardsquares(boardSize); //Array with length boardSize and each cell is a square
-        int nrOfSnakes = boardSize/7; //# Math.round(boardSize/10)snakes
-        int nrOfLadders = boardSize/11; //# Math.round(boardSize/5)ladders
+        int nrOfSnakes = boardSize/11; //# Math.round(boardSize/11)snakes
+        int nrOfLadders = boardSize/7; //# Math.round(boardSize/7)ladders
+        square[] table = setBoardSquares(boardSize,nrOfSnakes,nrOfLadders); //Array with length boardSize and each cell is a square
         ////////////////////////////////////////////////////////////
-
-
         //todo method placing snakes and ladders
-
-
-        //print initial state with board and players on the first square
-        //initial state: players on the first square
-
-        System.out.print("Initial State: ");
-        stateOfTurn(p, boardSize, playerNames, table);
+        System.out.print("Initial State: "); //print initial state with board and players on the first square
+        stateOfTurn(p, boardSize, playerNames, table); //initial state: players on the first square
 
 
 
         int m = 0;
         while(true) {                  //while game not over
 
-            player playerNow = playerNames[m%3];
+            Player playerNow = playerNames[m%3];
 
             int backstep;
             int dice = randInt(1, 6);                               //one player rolls dice
@@ -149,10 +141,30 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
     }
 
 
-    public static square[] boardsquares(int p) {
-        square[] boardGame = new square[p]; //initialize String array of size p
-        for (int i = 1; i <= p; i++) {
-            boardGame[i-1] = new square(i, 0);
+    public static square[] setBoardSquares(int boardSize,int nrOfSnakes, int nrOfLadders) {
+        int tempStart, tempEnd;
+        square[] boardGame = new square[boardSize]; //initialize Square array of size boardSize
+        for (int i = 0; i < boardSize; i++) {boardGame[i] = new square(i, 0);}
+        int[] snakeLadderArray = new int[boardSize]; //Int Array for SL Start/End calculation
+        for(int i = 0; i<snakeLadderArray.length;i++){ snakeLadderArray[i] = i;}
+
+        //Set Snakes and Ladders and assign a Startingpoint and Endpoint to each Snake and Ladder
+        while(true){ //complexity of O(#(snakes+ladders) * n)
+            if(nrOfLadders>0){
+                int[] tempArray = new int[snakeLadderArray.length-2];
+                tempStart = randInt(1,snakeLadderArray.length-3);
+                tempEnd = randInt(tempStart+1,snakeLadderArray.length-2);
+                boardGame[tempStart] = new LadderSquare(tempStart,0,tempEnd);
+                snakeLadderArray = resizeArray(tempArray,tempStart,tempEnd,"ladder");
+                nrOfLadders--;
+            }else if(nrOfSnakes>0){
+                int[] tempArray = new int[snakeLadderArray.length-2];
+                tempStart = randInt(2,snakeLadderArray.length-2);
+                tempEnd = randInt(1,tempStart-1);
+                boardGame[tempStart] = new SnakeSquare(tempStart,0,tempEnd);
+                snakeLadderArray = resizeArray(tempArray,tempStart,tempEnd,"snake");
+                nrOfSnakes--;
+            }else{break;}
         }
         return boardGame;
     }
@@ -166,7 +178,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         return r.nextInt((max - min) + 1) + min;
     }
 
-    public static void stateOfTurn(int p, int boardSize, player playerNames[], square table[]){
+    public static void stateOfTurn(int p, int boardSize, Player playerNames[], square table[]){
         for (int i = 1; i <= boardSize; i++) {
 
             if(isSnake(table[i-1])){ //todo identify if it's a snake or ladder
@@ -207,6 +219,24 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         else {
             return false;
         }
+    }
+
+    public static int[] resizeArray(int[] tempArray, int tempStart, int tempEnd, String type){
+        if(type.equals("snake"){
+            int temp = tempStart;
+            tempStart = tempEnd;
+            tempEnd = temp;
+        }
+        for(int i=0; i<tempStart; i++){
+            tempArray[i] = i;
+        }
+        for(int i=tempStart+1; i<tempEnd; i++){
+            tempArray[i] = i;
+        }
+        for(int i=tempEnd+1; i<tempArray.length; i++){
+            tempArray[i] = i;
+        }
+        return tempArray;
     }
 
     /*public static void movePlayer(int oldpostion, int dice, player) { //make sure to define methods outside the main method
