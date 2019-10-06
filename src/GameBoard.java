@@ -16,10 +16,9 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         int p = setPlayerNumber(), m = 0;  //Set the player Count; Set player rotation int m
         Player[] playerNames = setPlayerName(p); //Set Player Names
         int boardSize = setBoardSize(); //Input -> int boardSize = ;
-        int nrOfSnakes = 0; //# Math.round(boardSize/11)snakes
-        int nrOfLadders = boardSize/7; //# Math.round(boardSize/7)ladders
+        int nrOfSnakes = boardSize/7; //# Math.round(boardSize/11)snakes
+        int nrOfLadders = boardSize/5; //# Math.round(boardSize/7)ladders
         square[] table = setBoardSquares(boardSize,nrOfSnakes,nrOfLadders); //Array length == boardSize; square objects
-        System.out.println("Snakes: " + nrOfSnakes + " Ladders: " + nrOfLadders);
         ////////////////////////////////////////////////////////////
 
         //todo method placing snakes and ladders - DONE
@@ -146,22 +145,25 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         }
         int[] snakeLadderArray = new int[boardSize]; //Int Array for SL Start/End calculation
         for(int i = 0; i<snakeLadderArray.length;i++){ snakeLadderArray[i] = i;}
-
         //Set Snakes and Ladders and assign a Startingpoint and Endpoint to each Snake and Ladder
         while(true){ //complexity of O(#(snakes+ladders) * n)
+            int[] image = snakeLadderArray;
             if(nrOfLadders>0){
                 int[] tempArray = new int[snakeLadderArray.length-2];
                 tempStart = randInt(1,snakeLadderArray.length-3);
                 tempEnd = randInt(tempStart+1,snakeLadderArray.length-2);
-                boardGame[tempStart] = new LadderSquare(tempStart,0,tempEnd);
-                snakeLadderArray = resizeArray(tempArray,tempStart,tempEnd,"ladder");
+                boardGame[snakeLadderArray[tempStart]] = new LadderSquare(snakeLadderArray[tempStart],
+                        0,snakeLadderArray[tempEnd]);
+                snakeLadderArray = resizeArray(image,tempArray,snakeLadderArray[tempStart],snakeLadderArray[tempEnd],
+                        "ladder");
                 nrOfLadders--;
             }else if(nrOfSnakes>0){
                 int[] tempArray = new int[snakeLadderArray.length-2];
                 tempStart = randInt(2,snakeLadderArray.length-2);
                 tempEnd = randInt(1,tempStart-1);
-                boardGame[tempStart] = new SnakeSquare(tempStart,0,tempEnd);
-                snakeLadderArray = resizeArray(tempArray,tempStart,tempEnd,"snake");
+                boardGame[snakeLadderArray[tempStart]] = new SnakeSquare(snakeLadderArray[tempStart],
+                        0,snakeLadderArray[tempEnd]);
+                snakeLadderArray = resizeArray(image,tempArray,tempStart,tempEnd,"snake");
                 nrOfSnakes--;
             }else{break;}
         }
@@ -223,8 +225,8 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         }
     }
 
-    public static int[] resizeArray(int[] tempArray, int tempStart, int tempEnd, String type){
-        if(type.equals("snake")){
+    public static int[] resizeArray(int[] image, int[] tempArray, int tempStart, int tempEnd, String type){
+        /*if(type.equals("snake")){
             int temp = tempStart;
             tempStart = tempEnd;
             tempEnd = temp;
@@ -235,13 +237,25 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         for(int i=tempStart; i<tempEnd; i++){
             tempArray[i] = i+1;
         }
-        for(int i=tempEnd+1; i<tempArray.length; i++){
+        for(int i=tempEnd; i<tempArray.length; i++){
             tempArray[i] = i+2;
         }
-        for(int i = 0; i < tempArray.length;i++){
-            System.out.println("RUN" + tempArray[i]);
+        */
+        int count = 0;
+        if(type.equals("snake")){
+            int temp = tempStart;
+            tempStart = tempEnd;
+            tempEnd = temp;
         }
-        System.out.println("\n");
+        for(int i=0; i<tempArray.length; i++){
+            if(image[i]!=tempStart || image[i]!=tempEnd) {
+                tempArray[i]=image[count];
+                count++;
+            }else{
+                count++;
+                i--;
+            }
+        }
         return tempArray;
     }
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36122d03-b5bf-40f4-a64a-b64ab4fb157f" name="Default Changelist" comment="Setup Algorithm for determining Snake and Ladder placement and Snake and Ladder Start &amp; End Point setting">
+    <list default="true" id="36122d03-b5bf-40f4-a64a-b64ab4fb157f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Square.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +66,7 @@
       <workItem from="1570177191953" duration="2382000" />
       <workItem from="1570184645077" duration="6334000" />
       <workItem from="1570340346635" duration="1755000" />
-      <workItem from="1570355610558" duration="21786000" />
+      <workItem from="1570355610558" duration="30358000" />
     </task>
     <task id="LOCAL-00001" summary="Created Sub-Classes for the Square Superclass&#10;- No need to create StartField and EndField Sub-classes, as the Superclass holds the position of a square and we can check with&#10;this position if a square is End or Start">
       <created>1570187276162</created>
@@ -105,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570364329274</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Set up the entire Game Mechanic&#10;&#10;There is one issue with the Snake and Ladder placement,&#10;as they can overlap, ex. 3-&gt;7 and 7-&gt;9 can be in one game,&#10;needs to be fixed (will do later)">
+      <created>1570377537707</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1570377537707</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +135,8 @@
     <MESSAGE value="Set up Player Names" />
     <MESSAGE value="Refining the Game mechanic (cleaning up)" />
     <MESSAGE value="Setup Algorithm for determining Snake and Ladder placement and Snake and Ladder Start &amp; End Point setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setup Algorithm for determining Snake and Ladder placement and Snake and Ladder Start &amp; End Point setting" />
+    <MESSAGE value="Set up the entire Game Mechanic&#10;&#10;There is one issue with the Snake and Ladder placement,&#10;as they can overlap, ex. 3-&gt;7 and 7-&gt;9 can be in one game,&#10;needs to be fixed (will do later)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set up the entire Game Mechanic&#10;&#10;There is one issue with the Snake and Ladder placement,&#10;as they can overlap, ex. 3-&gt;7 and 7-&gt;9 can be in one game,&#10;needs to be fixed (will do later)" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
