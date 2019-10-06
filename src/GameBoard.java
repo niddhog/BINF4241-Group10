@@ -1,30 +1,223 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class GameBoard {
 
-    public static void main(String[] args){
 
-        //how many players 2-4
-        Scanner numberObject = new Scanner(Sysem.in);
-        System.out.println("Please enter the number of Players: \n");
-        int numberOfPlayers = numberObject.nextInt();
+    public static void main(String[] args) {
 
 
-        //What´s their name? e.g. <Player 1>
+        int p = setPlayerNumber();  //Set the player Count
 
-        //square image [1][2->6][3][4][5][6][7->9][8][9][10][11->5][12]
+        player[] playerNames = setPlayerName(p); //Set Player Names
 
-        //initial state with players on the first square
+        int boardSize = setBoardSize(); //Input -> int boardSize = ;
 
-        //while game not over
+        //Datastructure array with length boardSize and each cell is a square
+        square[] table = boardsquares(boardSize);
 
-        //one player rolls dice
+
+        /*
+        square image [1][2->6][3][4][5][6][7->9][8][9][10][11->5][..][boardSize]
+        randomized # Math.round(boardSize/10)snakes and # Math.round(boardSize/5)ladders
+         */
+        int nrOfSnakes = boardSize/7;
+        int nrOfLadders = boardSize/11;
+
+
+                                                                            //todo method placing snakes and ladders
+
+
+
+
+
+
+        //print initial state with board and players on the first square
+        //initial state: players on the first square
+
+        System.out.print("Initial State: ");
+        stateOfTurn(p, boardSize, playerNames, table);
+
+
+
+        int m = 0;
+        while(true) {                  //while game not over
+
+            player playerNow = playerNames[m%3];
+
+            int backstep;
+            int dice = randInt(1, 6);                               //one player rolls dice
+
+
+            System.out.print(playerNow + " rolls " + dice + ": "); //print state this.player + " rolls " + this.dice + stateBefore
+
+            stateOfTurn(p, boardSize, playerNames, table);
+
+
+            for(int i = 0; i< boardSize; i++){                              //boardgame
+                if(table[i].getSquareNr() == playerNow.getPosition()){
+                    table[i].setOccupied(0);
+                    break;
+                }
+            }
+
+            if(playerNow.getPosition() + dice >boardSize){
+                backstep =  boardSize-(playerNow.getPosition()+dice-boardSize);
+            }
+            else{
+                backstep = playerNow.getPosition() + dice;
+            }
+
+
+            if(backstep == table[backstep-1].getSquareNr() && table[backstep-1].getOccupied() == 1){ //already occupied
+                    playerNow.setPosition(1);
+                    } else{
+                    playerNow.setPosition(backstep);}         //move the player (position+dice number)
+
+
+
+            if(playerNow.getPosition()!=1){
+                table[playerNow.getPosition()-1].setOccupied(1);        //
+            }
+
+
+
+            if (playerNow.getPosition() == boardSize){
+                System.out.println("Final state: ");
+                stateOfTurn(p, boardSize, playerNames, table);            // updatedState = state with moved player
+                System.out.println(playerNow.getName() + " wins!");
+                break;
+                }
+            m++;
+            }
+        }
+
+    public static int setPlayerNumber(){
+        while (true){
+            Scanner numberObject = new Scanner(System.in);
+            try
+            {
+                System.out.println("Please enter the number of Players (2-4 Players): ");
+                int p = numberObject.nextInt();
+                if(p>=2 && p<=4){
+                    return p;
+                }
+                System.out.println("Please select a min. of 2 Players and a max. of 4 Players...");
+            }
+            catch(InputMismatchException exception)
+            {
+                System.out.println("You did not enter a whole number...");
+            }
+        }
+    }
+
+
+    public static player[] setPlayerName(int p){
+        player[] nameArray = new player[p]; //initialize String array of size p
+        Scanner nameObject = new Scanner(System.in);
+        for(int i = 1; i <= p; i++){
+            System.out.println("Please enter the Name of Player " + i + ": ");
+            nameArray[i-1].setName(nameObject.nextLine());
+            nameArray[i-1].setPlayernr(i);
+            nameArray[i-1].setPosition(1);
+            if(nameArray[i-1].getName().isEmpty()){
+                System.out.println("You did not enter any Name...");
+                i--;
+            }
+            else{
+                System.out.println("\n Player " + i + " name: " + nameArray[i-1]);
+            }
+        }
+        return nameArray;
+    }
+
+
+    public static int setBoardSize(){
+        while (true){
+            Scanner boardObject = new Scanner(System.in);
+            try
+            {
+                System.out.println("Please set the Size of the board (enter a whole Number, min. 7): ");
+                int n = boardObject.nextInt();
+                if(n<7){
+                    System.out.println("Please enter a board size of at least 7 fields...");
+                }
+                return n;
+            }
+            catch(InputMismatchException exception)
+            {
+                System.out.println("You did not enter a whole number...");
+            }
+        }
+    }
+
+    public static square[] boardsquares(int p) {
+        square[] boardGame = new square[p]; //initialize String array of size p
+        for (int i = 1; i <= p; i++) {
+            boardGame[i-1] = new square(i, 0);
+        }
+        return boardGame;
+    }
+
+
+
+
+    public static int randInt(int min, int max) {
+        if (min >= max) {
+            throw new IllegalArgumentException("max have to be greater than min");
+        }
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
+    }
+
+    public static void stateOfTurn(int p, int boardSize, player playerNames[], square table[]){
+        for (int i = 1; i <= boardSize; i++) {
+
+            if(isSnake(table[i-1])){                         //todo identify if it's a snake or ladder, but to access subclass method
+                System.out.print("<" + (SnakeSquare(table[i-1])).teleportNr(i-1) + "<-" + table[i-1].getSquareNr()+">");
+            }
+
+            else if(isLadder(table[i-1])){                    //todo necessary to allocate the snakes and ladders
+                System.out.print("<" + table[i-1].getSquareNr() +
+                        "->" + (SnakeSquare(table[i-1])).teleportNr(i-1) +">");
+            }
+                else{
+                    System.out.print("[" + i);
+
+                    for (int a = 0; a < p; a++) {
+                        if (playerNames[a].getPosition() == i) {
+
+                            System.out.print("<" + playerNames[a].getName() + ">");
+                        }
+                    }
+                    System.out.println("]");
+                }
+
+        }
+    }
+     public static boolean isSnake(square test){
+         return (test instanceof SnakeSquare);
+     }
+
+    public static boolean isLadder(square test){
+        return (test instanceof SnakeSquare);
+    }
+
+    public void subBySnkake(square table[], int squareNr){
+        int a = randInt(5, 7);
+        table[squareNr-1] = new SnakeSquare(squareNr, 0 , a);        //todo it's only a example of a range(3,5)
+    }
+
+    public void subByLadder(square table[], int squareNr){
+        table[squareNr] = new LadderSquare(squareNr, 0, randInt(2, 4));        //todo it's only a example of a range(3,5)
 
     }
-    //move the player (position+dice number)
-    public static void movePlayer() { //make sure to define methods outside the main method
 
-        //if
+    /*public static void movePlayer(int oldpostion, int dice, player) { //make sure to define methods outside the main method
 
-    }
+        player.setposition(oldpostion + dice);
+
+    }*/
 }
+
