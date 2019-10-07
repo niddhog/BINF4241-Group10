@@ -16,13 +16,13 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         int p = setPlayerNumber(), m = 0;  //Set the player Count; Set player rotation int m
         Player[] playerNames = setPlayerName(p); //Set Player Names
         int boardSize = setBoardSize(); //Input -> int boardSize = ;
-        int nrOfSnakes = boardSize/7; //# Math.round(boardSize/11)snakes
-        int nrOfLadders = boardSize/5; //# Math.round(boardSize/7)ladders
+        int nrOfSnakes = boardSize/11; //# Math.round(boardSize/11)snakes
+        int nrOfLadders = boardSize/7; //# Math.round(boardSize/7)ladders
         square[] table = setBoardSquares(boardSize,nrOfSnakes,nrOfLadders); //Array length == boardSize; square objects
         ////////////////////////////////////////////////////////////
 
         //todo method placing snakes and ladders - DONE
-        System.out.print("Initial State: "); //print initial state with board and players on the first square
+        System.out.print("Initial State: \t"); //print initial state with board and players on the first square
         stateOfTurn(p, boardSize, playerNames, table); //initial state: players on the first square
 
         while(true) {//while game not over
@@ -30,7 +30,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
             Player playerNow = playerNames[m%p]; //rotate through players
             int backStep;
             int dice = randInt(1, 6);//one player rolls dice
-            System.out.print(playerNow.getName() + " rolls " + dice + ": "); //print state of current player
+            System.out.print(playerNow.getName() + " rolls " + dice + ": \t"); //print state of current player
             stateOfTurn(p, boardSize, playerNames, table);
             if(playerNow.getPosition()!=0){
                 table[playerNow.getPosition()].setOccupied(0);
@@ -59,8 +59,8 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
             }
 
             if(table[playerNow.getPosition()+dice].getSquareNr() == boardSize-1){
-                System.out.println("Final state: ");
-                stateOfTurn(p, boardSize, playerNames, table);            // updatedState = state with moved player
+                System.out.print("Final state: \t");
+                stateOfTurn(p, boardSize, playerNames, table);//Final State Update = state with moved player
                 System.out.println(playerNow.getName() + " wins!");
                 break;
             }
@@ -74,7 +74,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
             Scanner numberObject = new Scanner(System.in);
             try
             {
-                System.out.println("Please enter the number of Players (2-4 Players): ");
+                System.out.print("Please enter the number of Players (2-4 Players): ");
                 int p = numberObject.nextInt();
                 if(p>=2 && p<=4){
                     return p;
@@ -95,7 +95,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
 
         for(int i = 1; i <= p; i++){
             Player player = new Player();
-            System.out.println("Please enter the Name of Player " + i + ": ");
+            System.out.print("Please enter the Name of Player " + i + ": ");
             player.setName(nameObject.nextLine());
             //nameArray[i-1].setName(nameObject.nextLine()); REMOVE IF CODE RUNS CORRECTLY
             player.setPlayernr(i);
@@ -106,7 +106,7 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
                 i--;
             }
             else{
-                System.out.println("\n Player " + i + " name: " + player.getName());
+                System.out.println("Player " + i + " Name is: " + player.getName()+"\n");
             }
         }
         return playerArray;
@@ -118,11 +118,13 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
             Scanner boardObject = new Scanner(System.in);
             try
             {
-                System.out.println("Please set the Size of the board (enter a whole Number, min. 7): ");
+                System.out.print("Please set the Size of the board (enter a whole Number, min. 7): ");
                 int n = boardObject.nextInt();
                 if(n<7){
                     System.out.println("Please enter a board size of at least 7 fields...");
+                    continue;
                 }
+                System.out.print("\n\n\n");
                 return n;
             }
             catch(InputMismatchException exception)
@@ -225,22 +227,8 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         }
     }
 
+
     public static int[] resizeArray(int[] image, int[] tempArray, int tempStart, int tempEnd, String type){
-        /*if(type.equals("snake")){
-            int temp = tempStart;
-            tempStart = tempEnd;
-            tempEnd = temp;
-        }
-        for(int i=0; i<tempStart; i++){
-            tempArray[i] = i;
-        }
-        for(int i=tempStart; i<tempEnd; i++){
-            tempArray[i] = i+1;
-        }
-        for(int i=tempEnd; i<tempArray.length; i++){
-            tempArray[i] = i+2;
-        }
-        */
         int count = 0;
         if(type.equals("snake")){
             int temp = tempStart;
@@ -248,12 +236,20 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
             tempEnd = temp;
         }
         for(int i=0; i<tempArray.length; i++){
-            if(image[i]!=tempStart || image[i]!=tempEnd) {
+            //System.out.println("count: " + count + " i: " + i);
+            if(image[count]!=tempStart && image[count]!=tempEnd) {
                 tempArray[i]=image[count];
                 count++;
             }else{
                 count++;
-                i--;
+                if(image[count]!=tempStart && image[count]!=tempEnd){
+                    tempArray[i]=image[count];
+                    count++;
+                }else{
+                    count++;
+                    tempArray[i]=image[count];
+                    count++;
+                }
             }
         }
         return tempArray;

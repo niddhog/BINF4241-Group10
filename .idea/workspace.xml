@@ -66,7 +66,8 @@
       <workItem from="1570177191953" duration="2382000" />
       <workItem from="1570184645077" duration="6334000" />
       <workItem from="1570340346635" duration="1755000" />
-      <workItem from="1570355610558" duration="30358000" />
+      <workItem from="1570355610558" duration="30405000" />
+      <workItem from="1570425082791" duration="4197000" />
     </task>
     <task id="LOCAL-00001" summary="Created Sub-Classes for the Square Superclass&#10;- No need to create StartField and EndField Sub-classes, as the Superclass holds the position of a square and we can check with&#10;this position if a square is End or Start">
       <created>1570187276162</created>
@@ -110,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570377537707</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Some minor bug fixxes (still a problem with ladder pathfinding)">
+      <created>1570387500142</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1570387500142</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +144,8 @@
     <MESSAGE value="Refining the Game mechanic (cleaning up)" />
     <MESSAGE value="Setup Algorithm for determining Snake and Ladder placement and Snake and Ladder Start &amp; End Point setting" />
     <MESSAGE value="Set up the entire Game Mechanic&#10;&#10;There is one issue with the Snake and Ladder placement,&#10;as they can overlap, ex. 3-&gt;7 and 7-&gt;9 can be in one game,&#10;needs to be fixed (will do later)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set up the entire Game Mechanic&#10;&#10;There is one issue with the Snake and Ladder placement,&#10;as they can overlap, ex. 3-&gt;7 and 7-&gt;9 can be in one game,&#10;needs to be fixed (will do later)" />
+    <MESSAGE value="Some minor bug fixxes (still a problem with ladder pathfinding)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some minor bug fixxes (still a problem with ladder pathfinding)" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
