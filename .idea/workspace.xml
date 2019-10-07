@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="36122d03-b5bf-40f4-a64a-b64ab4fb157f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/src/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameBoard.java" afterDir="false" />
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +68,10 @@
       <created>1570177189424</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
       <updated>1570177189424</updated>
       <workItem from="1570177191953" duration="2382000" />
       <workItem from="1570184645077" duration="6334000" />
@@ -82,6 +92,29 @@
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1570188619319</updated>
+<<<<<<< Updated upstream
+=======
+=======
+      <updated>1570023401429</updated>
+      <workItem from="1570023402736" duration="354000" />
+      <workItem from="1570097075124" duration="276000" />
+      <workItem from="1570097358354" duration="475000" />
+      <workItem from="1570097892809" duration="212000" />
+      <workItem from="1570099528864" duration="128000" />
+      <workItem from="1570102657058" duration="506000" />
+<<<<<<< Updated upstream
+      <workItem from="1570103933615" duration="7359000" />
+<<<<<<< Updated upstream
+      <workItem from="1570129212844" duration="7945000" />
+      <workItem from="1570169723327" duration="103000" />
+>>>>>>> Stashed changes
+=======
+      <workItem from="1570129212844" duration="7676000" />
+=======
+      <workItem from="1570103933615" duration="9589000" />
+      <workItem from="1570171710976" duration="1442000" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00003" summary="Set up Player Names">
       <created>1570190963504</created>
