@@ -2,8 +2,12 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+<<<<<<< HEAD:.idea/BINF4241-Group10.iml
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Assignment 1/src" isTestSource="false" />
+=======
+    <content url="file://$MODULE_DIR$/..">
+>>>>>>> master:Assignment 1/.idea/BINF4241-Group10.iml
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/final submision Assignment 1/src" isTestSource="false" />
     </content>
