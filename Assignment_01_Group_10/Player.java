@@ -16,6 +16,7 @@ public class Player {
         this.position = position;
     }
 
+
     public int getPosition(){
         return position;
     }
@@ -27,5 +28,5 @@ public class Player {
     public int getPlaynernr() {
         return playernr;
     }
-}
 
+}

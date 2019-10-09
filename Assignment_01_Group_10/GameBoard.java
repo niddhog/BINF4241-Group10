@@ -2,14 +2,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
-//square image [1][2->6][3][4][5][6][7->9][8][9][10][11->5][..][boardSize]
-
-
-
-public class GameBoard {                    /*todo IMPORTANT: in the methods and classes, I don't really understand
-                                                the meaning/behaviour of "static", pls take a look" ALSO: Plz
-                                                use First Capital Letter for Classes*/
-
+public class GameBoard {
 
     public static void main(String[] args) {
         //INITIAL GAME SETUP///////////////////////////////////////
@@ -21,7 +14,6 @@ public class GameBoard {                    /*todo IMPORTANT: in the methods and
         square[] table = setBoardSquares(boardSize,nrOfSnakes,nrOfLadders); //Array length == boardSize; square objects
         ////////////////////////////////////////////////////////////
 
-        //todo method placing snakes and ladders - DONE
         System.out.print("Initial State: \t"); //print initial state with board and players on the first square
         stateOfTurn(p, boardSize, playerNames, table); //initial state: players on the first square
 
