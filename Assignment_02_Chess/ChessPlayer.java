@@ -15,6 +15,18 @@ public class ChessPlayer {
         return playerName;
     }
     public PieceColor getColor() {return color; }
+    public Pieces[] getPiecesEaten(){return piecesEaten;}
+
+
+    //setter for the eaten pieces
+
+    public Pieces[] setPiecesEaten(PieceSet.getList() capturedPiece, int a){
+        int i = 0;
+        while(piecesEaten[i]!=null){
+            i++;
+        }
+        piecesEaten[i]=capturedPiece[a];
+    }
 
 
 

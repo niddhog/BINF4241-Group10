@@ -7,11 +7,26 @@ import java.util.Scanner;
 //white player begins
 //Check for Win Condition
 
+    /*
+    playedMoves - Keep a record of moves
+    turn - Indicate either it is a Black's turn or a White's turn -> changes in the loop condition
+    players - Represent the two players, this can be Human/Human
+    result - Indicate the result of a game
+        -> represent only blackWins/whiteWins/draw
+    checkStatus - Indicate which side is being checked or checkmated
+        -> whiteChecked/blackChecked/whiteCheckMate/blackCheckMate
+     */
+
 public class ChessGame implements PlayerBoard {
+
+
 
     public static void main(String[] args)
     {
+        
+
         ChessPlayer player1 = new ChessPlayer(setPlayerName(1),setPlayerColor(1));
+
         if(player1.getColor()==PieceColor.WHITE){
             ChessPlayer player2 = new ChessPlayer(setPlayerName(2),PieceColor.BLACK);
         }
@@ -24,13 +39,38 @@ public class ChessGame implements PlayerBoard {
 
 
 
+        if(player1.getColor()==PieceColor.BLACK) {
+            ChessPlayer currentPlayer = player2;
+        }
+        else{
+            ChessPlayer currentPlayer = player1;
+        }
+
     }
 
 
 
 
 
+    public nextTurn(ChessPlayer currentPlayer, ChessPlayer player1, ChessPlayer player2){
+        if(currentPlayer==player1){
+            currentPlayer=player2;
+        }
+        else{
+            currentPlayer=player1;
+        }
+    }
 
+
+
+    //checks, if a king in check or checkmate
+    public isChecked(){
+        if(PieceSet.getColor() == currentPlayer.getColor){
+            for(int i=0; i<16;i++){
+                PieceSet[i] ==
+            }
+        }
+    }
 
 
     public static String setPlayerName(int p){
@@ -67,15 +107,16 @@ public class ChessGame implements PlayerBoard {
         }
     }
 
-    public static int findSquare(ChessBoard squares, String position){
+    public int findSquare(ChessBoard[][] squares, Square position){
         for(int i = 0; i < squares.length; i++){
             for(int j = 0; j < squares.length; j++) {
-                if(squares[i][j].getChessID == position) {
-                    return squares[i][j];
+                if(ChessBoard.getSquare(i, j) == position) {
+                    ChessBoard.getSquare(i ,j);
                 }
             }
         }
-
     }
+
+
 
 }

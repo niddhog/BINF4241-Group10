@@ -26,6 +26,10 @@ public class ChessBoard {
         }
     }
 
+    public Square getSquare(int i, int j){              //getter for square
+        return squares[i][j];
+    }
+
     public void display(){//first Piece Class has to be specified in order to place Pieces
         System.out.println("\ta\tb\tc\td\te\tf\tg\th");
         System.out.println("  +---+---+---+---+---+---+---+---+");
