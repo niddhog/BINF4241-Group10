@@ -4,10 +4,13 @@ import java.util.Scanner;
 //Set their colors
 //evt. Log
 //StartGame
+//white player begins
 //Check for Win Condition
 
-public class ChessGame {
-    public static void main(String[] args) {
+public class ChessGame implements PlayerBoard {
+
+    public static void main(String[] args)
+    {
         ChessPlayer player1 = new ChessPlayer(setPlayerName(1),setPlayerColor(1));
         if(player1.getColor()==PieceColor.WHITE){
             ChessPlayer player2 = new ChessPlayer(setPlayerName(2),PieceColor.BLACK);
@@ -16,8 +19,18 @@ public class ChessGame {
             ChessPlayer player2 = new ChessPlayer(setPlayerName(2),PieceColor.WHITE);
         }
         ChessBoard board = new ChessBoard(player1.getColor()); //creates Board with Player 1 on Top of the Board
-        board.display();
+        board.display();                                       //todo board needs the pieces(wasn't implemented yet)
+
+
+
+
     }
+
+
+
+
+
+
 
 
     public static String setPlayerName(int p){
@@ -53,4 +66,16 @@ public class ChessGame {
             }
         }
     }
+
+    public static int findSquare(ChessBoard squares, String position){
+        for(int i = 0; i < squares.length; i++){
+            for(int j = 0; j < squares.length; j++) {
+                if(squares[i][j].getChessID == position) {
+                    return squares[i][j];
+                }
+            }
+        }
+
+    }
+
 }
