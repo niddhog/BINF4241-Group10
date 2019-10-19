@@ -1,25 +1,32 @@
-public class CheckStatus {
-    private Pieces[] kingPiece; //update the king of the current player
-    private PieceSet[] blackSet;
-    private PieceSet[] whiteSet;
+public enum CheckStatus {
+    BlackInCheck,
+    WhiteInCheck,
+    BlackCheckmated,
+    WhiteCheckmated;
+}
 
-    //for checking the the "check" situation we need to check all the all next opponents and our movements
+CheckStatus status;
 
-    /*
-    validMoves() - The valid movement for a Piece
-    attackSquares() - The squares that a Piece can attack
-    captureFreeMove - The squares that a Piece can move to without being captured.
-    toBeCaptured() - The boolean indicates whether a Piece is going to be captured.
-     */
+    CheckStatus(CheckStatus status){
+    this.status = status;
+}
 
-    //whiteInCheck
-    //blackInCheck
-    //draw
-
-    public checkWhiteKing(){
-        for(int i=0; i < 16; i++){
-            if(whiteSet.getColoredSet() == )
-        }
-        kingPiece
+    public void warning(){
+    switch (status) {
+        case BlackInCheck:
+            System.out.println("Black king is in check.");
+            break;
+        case WhiteInCheck:
+            System.out.println("Black king is in check.");
+            break;
+        case BlackCheckmated:
+            System.out.println("Black king is in check.");
+            break;
+        case WhiteCheckmated:
+            System.out.println("Black king is in check.");
+            break;
+        default:
+            System.out.println("Black king is in check.");
+            break;
     }
 }

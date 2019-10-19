@@ -1,5 +1,5 @@
 public class ChessPlayer {
-    private Pieces[] piecesEaten;
+    private Pieces[] piecesEaten; //todo is piecesEaten necessary? because toBeCaptured() is false(alive) or true(dead)
     private String playerName;
     private PieceColor color;
 
