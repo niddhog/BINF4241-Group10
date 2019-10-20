@@ -75,6 +75,10 @@ public class ChessGame {
                             }
                         }
                     }
+
+
+                    // I am testing, if the current player made a invalid move, so his King is in a check situation
+                    // thus, at the opponent´s turn the king would be killed
                     else if(isChecked(blackSet, whiteSet, currentPlayer)){
                         CheckStatus WhiteInCheck = new CheckStatus(CheckStatus.WhiteInCheck);
                         WhiteInCheck.warning();
@@ -88,6 +92,8 @@ public class ChessGame {
                 }
             }
 
+
+            //player changed before the check comes, thus the defending player can reacts, if it´s possible
             //check and checkmate
             //todo I'm not sure, if the the CheckStatus needed, if it's only text output
             nextTurn(currentPlayer, playerList);
@@ -116,7 +122,7 @@ public class ChessGame {
     }
 
 
-    //it tests the input "start" and "end" Square of the user for the computation of the movement of the piece
+    //it tests the input "start" Square of the user for the computation of the movement of the piece
     public static String inputStart(){
         while(true) {
 
@@ -158,11 +164,12 @@ public class ChessGame {
                     System.out.println("Your position is incorrect. Choose an input of length 2 with a " +
                             "combination of the named squares of the board.");
                 }
-
-                }
             }
         }
+    }
 
+
+    //it tests the input "end" Square of the user for the computation of the movement of the piece
     public static String inputEnd() {
         Scanner userMove = new Scanner(System.in);
 
@@ -200,13 +207,12 @@ public class ChessGame {
                 System.out.println("Your position is incorrect. Choose an input of length 2 with a " +
                         "combination of the named squares of the board.");
             }
-
         }
     }
 
 
 
-
+    //change the player, for next turn and check situation
     public static void nextTurn(ChessPlayer currentPlayer, ChessPlayer[] player){
         if(currentPlayer==player[0]){
             currentPlayer=player[1];
@@ -220,9 +226,9 @@ public class ChessGame {
     //checks, if a king in check or checkmate
     //attack already happened, currentPlayer changed, just check afterwards, if a king is in check
     public static boolean isChecked(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Pieces checkedKing = new Pieces;
+        Pieces checkedKing = new King;
         for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.KING){
+            if(defendingSet.getList()[j] == PieceType.King){
                 checkedKing=defendingSet.getList()[j];
             }
         }
@@ -235,6 +241,9 @@ public class ChessGame {
                 }
             }
         }
+        /* Stalemate isn´t necessary to implement, but it may be useful fot later on, for checkmate we already test the case
+        otherwise with pieces specific methods
+
     public static boolean isStalemate(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
         Pieces checkedKing = new Pieces;
         for(int j=0; j<16;j++) {
@@ -242,6 +251,7 @@ public class ChessGame {
                 checkedKing=defendingSet.getList()[j];
             }
         }
+
         if(attackingSet.getColoredSet() == currentPlayer.getColor()){
             for(int i=0; i<16;i++){
                 if(attackingSet.getList()[i].validMoves() != checkedKing.placeAt() && attackingSet.getList()[i].toBeCaptured()==false
@@ -251,13 +261,15 @@ public class ChessGame {
             }
         }
     }
+    */
+
         //currentPlayer is has the defendingSet
     public static boolean isCheckmate(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Pieces checkedKing;
+        Pieces checkedKing = new King;
         Pieces regicide;
         boolean killRegicide=false;
         for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.KING){
+            if(defendingSet.getList()[j] == PieceType.King){
                 checkedKing=defendingSet.getList()[j];
             }
         }
@@ -278,7 +290,8 @@ public class ChessGame {
             }
         }
 
-
+        // if stalemate and check is active, then it follows checkemate
+        // todo BUT there´s is a small possibility, this case won´t work, if there is a piece can block the way to the checked an stalemated King
         if(checkedKing.inCheck()==true && checkedKing.captureFreeMoves()==null)
         {
             return true;

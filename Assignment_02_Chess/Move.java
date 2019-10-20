@@ -9,39 +9,81 @@ public class Move {
     private PieceSet whiteSet;
     private Pieces[] enemyList;
     private Pieces[] pieceList;
-    private PieceSet[] pieceSet1;
-    private PieceSet[] pieceSet2;
-    private PieceSet[] set1;
-    private PieceSet[] set2;
-
-    public Square getStart(){
-        return start;
-    }
-    public Square getEnd(){
-        return end;
-    }
 
 
-    public Move(ChessPlayer player, Square start, Square end, PieceSet blackSet, PieceSet whiteSet) {
+
+    public Move(ChessPlayer player, Square start, Square end, PieceSet blackSet, PieceSet whiteSet, ChessBoard board) {
         this.player = player;
         this.start = start;
         this.end = end;
         this.blackSet=blackSet;
         this.whiteSet=whiteSet;
-        PieceColor enemy;
+
 
 
         //one list is from the current player and the other one for the case, when a piece captured
         if (player.getColor() == PieceColor.BLACK) {
-            enemy = PieceColor.WHITE;
                 pieceList = blackSet.getList();
                 enemyList = whiteSet.getList();
             }
         else {
-            enemy = PieceColor.BLACK;
                 pieceList = whiteSet.getList();
                 enemyList = blackSet.getList();
             }
+
+        if(board.getSquare(0, 4)==start) {
+            if (end == board.getSquare(0, 2) && isCastlingMove(blackSet, whiteSet, board, player)) {
+                for (int i = 0; i < 16; i++) {
+                    if (pieceList[i] == PieceType.King) {
+                        pieceList[i].placeAt() == end;
+                    }
+                }
+                for (int j = 0; j < 16; j++) {
+                    if (pieceList[j] == PieceType.Rook && pieceList[j].placeAt()== board.getSquare(0,0)) {
+                        pieceList[j].placeAt() ==board.getSquare(0,3);
+                    }
+                }
+            }
+            else if (end == board.getSquare(0, 6) && isCastlingMove(blackSet, whiteSet, board, player)) {
+                for (int i = 0; i < 16; i++) {
+                    if (pieceList[i] == PieceType.King) {
+                        pieceList[i].placeAt() == end;
+                    }
+                }
+                for (int j = 0; j < 16; j++) {
+                    if (pieceList[j] == PieceType.Rook && pieceList[j].placeAt()== board.getSquare(0,7)) {
+                        pieceList[j].placeAt() == board.getSquare(0,5);
+                    }
+                }
+            }
+        }
+        else if (board.getSquare(7, 4)==start){
+            if (end == board.getSquare(7, 2) && isCastlingMove(blackSet, whiteSet, board, player)) {
+                for (int i = 0; i < 16; i++) {
+                    if (pieceList[i] == PieceType.King) {
+                        pieceList[i].placeAt() == end;
+                    }
+                }
+                for (int j = 0; j < 16; j++) {
+                    if (pieceList[j] == PieceType.Rook && pieceList[j].placeAt()== board.getSquare(7,0)) {
+                        pieceList[j].placeAt() ==board.getSquare(7,3);
+                    }
+                }
+            }
+            else if (end == board.getSquare(7, 6) && isCastlingMove(blackSet, whiteSet, board, player)) {
+                for (int i = 0; i < 16; i++) {
+                    if (pieceList[i] == PieceType.King) {
+                        pieceList[i].placeAt() == end;
+                    }
+                }
+                for (int j = 0; j < 16; j++) {
+                    if (pieceList[j] == PieceType.Rook && pieceList[j].placeAt()== board.getSquare(7,7)) {
+                        pieceList[j].placeAt() == board.getSquare(7,5);
+                    }
+                }
+            }
+        }
+        
 
 
             //searching, if any of player's piece is on this square, it's chosen to be moved
@@ -71,42 +113,142 @@ public class Move {
     // suppose firstMove() is a boolean for the king and the rooks, if they already moved, they can't castling
     //4 situations castling White king Queen side, castling white king king side, castling black king queen side
     //castling black king king side
-    public boolean isCastlingMove(PieceSet pieceSet1, PieceSet pieceSet2, ChessBoard board, ChessPlayer currentPlayer) {
-        if(pieceSet1.getColoredSet()==currentPlayer.getColor()){
-            PieceSet set1 = new PieceSet(pieceSet1.getColoredSet());
-            set1=pieceSet1;
-            PieceSet set2 = new PieceSet(pieceSet2.getColoredSet());
-            set2 = pieceSet2;
+    public static boolean isCastlingMove(PieceSet pieceSet1, PieceSet pieceSet2, ChessBoard board, ChessPlayer currentPlayer)
+        {
+        Pieces castlingKing = new King();
+        Pieces QRook = new Rook();
+        Pieces KRook = new Rook();
+        boolean king = false;
+        boolean qRook = false;
+        boolean kRook = false;
+        boolean possible;
+        possible=false;
+        PieceSet set1 = new PieceSet(pieceSet1.getColoredSet());
+        PieceSet set2 = new PieceSet(pieceSet2.getColoredSet());
+        PieceSet temp = new PieceSet(currentPlayer.getColor());
+        if (set1 != temp) {
+            set2 = set1;
+            set1 = temp;
         }
+
+
+        //topside pieceSet
+        for (int a = 0; a < 16; a++) {
+            if (set1.getList()[a] == PieceType.King && set1.getList()[a].placeAt() == board.getSquare(0, 4)
+                    && set1.getList()[a].firstMove() == false && set1.getList()[a].inCheck() == false) {
+                castlingKing = set1.getList()[a];
+                king = true;
+            }
+            else{
+                possible=false;
+            }
+        }
+
+        for (int b = 0; b < 16; b++) {
+            if (set1.getList()[b] == PieceType.Rook && set1.getList()[b].firstMove() == false
+                    && set1.getList()[b].placeAt() == board.getSquare(0, 0)) {
+                QRook = set1.getList()[b];
+                qRook = true;
+            }
+            else{
+                possible=false;
+            }
+        }
+
+        for (int b = 0; b < 16; b++) {
+            if (set1.getList()[b] == PieceType.Rook && set1.getList()[b].firstMove() == false
+                    && set1.getList()[b].placeAt() == board.getSquare(0, 7)) {
+                KRook = set1.getList()[b];
+                kRook = true;
+            }
+            else{
+                possible=false;
+            }
+        }
+
+
+
+
+        //bottom side pieceSet
+        for (int a = 0; a < 16; a++) {
+            if (set1.getList()[a] == PieceType.King && set1.getList()[a].placeAt() == board.getSquare(7, 4)
+                    && set1.getList()[a].firstMove() == false && set1.getList()[a].inCheck() == false) {
+                castlingKing = set1.getList()[a];
+                king = true;
+            }
+            else{
+                possible=false;
+            }
+        }
+        
+
+        for (int b = 0; b < 16; b++) {
+            if (set1.getList()[b] == PieceType.Rook && set1.getList()[b].firstMove() == false
+                    && set1.getList()[b].placeAt() == board.getSquare(7, 0)) {
+                QRook = set1.getList()[b];
+                qRook = true;
+            }
+            else{
+                possible=false;
+            }
+        }
+
+        for (int b = 0; b < 16; b++) {
+            if (set1.getList()[b] == PieceType.Rook && set1.getList()[b].firstMove() == false
+                    && set1.getList()[b].placeAt() == board.getSquare(7, 7)) {
+                KRook = set1.getList()[b];
+                kRook = true;
+            }
+            else{
+                possible=false;;
+            }
+        }
+
+
+        if(qRook && king){
+        // queen side check, no (of my/their) pieces are placed AND opponents attackSquares() can´t reach these squares
+            for(int i =0 ; i<16; i++){
+                if(set1.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY()-1)
+                    || set1.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY()-2)
+                    || set2.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY()-1)
+                    || set2.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY()-2)
+                    || set2.getList()[i].attackSquares() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY()-1)
+                    || set2.getList()[i].attackSquares() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY()-2))
+                { 
+                    possible=false;;
+            }
+                else{
+                    possible=true;
+                }
+            }
+        }
+
+        if(kRook && king) {
+            // king side check, no (of my/their) pieces are placed AND opponents attackSquares() can´t reach these squares
+            for (int i = 0; i < 16; i++) {
+                if (set1.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY() + 1)
+                        || set1.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY() + 2)
+                        || set2.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY() + 1)
+                        || set2.getList()[i].placeAt() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY() + 2)
+                        || set2.getList()[i].attackSquares() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY() + 1)
+                        || set2.getList()[i].attackSquares() == board.getSquare(castlingKing.placeAt().getX(), castlingKing.placeAt().getY() + 2))
+                {
+                    possible=false;;
+                }
+            }
+
+            }
         else{
-            PieceSet set2 = new PieceSet(pieceSet1.getColoredSet());
-            set2=pieceSet1;
-            PieceSet set1 = new PieceSet(pieceSet2.getColoredSet());
-            set1 = pieceSet2;
+            possible=true;
         }
-        for(int a=0; a<16; a++) {
-            if (set1.getList()[a] == PieceType.King && set1.getList()[a].placeAt() == board.getSquare(0, 5)
-                    && set1.getList()[a].firstMove() == false && set1.getList()[a] == PieceType.Rook &&
-                    set1.getList()[a].firstMove() == false && set1.getList()[a].placeAt() == board.getSquare(0, 0)
-                    && set1.getList()[a].inCheck() == false) {
-
-            } else if (set1.getList()[a] == PieceType.King && set1.getList()[a].placeAt() == board.getSquare(7, 5)
-                    && set1.getList()[a].firstMove() == false && set1.getList()[a] == PieceType.Rook &&
-                    set1.getList()[a].firstMove() == false && set1.getList()[a].placeAt() == board.getSquare(7, 0)
-                    && set1.getList()[a].inCheck() == false) {
-
-            }
+        if(possible){
+            return true;
+        } 
+        else{
+            return false;
         }
-            else if{
-                for(int a=0; a<16; a++){
-                    if(set1.getList()[a] == PieceType.King && set1.getList()[a].placeAt() == board.getSquare(0, 5)
-                            && set1.getList()[a].firstMove() == false &&
-                            && set1.getList()[a].inCheck() == false ){
-                for(int b=0; a<16; b++)
-                    if (set1.getList()[a] == PieceType.Rook &&
-                        set1.getList()[a].firstMove() == false && set1.getList()[a].placeAt() == board.getSquare(0, 7)
-            }
         }
-    }
 }
+
+    
 
