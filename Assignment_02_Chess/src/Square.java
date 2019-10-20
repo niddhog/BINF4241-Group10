@@ -1,3 +1,5 @@
+package src;
+
 public class Square {
     private int x; //column
     private int y; //row

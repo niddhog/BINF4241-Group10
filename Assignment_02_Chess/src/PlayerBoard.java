@@ -1,3 +1,5 @@
+package src;
+
 public interface PlayerBoard {
 
     //public void makeMove();

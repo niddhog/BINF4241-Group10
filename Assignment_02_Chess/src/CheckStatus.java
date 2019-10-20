@@ -1,3 +1,5 @@
+package src;
+
 public enum CheckStatus {
     BlackInCheck,
     WhiteInCheck,

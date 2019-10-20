@@ -1,3 +1,5 @@
+package src;
+
 public class PieceSet {
     private Pieces[] list;
     private PieceColor coloredSet;

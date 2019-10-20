@@ -1,3 +1,5 @@
+package src;
+
 public class ChessBoard {
     private Square[][] squares = new Square[8][8]; //Matrix for holding 64 squares 8x8
     private Pieces[] pieceSets; //Array for storing PieceSets of Players (Black Set or White Set)
