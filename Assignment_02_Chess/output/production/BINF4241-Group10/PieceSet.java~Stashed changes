@@ -1,0 +1,58 @@
+public class PieceSet {
+    private Piece[] list;
+    private PieceColor coloredSet;
+
+    public PieceSet(PieceColor coloredSet){
+        list = new Piece[16];
+        this.coloredSet = coloredSet;
+    }
+
+    public void setList(Piece[] list) {
+        this.list = list;
+    }
+    /*
+    public void removePiece(Piece capturedPiece){
+        for(int i=0; i<16; i++){
+            if(list[i] == capturedPiece){
+                list[i] = null;
+            }
+        }
+    }
+*/
+    public void setColoredSet(PieceColor coloredSet) { this.coloredSet = coloredSet; }
+
+    public PieceColor getColoredSet() {
+        return coloredSet;
+    }
+
+    public Piece[] getList(){
+        return list;
+    }
+}
+
+public class PieceSet
+{
+    PieceSet(PieceColor color)  // from 1 to 8
+                                // for white from left to right
+                                // for black right to left.
+    {
+        Piece rook1 = new Rook(color);
+        Piece rook2 = new Rook(color);
+        Piece knight1 = new Knight(color);
+        Piece knight2 = new Knight(color);
+        Piece bishop1 = new Bishop(color);
+        Piece bishop2 = new Bishop(color);
+        Piece queen = new Queen(color);
+        Piece king = new King(color);
+
+        Piece pawn1 = new Pawn(color);
+        Piece pawn2 = new Pawn(color);
+        Piece pawn3 = new Pawn(color);
+        Piece pawn4 = new Pawn(color);
+        Piece pawn5 = new Pawn(color);
+        Piece pawn6 = new Pawn(color);
+        Piece pawn7 = new Pawn(color);
+        Piece pawn8 = new Pawn(color);
+
+    }
+}
