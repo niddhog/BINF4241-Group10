@@ -1,6 +1,6 @@
 public class ChessBoard {
     private Square[][] squares = new Square[8][8]; //Matrix for holding 64 squares 8x8
-    private Pieces[] pieceSets; //Array for storing PieceSets of Players (Black Set or White Set)
+    private Piece[] pieceSets; //Array for storing PieceSets of Players (Black Set or White Set)
     private PieceColor pieceSetOnTop; //Which color plays on the Top Side of the Board
 
     public ChessBoard(PieceColor color){
@@ -24,6 +24,10 @@ public class ChessBoard {
                 System.out.println("Cannot setup Board, unspecified Player Color");
                 break;
         }
+    }
+
+    public Square getSquare(int i, int j){              //getter for square
+        return squares[i][j];
     }
 
     public void display(){//first Piece Class has to be specified in order to place Pieces
