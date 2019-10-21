@@ -88,6 +88,7 @@ public class ChessGame {
                         }
                     }
                 }
+                break;
             }
 
 
@@ -220,7 +221,7 @@ public class ChessGame {
     //checks, if a king in check or checkmate
     //attack already happened, currentPlayer changed, just check afterwards, if a king is in check
     public static boolean isChecked(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Piece checkedKing = new King;
+        Piece checkedKing = new King(currentPlayer.getColor());
         for(int j=0; j<16;j++) {
             if(defendingSet.getList()[j].getPieceType() == PieceType.KING){
                 checkedKing=defendingSet.getList()[j];
@@ -235,31 +236,10 @@ public class ChessGame {
                 }
             }
         }
-        /* Stalemate isn´t necessary to implement, but it may be useful fot later on, for checkmate we already test the case
-        otherwise with pieces specific methods
-
-    public static boolean isStalemate(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Pieces checkedKing = new Pieces;
-        for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.KING){
-                checkedKing=defendingSet.getList()[j];
-            }
-        }
-
-        if(attackingSet.getColoredSet() == currentPlayer.getColor()){
-            for(int i=0; i<16;i++){
-                if(attackingSet.getList()[i].validMoves() != checkedKing.placeAt() && attackingSet.getList()[i].toBeCaptured()==false
-                    && checkedKing.captureFreeMoves()==null){
-                    checkedKing.inCheck()=false;
-                }
-            }
-        }
-    }
-    */
 
         //currentPlayer is has the defendingSet
     public static boolean isCheckmate(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Piece checkedKing = new King;
+        Piece checkedKing = new King(currentPlayer.getColor());
         Piece regicide;
         boolean killRegicide=false;
         for(int j=0; j<16;j++) {
