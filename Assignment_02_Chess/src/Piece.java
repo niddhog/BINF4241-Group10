@@ -30,6 +30,8 @@ public class Piece
         return pieceColor;
     }
 
+    public PieceType getPieceType(){return pieceType;}
+
     static boolean isDiagonal(int xfrom, int yfrom, int xto, int yto) {
         // A move is diagonal if abs(dx) == abs(dy)... I think
         return (Math.abs(xto - xfrom) == Math.abs(yto - yfrom));
