@@ -1,3 +1,4 @@
+import java.sql.ResultSet;
 import java.util.Scanner;
 
 
@@ -22,11 +23,10 @@ public class ChessGame {
 
     public static void main(String[] args) {
         ChessPlayer[] playerList = new ChessPlayer[2];     //list of two to save both player
-        Result result;
         CheckStatus checkStatus;
-        PieceSet blackSet = new PieceSet;         //creating PieceSets for both players
+        PieceSet blackSet = new PieceSet(PieceColor.BLACK);         //creating PieceSets for both players
         blackSet.setColoredSet(PieceColor.BLACK);
-        PieceSet whiteSet = new PieceSet;
+        PieceSet whiteSet = new PieceSet(PieceColor.WHITE);
         whiteSet.setColoredSet(PieceColor.WHITE);
         ChessPlayer currentPlayer;
 
@@ -65,12 +65,12 @@ public class ChessGame {
                 new Move(currentPlayer, start, end, blackSet, whiteSet, board);
                 if (currentPlayer.getColor() == PieceColor.BLACK) {
                     if (isChecked(whiteSet, blackSet, currentPlayer)) {
-                        CheckStatus BlackInCheck = new CheckStatus(CheckStatus.BlackInCheck);
-                        BlackInCheck.warning();
+                        //System.out.println("Black king is in check.");
                         System.out.println("Invalid turn. Try again");
                         for(int j=0; j<16;j++) {
+                            //if movement would make space for a checkmate, the ove is invalid:
                             if(blackSet.getList()[j].getPlaceAt() == end){
-                                blackSet.getList()[j].getPlaceAt() = start;
+                                blackSet.getList()[j].setPlaceAt(start);
                             }
                         }
                     }
@@ -79,12 +79,11 @@ public class ChessGame {
                     // I am testing, if the current player made a invalid move, so his King is in a check situation
                     // thus, at the opponent´s turn the king would be killed
                     else if(isChecked(blackSet, whiteSet, currentPlayer)){
-                        CheckStatus WhiteInCheck = new CheckStatus(CheckStatus.WhiteInCheck);
-                        WhiteInCheck.warning();
+                        //System.out.println("Black king is in check.");
                         System.out.println("Invalid turn. Try again.");
                         for(int j=0; j<16;j++) {
                             if(whiteSet.getList()[j].getPlaceAt() == end){
-                                whiteSet.getList()[j].getPlaceAt() == start;
+                                whiteSet.getList()[j].setPlaceAt(start);
                             }
                         }
                     }
@@ -95,25 +94,21 @@ public class ChessGame {
             //player changed before the check comes, thus the defending player can reacts, if it´s possible
             //check and checkmate
             //todo I'm not sure, if the the CheckStatus needed, if it's only text output
-            nextTurn(currentPlayer, playerList);
+            currentPlayer = nextTurn(currentPlayer, playerList);
             if (currentPlayer.getColor() == PieceColor.BLACK) {
                 if(isCheckmate(whiteSet, blackSet, currentPlayer)){
-                    CheckStatus BlackCheckmated = new CheckStatus(CheckStatus.BlackCheckmated);
-                    BlackCheckmated.warning();
+                    System.out.println("Black king is in check.");
                 }
                 else if(isChecked(whiteSet, blackSet, currentPlayer)) {
-                    CheckStatus BlackInCheck = new CheckStatus(CheckStatus.BlackInCheck);
-                    BlackInCheck.warning();
+                    System.out.println("Black king is in check.");
                 }
             }
             else{
                 if(isCheckmate(blackSet, whiteSet, currentPlayer)){
-                CheckStatus WhiteCheckmated = new CheckStatus(CheckStatus.WhiteInCheck);
-                WhiteCheckmated.warning();
+                    System.out.println("Black king is in check.");
             }
                 else if(isChecked(blackSet, whiteSet, currentPlayer)){
-                    CheckStatus WhiteInCheck = new CheckStatus(CheckStatus.WhiteInCheck);
-                    WhiteInCheck.warning();
+                    System.out.println("Black king is in check.");
                 }
 
             }
@@ -212,12 +207,12 @@ public class ChessGame {
 
 
     //change the player, for next turn and check situation
-    public static void nextTurn(ChessPlayer currentPlayer, ChessPlayer[] player){
+    public static ChessPlayer nextTurn(ChessPlayer currentPlayer, ChessPlayer[] player){
         if(currentPlayer==player[0]){
-            currentPlayer=player[1];
+            return player[1];
         }
         else{
-            currentPlayer=player[0];
+            return player[0];
         }
     }
 
@@ -227,7 +222,7 @@ public class ChessGame {
     public static boolean isChecked(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
         Piece checkedKing = new King;
         for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.KING){
+            if(defendingSet.getList()[j].getPieceType() == PieceType.KING){
                 checkedKing=defendingSet.getList()[j];
             }
         }
@@ -268,7 +263,7 @@ public class ChessGame {
         Piece regicide;
         boolean killRegicide=false;
         for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.KING){
+            if(defendingSet.getList()[j].getPieceType() == PieceType.KING){
                 checkedKing=defendingSet.getList()[j];
             }
         }
