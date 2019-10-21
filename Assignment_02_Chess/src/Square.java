@@ -1,5 +1,3 @@
-package src;
-
 public class Square {
     private int x; //column
     private int y; //row
@@ -10,11 +8,13 @@ public class Square {
         this.y = row;
     }
     // read-only getter for values x and y and for arithmetic chessboard position
-    public int getX() {
+    public int getX()
+    {
         return x;
     }
 
-    public int getY() {
+    public int getY()
+    {
         return y;
     }
 

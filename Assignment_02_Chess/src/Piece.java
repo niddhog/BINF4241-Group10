@@ -23,6 +23,8 @@ public class Piece
         return placeAt;
     };
 
+    public void setPlaceAt(Square placeAt) { this.placeAt = placeAt;}
+
     public PieceColor getPieceColor()
     {
         return pieceColor;
@@ -33,7 +35,7 @@ public class Piece
         return (Math.abs(xto - xfrom) == Math.abs(yto - yfrom));
     }
 
-    static boolean isUpDownLeftRight(int xfrom, int yfrom, int xto, int yto) {
+    static boolean isVerticalOrHorizontal(int xfrom, int yfrom, int xto, int yto) {
         // Either only y changes, or only x changes.
         return ((xfrom == xto && yfrom != yto) || (yfrom == yto && xfrom != xto));
     }
@@ -49,7 +51,7 @@ class Rook extends Piece
 
     boolean validMove(int xfrom, int yfrom, int xto, int yto, boolean capture)
     {
-        return isUpDownLeftRight(xfrom, yfrom, xto, yto);
+        return isVerticalOrHorizontal(xfrom, yfrom, xto, yto);
     }
 };
 
@@ -94,7 +96,7 @@ class Queen extends Piece
 
     boolean validMove(int xfrom, int yfrom, int xto, int yto, boolean capture)
     {
-        return (isDiagonal(xfrom, yfrom, xto, yto) || isUpDownLeftRight(xfrom, yfrom, xto, yto));
+        return (isDiagonal(xfrom, yfrom, xto, yto) || isVerticalOrHorizontal(xfrom, yfrom, xto, yto));
     }
 }
 

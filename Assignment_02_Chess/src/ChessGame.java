@@ -1,5 +1,3 @@
-package src;
-
 import java.util.Scanner;
 
 
@@ -23,7 +21,6 @@ import java.util.Scanner;
 public class ChessGame {
 
     public static void main(String[] args) {
-        Move[] playedMoves;                                 //actually not necessary to record the movements from the players
         ChessPlayer[] playerList = new ChessPlayer[2];     //list of two to save both player
         Result result;
         CheckStatus checkStatus;
@@ -65,15 +62,15 @@ public class ChessGame {
                 String coordinatesEnd = inputEnd();         //user set piece on new square
                 Square start = inputToPosition(coordinatesStart, board);
                 Square end = inputToPosition(coordinatesEnd, board);
-                new Move(currentPlayer, start, end, blackSet, whiteSet);
+                new Move(currentPlayer, start, end, blackSet, whiteSet, board);
                 if (currentPlayer.getColor() == PieceColor.BLACK) {
                     if (isChecked(whiteSet, blackSet, currentPlayer)) {
                         CheckStatus BlackInCheck = new CheckStatus(CheckStatus.BlackInCheck);
                         BlackInCheck.warning();
                         System.out.println("Invalid turn. Try again");
                         for(int j=0; j<16;j++) {
-                            if(blackSet.getList()[j].placeAt() == end){
-                                blackSet.getList()[j].placeAt() == start;
+                            if(blackSet.getList()[j].getPlaceAt() == end){
+                                blackSet.getList()[j].getPlaceAt() = start;
                             }
                         }
                     }
@@ -86,8 +83,8 @@ public class ChessGame {
                         WhiteInCheck.warning();
                         System.out.println("Invalid turn. Try again.");
                         for(int j=0; j<16;j++) {
-                            if(whiteSet.getList()[j].placeAt() == end){
-                                whiteSet.getList()[j].placeAt() == start;
+                            if(whiteSet.getList()[j].getPlaceAt() == end){
+                                whiteSet.getList()[j].getPlaceAt() == start;
                             }
                         }
                     }
@@ -228,16 +225,16 @@ public class ChessGame {
     //checks, if a king in check or checkmate
     //attack already happened, currentPlayer changed, just check afterwards, if a king is in check
     public static boolean isChecked(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Pieces checkedKing = new King;
+        Piece checkedKing = new King;
         for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.King){
+            if(defendingSet.getList()[j] == PieceType.KING){
                 checkedKing=defendingSet.getList()[j];
             }
         }
         if(attackingSet.getColoredSet() == currentPlayer.getColor()){
             for(int i=0; i<16;i++){
-                if(attackingSet.getList()[i].validMoves() == checkedKing.placeAt() && attackingSet.getList()[i].toBeCaptured()==false){
-                    Pieces regicide = attackingSet.getList()[i];
+                if(attackingSet.getList()[i].validMoves() == checkedKing.getPlaceAt() && attackingSet.getList()[i].toBeCaptured()==false){
+                    Piece regicide = attackingSet.getList()[i];
                     checkedKing.inCheck()=true;
                     }
                 }
@@ -267,17 +264,17 @@ public class ChessGame {
 
         //currentPlayer is has the defendingSet
     public static boolean isCheckmate(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Pieces checkedKing = new King;
-        Pieces regicide;
+        Piece checkedKing = new King;
+        Piece regicide;
         boolean killRegicide=false;
         for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j] == PieceType.King){
+            if(defendingSet.getList()[j] == PieceType.KING){
                 checkedKing=defendingSet.getList()[j];
             }
         }
         if(attackingSet.getColoredSet() == currentPlayer.getColor()) {
             for (int i = 0; i < 16; i++) {
-                if (attackingSet.getList()[i].validMoves() == checkedKing.placeAt &&
+                if (attackingSet.getList()[i].validMoves() == checkedKing.getPlaceAt() &&
                         attackingSet.getList()[i].toBeCaptured()==false) {
                     regicide = attackingSet.getList()[i];
                     break;
@@ -285,7 +282,7 @@ public class ChessGame {
             }
         }
         for(int a=0; a<16;a++) {
-            if (defendingSet.getList()[a].attackSquares() == regicide.placeAt &&
+            if (defendingSet.getList()[a].attackSquares() == regicide.getPlaceAt() &&
                     defendingSet.getList().toBeCaptured()==false) {
 
                 return false;
@@ -304,8 +301,8 @@ public class ChessGame {
 
         char y = user.charAt(0);
         int value = y;
-        int row = value -96;
-        int x = Integer.parseInt(user.substring(0));
+        int row = value - 96;
+        int x = Integer.parseInt(user.substring(1));
         int column = 8-x;
         return chessBoard.getSquare(row, column);
 
