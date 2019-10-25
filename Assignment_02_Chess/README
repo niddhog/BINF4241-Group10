@@ -1,0 +1,13 @@
+Dear TA's
+We have completed the task. While we had to reshuffle some of our classes, we cannot delete the additional classes anymore. Could you 
+please only not consider the following files:
+CheckStatus.java
+ChessBoard.java
+ChessNotes.java
+ChessPlayer.java
+PlayerBoard.java
+Result.java
+dump.java
+printStatus.java
+
+The main() file is ChessGame, required files integrated and should work.
