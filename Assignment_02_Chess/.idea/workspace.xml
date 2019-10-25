@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc00ebc7-5918-4ec9-a720-7455d12e34a6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/BINF4241-Group10.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/output/production/BINF4241-Group10/PieceSet.java~Stashed changes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CheckStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChessGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChessPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Move.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Piece.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PieceSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PieceType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PlayerBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessNotes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessNotes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChessPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PieceColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PieceColor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PieceSet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pieces.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Square.java" beforeDir="false" />
-    </list>
+    <list default="true" id="3ae7e69d-3974-44af-b029-58f42e76e943" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,22 +12,21 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProjectId" id="1Ry43WPoCIBFw65NSrvWTqxb59c" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="1SdtrnQZTMsFccefrEbySROoXZt" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BINF4241-Group10" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -69,49 +40,36 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="ChessGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChessGame" />
+      <module name="Chess game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ChessGame" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fc00ebc7-5918-4ec9-a720-7455d12e34a6" name="Default Changelist" comment="" />
-      <created>1570625802197</created>
+      <changelist id="3ae7e69d-3974-44af-b029-58f42e76e943" name="Default Changelist" comment="" />
+      <created>1571920484342</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1570625802197</updated>
-      <workItem from="1570625803416" duration="889000" />
-      <workItem from="1571499265897" duration="739000" />
-      <workItem from="1571569392418" duration="12878000" />
-      <workItem from="1571649554771" duration="10858000" />
+      <updated>1571920484342</updated>
+      <workItem from="1571920490747" duration="27850000" />
+      <workItem from="1571994890160" duration="20611000" />
     </task>
-    <task id="LOCAL-00001" summary="this is a pointless commit, ignore">
-      <created>1571656432681</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1571656432681</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="this is a pointless commit, ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="this is a pointless commit, ignore" />
   </component>
 </project>

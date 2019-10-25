@@ -1,29 +1,39 @@
 public class Square {
-    private int x; //column
-    private int y; //row
-    private String chessID;
+    private int xCo;
+    private int yCo;
+    private Piece pieceOnSquare = null;
 
-    public Square(int column, int row){
-        this.x = column;
-        this.y = row;
-    }
-    // read-only getter for values x and y and for arithmetic chessboard position
-    public int getX()
-    {
-        return x;
+    Square(int x, int y){
+        xCo = x;
+        yCo = y;
     }
 
-    public int getY()
-    {
-        return y;
+    public int getY() {
+        return yCo;
     }
 
-
-    //getter for a comparison of the players input like "start": b2 "end": b4
-    public String getChessID() {
-        char c =(char)(x+97);
-        int r = 8-y;
-        return c + String.valueOf(r);
+    public int getX() {
+        return xCo;
     }
 
+    public Piece getPieceOnSquare() {
+        return pieceOnSquare;
+    }
+
+    public void setPieceOnSquare(Piece pieceOnSquare) {
+        this.pieceOnSquare = pieceOnSquare;
+    }
+
+    public void deletePieceOnSquare(){
+        this.setPieceOnSquare(null);
+    }
+
+    @Override
+    public String toString() {
+        if(getPieceOnSquare() == null){
+            return "[  ]";
+        } else{
+            return "[" + getPieceOnSquare().getPieceName() + "]";
+        }
+    }
 }

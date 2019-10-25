@@ -1,322 +1,169 @@
-import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 
-//Init Player 1 and Player 2
-//Set their colors
-//evt. Log
-//StartGame
-//white player begins
-//Check for Win Condition
-
-    /*
-    playedMoves - Keep a record of moves
-    turn - Indicate either it is a Black's turn or a White's turn -> changes in the loop condition
-    players - Represent the two players, this can be Human/Human
-    result - Indicate the result of a game
-        -> represent only blackWins/whiteWins/draw
-    checkStatus - Indicate which side is being checked or checkmated
-        -> whiteChecked/blackChecked/whiteCheckMate/blackCheckMate
-     */
-
-public class ChessGame {
-
+public class ChessGame{
     public static void main(String[] args) {
-        ChessPlayer[] playerList = new ChessPlayer[2];     //list of two to save both player
-        CheckStatus checkStatus;
-        PieceSet blackSet = new PieceSet(PieceColor.BLACK);         //creating PieceSets for both players
-        blackSet.setColoredSet(PieceColor.BLACK);
         PieceSet whiteSet = new PieceSet(PieceColor.WHITE);
-        whiteSet.setColoredSet(PieceColor.WHITE);
-        ChessPlayer currentPlayer;
+        PieceSet blackSet = new PieceSet(PieceColor.BLACK);         //creating PieceSets for both players
+
+        //get Player names, in the player constructor we also give the players the color sets
+        //and the colorSet class automatically creates white or black pieces (16 each)
+        Player whitePlayer = new Player(getStringInput("Name of Player 1, White Pieces: "), whiteSet);
+        Player blackPlayer = new Player(getStringInput("Name of Player 2, Black Pieces: "), blackSet);
+
+        Queue<Player> queue = new LinkedList<>();
+        queue.add(whitePlayer);
+        queue.add(blackPlayer);
+        Player currPlayer = whitePlayer;
+
+        //checks if it works can remove later
+        System.out.println(whitePlayer.getName() + " has the " + whitePlayer.getPlayerColor() + " Pieces");
+        System.out.println(blackPlayer.getName() + " has the " + blackPlayer.getPlayerColor() + " Pieces");
+
+        System.out.println("White begins, enjoy!");
+
+        Board gameBoard = new Board();
+        InitBoard.init(gameBoard, whitePlayer, blackPlayer);
+        gameBoard.printBoard();
+        Check checkStatus = new Check();
+
+        // the upper part is finished, INITIALIZATION IS COMPLETE
 
 
-        ChessPlayer player1 = new ChessPlayer(setPlayerName(1), setPlayerColor(1));
-
-        if (player1.getColor() == PieceColor.WHITE) {
-            ChessPlayer player2 = new ChessPlayer(setPlayerName(2), PieceColor.BLACK);
-            playerList[0] = player1;
-            playerList[1] = player2;
-            currentPlayer = playerList[0];
-        } else {
-            ChessPlayer player2 = new ChessPlayer(setPlayerName(2), PieceColor.WHITE);
-            playerList[0] = player1;
-            playerList[1] = player2;
-            currentPlayer = playerList[1];
-        }
-
-        ChessBoard board = new ChessBoard(player1.getColor()); //creates Board with Player 1 on Top of the Board
-        board.display();                                       //todo board needs the pieces
-
-
-
-
-
-
-
-
-        //todo this loop represents one turn of one player, check this to ensure the game works perfectly
+        //gameLoop
         while (true) {
-            while(true) {
-                String coordinatesStart = inputStart();     //user picks piece
-                String coordinatesEnd = inputEnd();         //user set piece on new square
-                Square start = inputToPosition(coordinatesStart, board);
-                Square end = inputToPosition(coordinatesEnd, board);
-                new Move(currentPlayer, start, end, blackSet, whiteSet, board);
-                if (currentPlayer.getColor() == PieceColor.BLACK) {
-                    if (isChecked(whiteSet, blackSet, currentPlayer)) {
-                        //System.out.println("Black king is in check.");
-                        System.out.println("Invalid turn. Try again");
-                        for(int j=0; j<16;j++) {
-                            //if movement would make space for a checkmate, the ove is invalid:
-                            if(blackSet.getList()[j].getPlaceAt() == end){
-                                blackSet.getList()[j].setPlaceAt(start);
-                            }
-                        }
-                    }
+            currPlayer = queue.poll();
+            queue.add(currPlayer);
+            assert currPlayer != null;
+
+            Coordinates start;
+            Coordinates end;
+            Piece currPiece;
+            boolean capture;
+            boolean isCheck = checkStatus.isCheck(gameBoard, currPlayer);
+
+            if(isCheck){
+                System.out.println(currPlayer.getPlayerColor() + " you are Checked, be careful!");
+            }
 
 
-                    // I am testing, if the current player made a invalid move, so his King is in a check situation
-                    // thus, at the opponent´s turn the king would be killed
-                    else if(isChecked(blackSet, whiteSet, currentPlayer)){
-                        //System.out.println("Black king is in check.");
-                        System.out.println("Invalid turn. Try again.");
-                        for(int j=0; j<16;j++) {
-                            if(whiteSet.getList()[j].getPlaceAt() == end){
-                                whiteSet.getList()[j].setPlaceAt(start);
-                            }
-                        }
+            //determine origin square
+            while(true){
+                String imp = getStringInput(currPlayer.getPlayerColor() + " what piece do you wanna move (square)?");
+                if(inputInCorrectSize(imp)){
+                    continue;
+                    //continues if the input is not exactly 2characters long, only then it passes them into the coordinates class
+                }
+                //todo check if the figure can be moved if not the code ends in endless loop
+                start = new Coordinates(imp);
+
+                if(coordinatesNotOnBoard(start)){
+                    continue;
+                }
+
+                currPiece = gameBoard.getBoard()[start.getX()][start.getY()].getPieceOnSquare();
+                if(currPiece != null && currPiece.getPieceColor() == currPlayer.getPlayerColor()){
+                    break;
+                    // only if the square is occupied by a piece and a piece of the same color of the current player it will break
+                }
+            }
+
+
+            //determine destination square
+            while(true){
+                String imp = getStringInput(currPlayer.getPlayerColor() + " where to(square)?");
+                if(inputInCorrectSize(imp)) {
+                    continue;
+                }
+                end = new Coordinates(imp);
+
+
+                if(start.getX() == end.getX() && start.getY() == end.getY()){
+                    throwInputAndOutputIsTheSame();
+                    continue;
+                    // continues if the destination square is the same as the origin square
+                }
+                if(gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare() != null){ //todo null pointer excetion test, but works without it when getting origin square
+                    Piece piece = gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare();
+                    if(piece.getPieceColor() == currPlayer.getPlayerColor()){
+                        throwFriendlyPieceOnDestination();
+                        continue;
+                        //continues if the selected destination square contains a friendly piece
                     }
+                }
+                if(coordinatesNotOnBoard(end)){
+                    continue;}
+
+                if(gameBoard.isSomethingBetween(currPiece, start, end))  {
+                    throwColision();
+                    continue;
+                }
+                if (gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare() != null){
+                    capture = gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare().getPieceColor()!=currPlayer.getPlayerColor();
+                }
+                else{
+                    capture = false;
+                }
+
+                if(!(currPiece.validMove(start.getX(), start.getY(), end.getX(), end.getY(), capture))){
+                    //todo needed to change too much code, to implement the Coordinate Class in Piece
+                    // negation because in piece if valid move is true, then it behaves correctly.
+                    throwPieceCantMoveLikeThat();
+                    continue;
                 }
                 break;
-            }
 
 
-            //player changed before the check comes, thus the defending player can reacts, if it´s possible
-            //check and checkmate
-            //todo I'm not sure, if the the CheckStatus needed, if it's only text output
-            currentPlayer = nextTurn(currentPlayer, playerList);
-            if (currentPlayer.getColor() == PieceColor.BLACK) {
-                if(isCheckmate(whiteSet, blackSet, currentPlayer)){
-                    System.out.println("Black king is in check.");
-                }
-                else if(isChecked(whiteSet, blackSet, currentPlayer)) {
-                    System.out.println("Black king is in check.");
-                }
             }
-            else{
-                if(isCheckmate(blackSet, whiteSet, currentPlayer)){
-                    System.out.println("Black king is in check.");
+            if(checkStatus.isMate(gameBoard, currPlayer) && checkStatus.isCheck(gameBoard, currPlayer)){
+                break;
             }
-                else if(isChecked(blackSet, whiteSet, currentPlayer)){
-                    System.out.println("Black king is in check.");
-                }
-
-            }
+            Move.move(gameBoard, start, end);
+            gameBoard.printBoard();
+            
         }
+        System.out.println(queue.poll().getName() + " has won the game!");
     }
 
 
-    //it tests the input "start" Square of the user for the computation of the movement of the piece
-    public static String inputStart(){
-        while(true) {
-
-            //user chooses the piece
-            Scanner userMove = new Scanner(System.in);
-
-            while (true) {
-                System.out.print("Position of the piece, that should move: ");
-                String start = userMove.nextLine();
-                boolean y=false;
-                boolean x=false;
-                switch (start.charAt(0)){
-                    case'a':
-                    case'b':
-                    case'c':
-                    case'd':
-                    case'e':
-                    case'f':
-                    case'g':
-                    case'h':
-                        y=true;
-                }
-                switch (start.charAt(1)){
-                    case'1':
-                    case'2':
-                    case'3':
-                    case'4':
-                    case'5':
-                    case'6':
-                    case'7':
-                    case'8':
-                        x=true;
-                }
-                if (start.length() == 2 && x == true && y == true){
-                    return start;
-
-                }
-                else {
-                    System.out.println("Your position is incorrect. Choose an input of length 2 with a " +
-                            "combination of the named squares of the board.");
-                }
-            }
-        }
+    //the move function simply moves figures from x to y, but it doesnt check if the move is legal, also sets piece
+    //moved status to true, which is initialized to false.
+    private static void move(Board gameBoard, Coordinates s, Coordinates e) {
+        Piece movedPiece = gameBoard.getBoard()[s.getX()][s.getY()].getPieceOnSquare();
+        gameBoard.getBoard()[s.getX()][s.getY()].deletePieceOnSquare();
+        gameBoard.getBoard()[e.getX()][e.getY()].setPieceOnSquare(movedPiece);
+        movedPiece.setMoved();
     }
 
-
-    //it tests the input "end" Square of the user for the computation of the movement of the piece
-    public static String inputEnd() {
-        Scanner userMove = new Scanner(System.in);
-
-        while (true) {
-            System.out.print("Position where the piece move to: ");
-            String end = userMove.nextLine();
-            boolean y=false;
-            boolean x=false;
-            switch (end.charAt(0)){
-                case'a':
-                case'b':
-                case'c':
-                case'd':
-                case'e':
-                case'f':
-                case'g':
-                case'h':
-                    y=true;
-            }
-            switch (end.charAt(1)){
-                case'1':
-                case'2':
-                case'3':
-                case'4':
-                case'5':
-                case'6':
-                case'7':
-                case'8':
-                    x=true;
-            }
-            if (end.length() == 2 && x == true && y == true){
-                return end;
-            }
-            else {
-                System.out.println("Your position is incorrect. Choose an input of length 2 with a " +
-                        "combination of the named squares of the board.");
-            }
-        }
+    private static String getStringInput(String input) {
+        Scanner getPlayerName = new Scanner(System.in);
+        System.out.println(input);
+        return getPlayerName.nextLine();
     }
 
-
-
-    //change the player, for next turn and check situation
-    public static ChessPlayer nextTurn(ChessPlayer currentPlayer, ChessPlayer[] player){
-        if(currentPlayer==player[0]){
-            return player[1];
-        }
-        else{
-            return player[0];
-        }
+    private static boolean inputInCorrectSize(String imp){ //input of the
+        return imp.length() != 2;
     }
 
-
-    //checks, if a king in check or checkmate
-    //attack already happened, currentPlayer changed, just check afterwards, if a king is in check
-    public static boolean isChecked(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Piece checkedKing = new King(currentPlayer.getColor());
-        for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j].getPieceType() == PieceType.KING){
-                checkedKing=defendingSet.getList()[j];
-            }
-        }
-        if(attackingSet.getColoredSet() == currentPlayer.getColor()){
-            for(int i=0; i<16;i++){
-                if(attackingSet.getList()[i].validMoves() == checkedKing.getPlaceAt() && attackingSet.getList()[i].toBeCaptured()==false){
-                    Piece regicide = attackingSet.getList()[i];
-                    checkedKing.inCheck()=true;
-                    }
-                }
-            }
-        }
-
-        //currentPlayer is has the defendingSet
-    public static boolean isCheckmate(PieceSet attackingSet, PieceSet defendingSet, ChessPlayer currentPlayer){
-        Piece checkedKing = new King(currentPlayer.getColor());
-        Piece regicide;
-        boolean killRegicide=false;
-        for(int j=0; j<16;j++) {
-            if(defendingSet.getList()[j].getPieceType() == PieceType.KING){
-                checkedKing=defendingSet.getList()[j];
-            }
-        }
-        if(attackingSet.getColoredSet() == currentPlayer.getColor()) {
-            for (int i = 0; i < 16; i++) {
-                if (attackingSet.getList()[i].validMoves() == checkedKing.getPlaceAt() &&
-                        attackingSet.getList()[i].toBeCaptured()==false) {
-                    regicide = attackingSet.getList()[i];
-                    break;
-                }
-            }
-        }
-        for(int a=0; a<16;a++) {
-            if (defendingSet.getList()[a].attackSquares() == regicide.getPlaceAt() &&
-                    defendingSet.getList().toBeCaptured()==false) {
-
-                return false;
-            }
-        }
-
-        // if stalemate and check is active, then it follows checkemate
-        // todo BUT there´s is a small possibility, this case won´t work, if there is a piece can block the way to the checked an stalemated King
-        if(checkedKing.inCheck()==true && checkedKing.captureFreeMoves()==null)
-        {
-            return true;
-            }
-    }
-
-    public static Square inputToPosition(String user, ChessBoard chessBoard){
-
-        char y = user.charAt(0);
-        int value = y;
-        int row = value - 96;
-        int x = Integer.parseInt(user.substring(1));
-        int column = 8-x;
-        return chessBoard.getSquare(row, column);
+    private static boolean coordinatesNotOnBoard(Coordinates coo){
+        return 0 > coo.getX() || coo.getX() >= 8 || 0 > coo.getY() || coo.getY() >= 8;
 
     }
 
-
-    public static String setPlayerName(int p){
-        Scanner nameObject = new Scanner(System.in);
-        while(true){
-            System.out.print("Please enter the Name of Player " + p + ": ");
-            String name = nameObject.nextLine();
-            if(name.isEmpty()){
-                System.out.println("You did not enter any Name...");
-            }
-            else{
-                return name;
-            }
-        }
+    private static void throwInputAndOutputIsTheSame(){
+        System.out.println("Can not move a piece onto the same square it started on!");
     }
 
-
-    public static PieceColor setPlayerColor(int p){
-        Scanner colorObject = new Scanner(System.in);
-        while(true){
-            System.out.print("Please enter the Color(W/B) of Player " + p + ": ");
-            String color = colorObject.nextLine();
-            if(color.isEmpty()){
-                System.out.println("You did not enter any color, please input W or B...");
-            }
-            else if(color.equals("B")){
-                return PieceColor.BLACK;
-            }else if(color.equals("W")){
-                return PieceColor.WHITE;
-            }
-            else{
-                System.out.println("Your input is invalid, please enter W or B...");
-            }
-        }
+    private static void throwFriendlyPieceOnDestination(){
+        System.out.println("Cannot capture your own piece!");
+    }
+    private static void throwPieceCantMoveLikeThat(){
+        System.out.println("Your piece can't move like that!");
     }
 
-
+    private static void throwColision(){
+        System.out.println("Collision detected!");
+    }
 }
