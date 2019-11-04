@@ -4,7 +4,7 @@ public class Player {
     private PieceColor playerColor;
     private boolean isInCheck = false;
 
-    Player(String name, PieceSet set){
+    public Player(String name, PieceSet set){
         this.name = name;
         this.pieceSet = set;
         this.playerColor = set.getSetColor();

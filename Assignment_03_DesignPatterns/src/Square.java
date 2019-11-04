@@ -1,9 +1,9 @@
-public class Square {
+public class Square implements Observer {
     private int xCo;
     private int yCo;
     private Piece pieceOnSquare = null;
 
-    Square(int x, int y){
+    public Square(int x, int y){
         xCo = x;
         yCo = y;
     }
@@ -26,6 +26,20 @@ public class Square {
 
     public void deletePieceOnSquare(){
         this.setPieceOnSquare(null);
+    }
+
+    @Override
+    public void update(int xStart, int yStart, int xEnd, int yEnd, Piece movedPiece) {
+        if(this.xCo == xStart && this.yCo == yStart){
+            deletePieceOnSquare();
+        }
+        else if(this.xCo == xEnd && this.yCo == yEnd){
+            setPieceOnSquare(movedPiece);
+            movedPiece.setMoved();
+        }
+        else{
+
+        }
     }
 
     @Override

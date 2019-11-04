@@ -1,7 +1,11 @@
 public class Check {
     Piece varPieces;
+    Move move;
     Coordinates kingPos = new Coordinates("a1"); // quick fix :(
 
+    public Check(Move move){
+        this.move = move;
+    }
 
     boolean isCheck(Board board, Player currPlayer){
         Coordinates varPos = new Coordinates("a1");
@@ -55,7 +59,7 @@ public class Check {
                         if(copy.getBoard()[kingPos.getX()][kingPos.getY()]
                                 .getPieceOnSquare().validMove(kingPos.getX(), kingPos.getY(), i, j, true)){
                             if(!copy.isSomethingBetween(copy.getBoard()[kingPos.getX()][kingPos.getY()].getPieceOnSquare(), kingPos, varPos)){
-                                Move.move(copy, kingPos, varPos);
+                                move.move(copy, kingPos, varPos);
                                 if(!isCheck(copy, currPlayer)){
                                     break;
                                 }
@@ -71,7 +75,7 @@ public class Check {
 
     public Board copyBoard(Board board){
         Piece copyPiece;
-        Board copy = new Board();
+        Board copy = new Board(move);
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++){
                 if(board.getBoard()[i][j].getPieceOnSquare() !=null){

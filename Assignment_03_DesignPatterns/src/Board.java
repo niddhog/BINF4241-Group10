@@ -1,13 +1,17 @@
 public class Board{
+    private Move move;
     private Square[][] board = new Square[8][8];
 
-    Board(){
+    public Board(Move move){
+        this.move = move;
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++){
                 board[i][j] = new Square(i, j);
+                move.registerObserver(board[i][j]);
             }
         }
     }
+
 
     Square[][] getBoard() {
         return board;
@@ -16,14 +20,14 @@ public class Board{
     void printBoard(){
         System.out.println("\n");
         for(int i=7; i>-1; i--){
-            System.out.println(i+1 + "  " + board[0][i] + board[1][i] + board[2][i] + board[3][i] + board[4][i] + board[5][i] +
-                    board[6][i] + board[7][i]);
+            System.out.println(i+1 + "  " + board[0][i] + board[1][i] + board[2][i] + board[3][i] + board[4][i]
+                    + board[5][i] + board[6][i] + board[7][i]);
         }
         System.out.println("\ta\tb\tc\td\te\tf\tg\th");
     }
 
     public boolean isSomethingBetween(Piece currPiece, Coordinates start, Coordinates end){
-        if(currPiece.getPieceType() == PieceType.KNIGHT){ // knight can jump, but this implementation should not be here, but hey it works
+        if(currPiece.getPieceType() == PieceType.KNIGHT){  //knights can jump
             return false;
         }
         int yDif = end.getY() - start.getY();

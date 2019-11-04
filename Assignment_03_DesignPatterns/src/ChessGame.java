@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class ChessGame{
     public static void main(String[] args) {
+        Move move = new Move();
+
         PieceSet whiteSet = new PieceSet(PieceColor.WHITE);
         PieceSet blackSet = new PieceSet(PieceColor.BLACK);         //creating PieceSets for both players
 
@@ -17,17 +19,12 @@ public class ChessGame{
         queue.add(whitePlayer);
         queue.add(blackPlayer);
         Player currPlayer = whitePlayer;
-
-        //checks if it works can remove later
-        System.out.println(whitePlayer.getName() + " has the " + whitePlayer.getPlayerColor() + " Pieces");
-        System.out.println(blackPlayer.getName() + " has the " + blackPlayer.getPlayerColor() + " Pieces");
-
         System.out.println("White begins, enjoy!");
 
-        Board gameBoard = new Board();
+        Board gameBoard = new Board(move);
         InitBoard.init(gameBoard, whitePlayer, blackPlayer);
         gameBoard.printBoard();
-        Check checkStatus = new Check();
+        Check checkStatus = new Check(move);
 
         // the upper part is finished, INITIALIZATION IS COMPLETE
 
@@ -120,7 +117,7 @@ public class ChessGame{
             if(checkStatus.isMate(gameBoard, currPlayer) && checkStatus.isCheck(gameBoard, currPlayer)){
                 break;
             }
-            Move.move(gameBoard, start, end);
+            move.move(gameBoard, start, end);
             gameBoard.printBoard();
             
         }
