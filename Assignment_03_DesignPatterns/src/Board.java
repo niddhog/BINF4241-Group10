@@ -8,9 +8,9 @@ public class Board{
     public Board(Move move){
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++){
-                board[i][j] = new Square(i, j);
-                move.registerObserver(board[i][j]);
-                squareArrayList.add(board[i][j]);
+                board[j][i] = new Square(j, i);
+                move.registerObserver(board[j][i]);
+                squareArrayList.add(board[j][i]);
             }
         }
     }

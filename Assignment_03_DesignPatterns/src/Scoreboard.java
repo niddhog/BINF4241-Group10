@@ -16,18 +16,18 @@ public class Scoreboard {
     public void updateScoreBoard(Piece pieceKilled){
         if(pieceKilled.getPieceColor() == PieceColor.WHITE){
             if(pieceKilled.getPieceType() == PieceType.QUEEN){
-                whiteScore += 5;
-            }
-            else{
-                whiteScore ++;
-            }
-        }
-        else{
-            if(pieceKilled.getPieceType() == PieceType.QUEEN){
                 blackScore += 5;
             }
             else{
                 blackScore ++;
+            }
+        }
+        else{
+            if(pieceKilled.getPieceType() == PieceType.QUEEN){
+                whiteScore += 5;
+            }
+            else{
+                whiteScore ++;
             }
         }
     }

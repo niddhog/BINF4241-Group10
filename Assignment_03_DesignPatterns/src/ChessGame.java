@@ -23,6 +23,16 @@ public class ChessGame{
         Move move = new Move();
         Board gameBoard = new Board(move);
         InitBoard.init(gameBoard,whitePlayer,blackPlayer);
+        Iterator chessPieceIterator = gameBoard.createIterator();
+        System.out.println("\n");
+        while (chessPieceIterator.hasNext()){
+            Square square = (Square)chessPieceIterator.next();
+            if(square.getPieceOnSquare() != null){
+                System.out.println(square.getPieceOnSquare().getPieceColor() + " " +
+                        square.getPieceOnSquare().getPieceType().name().toLowerCase() + " " +
+                        CoordinatesTranslator.translate(square.getX(),square.getY()));
+            }
+        }
         gameBoard.printBoard();
         Check checkStatus = new Check(move);
         // the upper part is finished, INITIALIZATION IS COMPLETE
