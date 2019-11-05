@@ -1,13 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board{
-    private Move move;
     private Square[][] board = new Square[8][8];
+    private ArrayList<Square> squareArrayList = new ArrayList<>();
 
     public Board(Move move){
-        this.move = move;
         for(int i=0; i<8; i++){
             for(int j=0; j<8; j++){
                 board[i][j] = new Square(i, j);
                 move.registerObserver(board[i][j]);
+                squareArrayList.add(board[i][j]);
             }
         }
     }
@@ -90,5 +93,15 @@ public class Board{
             return false;
         }
         return false; // safety
+    }
+
+
+    public ArrayList<Square> getSquareArray(){
+        return this.squareArrayList;
+    }
+
+
+    public Iterator createIterator(){
+        return new BoardIterator(this.squareArrayList);
     }
 }
