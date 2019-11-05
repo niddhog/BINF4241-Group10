@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Move implements Subject {
     private List<Square> observers = new ArrayList<>();
 
-    public void move(Board gameBoard, Coordinates s, Coordinates e) {
+    public void move(Board gameBoard, Coordinates s, Coordinates e, Scoreboard scoreBoard) {
         Piece movedPiece = gameBoard.getBoard()[s.getX()][s.getY()].getPieceOnSquare();
-        notifyObserver(s.getX(), s.getY(), e.getX(), e.getY(), movedPiece);
+        notifyObserver(s.getX(), s.getY(), e.getX(), e.getY(), movedPiece, scoreBoard);
     }
 
     @Override
@@ -25,9 +25,9 @@ public class Move implements Subject {
     }
 
     @Override
-    public void notifyObserver(int xStart, int yStart, int xEnd, int yEnd, Piece movedPiece) {
+    public void notifyObserver(int xStart, int yStart, int xEnd, int yEnd, Piece movedPiece, Scoreboard scoreBoard) {
         for (Square eachSquare : observers){
-            eachSquare.update(xStart, yStart, xEnd, yEnd, movedPiece);
+            eachSquare.update(xStart, yStart, xEnd, yEnd, movedPiece, scoreBoard);
         }
     }
 }

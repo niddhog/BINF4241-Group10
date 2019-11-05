@@ -19,17 +19,18 @@ public class ChessGame{
         Player currPlayer = whitePlayer;
         System.out.println("White begins, enjoy!");
 
+        Scoreboard scoreBoard = Scoreboard.getInstance();
         Move move = new Move();
         Board gameBoard = new Board(move);
-        InitBoard.init(gameBoard, whitePlayer, blackPlayer);
+        InitBoard.init(gameBoard,whitePlayer,blackPlayer);
         gameBoard.printBoard();
-        Check checkStatus = new Check(move, gameBoard);
-
+        Check checkStatus = new Check(move);
         // the upper part is finished, INITIALIZATION IS COMPLETE
 
 
         //gameLoop
         while (true) {
+            System.out.println(scoreBoard);
             currPlayer = queue.poll();
             queue.add(currPlayer);
             assert currPlayer != null;
@@ -113,10 +114,10 @@ public class ChessGame{
 
 
             }
-            if(checkStatus.isMate(gameBoard, currPlayer) && checkStatus.isCheck(gameBoard, currPlayer)){
+            if(checkStatus.isMate(gameBoard, currPlayer, scoreBoard) && checkStatus.isCheck(gameBoard, currPlayer)){
                 break;
             }
-            move.move(gameBoard, start, end);
+            move.move(gameBoard, start, end, scoreBoard);
             gameBoard.printBoard();
             
         }
@@ -162,4 +163,5 @@ public class ChessGame{
     private static void throwColision(){
         System.out.println("Collision detected!");
     }
+
 }

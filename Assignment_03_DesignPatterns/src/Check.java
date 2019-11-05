@@ -3,7 +3,7 @@ public class Check {
     private Move move;
     private Coordinates kingPos = new Coordinates("a1"); // quick fix :(
 
-    public Check(Move move, Board board){
+    public Check(Move move){
         this.move = move;
     }
 
@@ -44,7 +44,53 @@ public class Check {
         return isCheck;
     }
 
+    public boolean isMate(Board board, Player currPlayer, Scoreboard scoreboard) { //mate doesnt work as intended
 
+        boolean isMate = false;
+        Board copy;
+
+        if(isCheck(board, currPlayer)){
+            for(int i=0; i<8; i++){
+                for(int j=0; j<8; j++) {
+                    copy = copyBoard(board);
+                    Coordinates varPos = new Coordinates("a1");
+                    varPos.setX(i); varPos.setY(j);
+                    if(copy.getBoard()[kingPos.getX()][kingPos.getY()].getPieceOnSquare() != null){
+                        if(copy.getBoard()[kingPos.getX()][kingPos.getY()]
+                                .getPieceOnSquare().validMove(kingPos.getX(), kingPos.getY(), i, j, true)){
+                            if(!copy.isSomethingBetween(copy.getBoard()[kingPos.getX()][kingPos.getY()].getPieceOnSquare(), kingPos, varPos)){
+                                move.move(copy, kingPos, varPos, scoreboard);
+                                if(!isCheck(copy, currPlayer)){
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            isMate = true;
+        }
+        return isMate;
+    }
+
+
+
+    public Board copyBoard(Board board){
+        Piece copyPiece;
+        Board copy = new Board(move);
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++){
+                if(board.getBoard()[i][j].getPieceOnSquare() !=null){
+                    copyPiece = board.getBoard()[i][j].getPieceOnSquare();
+                    copy.getBoard()[i][j].setPieceOnSquare(copyPiece);
+                }
+            }
+        }
+        return copy;
+    }
+
+
+    /*
     public boolean isMate(Board board, Player currPlayer) { //mate doesnt work as intended
         Iterator mateIterator = board.createIterator();
         boolean isMate = false;
@@ -54,11 +100,12 @@ public class Check {
             Square square = (Square) mateIterator.next();
             copy = copyBoard(board);
             Coordinates varPos = new Coordinates("a1");
+            System.out.println("x:" + square.getX() + "y: " + square.getY());
             varPos.setX(square.getX()); varPos.setY(square.getY());
-            if(copy.getBoard()[kingPos.getX()][kingPos.getY()].getPieceOnSquare() != null){
-                if(copy.getBoard()[kingPos.getX()][kingPos.getY()]
+            if(square.getPieceOnSquare() != null){
+                if(square
                         .getPieceOnSquare().validMove(kingPos.getX(), kingPos.getY(), square.getX(), square.getY(), true)){
-                    if(!copy.isSomethingBetween(copy.getBoard()[kingPos.getX()][kingPos.getY()].getPieceOnSquare(), kingPos, varPos)){
+                    if(!copy.isSomethingBetween(square.getPieceOnSquare(), kingPos, varPos)){
                         move.move(copy, kingPos, varPos);
                         if(!isCheck(copy, currPlayer)){
                             break;
@@ -78,12 +125,12 @@ public class Check {
 
         while(copyIterator.hasNext()){
             Square square = (Square) copyIterator.next();
-            if(board.getBoard()[square.getX()][square.getY()].getPieceOnSquare() !=null){
-                copyPiece = board.getBoard()[square.getX()][square.getY()].getPieceOnSquare();
-                copy.getBoard()[square.getX()][square.getY()].setPieceOnSquare(copyPiece);
+            if(square.getPieceOnSquare() !=null){
+                copyPiece = square.getPieceOnSquare();
+                square.setPieceOnSquare(copyPiece);
             }
         }
         return copy;
-    }
+    }*/
 }
 

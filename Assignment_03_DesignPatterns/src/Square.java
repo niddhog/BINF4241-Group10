@@ -29,16 +29,16 @@ public class Square implements Observer {
     }
 
     @Override
-    public void update(int xStart, int yStart, int xEnd, int yEnd, Piece movedPiece) {
+    public void update(int xStart, int yStart, int xEnd, int yEnd, Piece movedPiece, Scoreboard scoreBoard) {
         if(this.xCo == xStart && this.yCo == yStart){
             deletePieceOnSquare();
         }
         else if(this.xCo == xEnd && this.yCo == yEnd){
+            if(pieceOnSquare != null){
+                scoreBoard.updateScoreBoard(pieceOnSquare);
+            }
             setPieceOnSquare(movedPiece);
             movedPiece.setMoved();
-        }
-        else{
-
         }
     }
 

@@ -1,5 +1,4 @@
 public class InitBoard { //puts pieces of the players on the board
-
     public static void init(Board board, Player p1, Player p2){
         // this short segment allows me to switch between inputs, order doesn't matter, black or white first
         Player whitePlayer;
@@ -23,7 +22,6 @@ public class InitBoard { //puts pieces of the players on the board
         }
 
         //setup Black pieces, works
-
         int b = 0;
         for(int i=0; i<2; i++){
             for(int j=0; j<8; j++) {
