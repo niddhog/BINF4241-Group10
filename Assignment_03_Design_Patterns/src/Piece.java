@@ -1,5 +1,5 @@
 
-abstract public class Piece
+abstract public class Piece implements PieceInterface
 {
     private String pieceName;
     private PieceColor pieceColor;
@@ -24,12 +24,12 @@ abstract public class Piece
         this.pieceType = pieceType;
     }
 
-    void setPieceColor(PieceColor pieceColor)
+    public void setPieceColor(PieceColor pieceColor)
     {
         this.pieceColor = pieceColor;
     }
 
-    PieceColor getPieceColor()
+    public PieceColor getPieceColor()
     {
         return pieceColor;
     }
@@ -75,7 +75,7 @@ class Rook extends Piece
     }
 };
 
-class Knight extends Piece
+class Knight extends Piece implements KnightPiece
 {
     Knight(PieceColor color )
     {
@@ -93,7 +93,7 @@ class Knight extends Piece
     // fuck Castling is missing
 };
 
-class Bishop extends Piece
+class   Bishop extends Piece implements BishopPiece
 {
     Bishop(PieceColor color)
     {
@@ -109,7 +109,7 @@ class Bishop extends Piece
     }
 
 }
-class Queen extends Piece
+class Queen extends Piece implements QueenPiece
 {
     Queen(PieceColor color )
     {

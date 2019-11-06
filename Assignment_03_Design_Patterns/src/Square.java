@@ -1,4 +1,4 @@
-public class Square {
+public class Square implements SquareInterface {
     private int xCo;
     private int yCo;
     private Piece pieceOnSquare = null;

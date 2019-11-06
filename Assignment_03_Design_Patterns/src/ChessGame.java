@@ -96,9 +96,14 @@ public class ChessGame{
                 if(coordinatesNotOnBoard(end)){
                     continue;}
 
+                //todo note: I changed this condition especially to skip the isSomethingBetween, so the teleport works for Superqueen
                 if(gameBoard.isSomethingBetween(currPiece, start, end))  {
-                    throwColision();
-                    continue;
+                    if(currPiece.getPieceType() != PieceType.SUPERQUEEN) {
+                        if(Board.getBoard()[end.getX()][end.getY()].getPieceOnSquare()==null) {
+                            throwColision();
+                            continue;
+                        }
+                    }
                 }
                 if (gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare() != null){
                     capture = gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare().getPieceColor()!=currPlayer.getPlayerColor();
@@ -107,9 +112,9 @@ public class ChessGame{
                     capture = false;
                 }
 
-                if(!(currPiece.validMove(start.getX(), start.getY(), end.getX(), end.getY(), capture))){
-                    //todo needed to change too much code, to implement the Coordinate Class in Piece
-                    // negation because in piece if valid move is true, then it behaves correctly.
+                if(!(currPiece.validMove(start.getX(), start.getY(), end.getX(), end.getY(), capture)) && !(currPiece.getPieceType() == PieceType.SUPERQUEEN
+                        && gameBoard.getBoard()[end.getX()][end.getY()].getPieceOnSquare()==null)){
+
                     throwPieceCantMoveLikeThat();
                     continue;
                 }

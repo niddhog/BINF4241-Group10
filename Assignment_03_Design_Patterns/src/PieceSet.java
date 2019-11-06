@@ -9,9 +9,12 @@ public class PieceSet {
             Piece h1 = new Rook(color);
             Piece b1 = new Knight(color);
             Piece g1 = new Knight(color);
-            Piece c1 = new Bishop(color);
-            Piece f1 = new Bishop(color);
-            Piece d1 = new Queen(color);
+            Bishop sampleBishop = new Bishop(color);
+            Knight sampleKnight = new Knight(color);
+            Piece c1 = new Archbishop(sampleBishop, sampleKnight);
+            Piece f1 = new Archbishop(sampleBishop, sampleKnight);
+            Queen sampleQueen = new Queen(color);
+            Piece d1 = new Superqueen(sampleQueen);
             Piece e1 = new King(color);
 
             Piece a2 = new Pawn(color);
@@ -63,6 +66,10 @@ public class PieceSet {
 
     public Piece[] getPieceList(){
         return pieceList;
+    }
+
+    public Iterator createIterator(){
+        return new setIterator(pieceList);
     }
 }
 
