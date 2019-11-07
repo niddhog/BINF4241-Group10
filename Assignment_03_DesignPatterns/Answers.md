@@ -12,7 +12,7 @@ encapsulate parts of our code as it is not any longer necessary to loop over the
 single square and update it. We can just subscribe new squares to the Move class and whenever there is movement, the 
 move class will trigger the state update in each subscribed square.
 
-Class Diagram: [click here]
+Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/ObserverDiagramm.jpeg)
 ##
 
 
@@ -23,3 +23,5 @@ instances of for loops inside the check class that each need to iterate over the
 encapsulate that process by implementing an iterator pattern. That way, when changing the game board design at a later 
 stage, we do not have to adjust four different loops separately but can just simply access the BoardIterator Class in 
 order to change the behavior for traversing the ChessBoard.
+
+Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorDiagram.jpeg)
