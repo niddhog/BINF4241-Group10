@@ -1,0 +1,28 @@
+@startuml
+interface Subject{
+     +//registerObserver()//
+     +//removeObserver()//
+     +//notify Observer()//
+}
+
+interface Observer{
+    +//update()//
+}
+
+
+Subject <|- Observer
+Subject <|- Move
+Observer <|- Square
+
+class Square {
+Object[] elementData
+size()
+}
+
+class Move {
+Object[] elementData
+size()
+}
+
+
+@enduml
