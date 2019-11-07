@@ -13,6 +13,8 @@ single square and update it. We can just subscribe new squares to the Move class
 move class will trigger the state update in each subscribed square.
 
 Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/ObserverDiagramm.jpeg)
+
+Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/ObserverSequenceDiagramm.jpeg)
 ##
 
 
@@ -25,3 +27,5 @@ stage, we do not have to adjust four different loops separately but can just sim
 order to change the behavior for traversing the ChessBoard.
 
 Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorDiagram.jpeg)
+
+Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorSequenceDiagram.jpeg)
