@@ -71,6 +71,9 @@ public class InitBoard { //puts pieces of the players on the board
 }
 
 ```
+## Part 02
+
+First state is the initialization of the board. Afterwards our board changes only if a piece will be removed or a piece get placed on a new square. So, our sequence considers the initialization, the inputs for the collision test to validate the move of the piece for removing enemy piece and/or set the piece on another square of the board. 
 
 #### class diagram
 
