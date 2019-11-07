@@ -12,6 +12,10 @@ encapsulate parts of our code as it is not any longer necessary to loop over the
 single square and update it. We can just subscribe new squares to the Move class and whenever there is movement, the 
 move class will trigger the state update in each subscribed square.
 
+Class Diagram: [click here]
+##
+
+
 Iterator Pattern:
 
 We decided to add an iteration Pattern into our Chess game in order to encapsulate iteration. As there are four 
