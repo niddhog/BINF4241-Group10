@@ -3,7 +3,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 
-public class ChessGame{
+public class    ChessGame{
     public static void main(String[] args) {
         PieceSet whiteSet = new PieceSet(PieceColor.WHITE);
         PieceSet blackSet = new PieceSet(PieceColor.BLACK);         //creating PieceSets for both players
