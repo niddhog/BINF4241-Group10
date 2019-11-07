@@ -1,6 +1,6 @@
 Group 10 Markdown Answer File
 ---------------------------------
-Part 1:
+####Part 1:
 
 Observer Pattern:
 
@@ -29,3 +29,31 @@ order to change the behavior for traversing the ChessBoard.
 Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorDiagram.jpeg)
 
 Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorSequenceDiagram.jpeg)
+##
+####Part 2:
+##
+####Part 3:
+
+Score Board:
+
+The Scoreboard has been implemented as Singleton Class. It is instantiated before the Game-Loop starts via the 
+getInstance() method. It is then called each time a Player enters a Move Command, thus it is first send to the
+move() function of the move Object. The move Object is an observable object which was instantiated from the Move Class
+and part of the Observer Pattern we introduced in Part 1 of this Task. Thus, in order to correctly update the Scoreboard,
+each subscriber to the move Object, namely each Square on the board, will get notified about the incoming move. Inside
+the update() function of each square Object, the Scoreboard gets updated in case there was an enemy Piece on the 
+square which now will be eaten. The point addition is handled inside the Scoreboard Class itself and can be accessed
+from everywhere via updateScoreBoard.
+
+##
+
+ChessPieceIterator:
+
+This Pattern makes use of the already implemented Iterator Pattern from Part 1 of this Exercise. At start up in the
+ChessGame Class, before the main loop starts, a chessPieceIterator object is created by accessing the createIterator()
+method of the board object. The createIterator() method returns an Iterator that iterates over a List of Squares,
+as in our implementation of Chess, Squares are the objects that hold and allow access to Pieces. It iterates over
+the first and second row of the board, as well as over the 7 and 8 row of the board in order to access all squares
+with Pieces on them, according to the initial Setup of Chess. We implemented a Translator Class that translates
+the SquareCoordinates into Chess Notation (example X:0 Y:0 will be printed as a1). All Figures and their locations
+are printed this way until the Iterator reaches its Endpoint, meaning hasNext() returns false.

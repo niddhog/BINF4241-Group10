@@ -18,6 +18,7 @@ public class BoardIterator implements Iterator {
         }
     }
 
+
     @Override
     public Object next() {
         Square square = squares.get(position);
