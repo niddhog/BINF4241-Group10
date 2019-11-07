@@ -1,8 +1,0 @@
-@startuml
-interface Subject{
-    registerObserver()
-    removeObserver()
-    notifyObserver()
-}
-
-@enduml
