@@ -14,7 +14,7 @@ move class will trigger the state update in each subscribed square.
 
 Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/ObserverDiagramm.jpeg)
 
-Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/ObserverSequenceDiagramdigital.jpg)
+Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/ObserverSequenceDiagramdigital.jpeg)
 ##
 
 
@@ -28,7 +28,7 @@ order to change the behavior for traversing the ChessBoard.
 
 Class Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorDiagram.jpeg)
 
-Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorSequenceDiagramdigital.jpg)
+Sequence Diagram: [click here](https://github.com/niddhog/BINF4241-Group10/blob/master/Assignment_03_DesignPatterns/IteratorSequenceDiagramdigital.jpeg)
 ##
 ####Part 2:
 
