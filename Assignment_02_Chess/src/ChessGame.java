@@ -3,6 +3,7 @@ import java.util.Queue;
 import java.util.Scanner;
 
 
+
 public class ChessGame{
     public static void main(String[] args) {
         PieceSet whiteSet = new PieceSet(PieceColor.WHITE);
