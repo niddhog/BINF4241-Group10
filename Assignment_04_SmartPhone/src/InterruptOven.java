@@ -1,8 +1,8 @@
 public class InterruptOven implements Command {
 
-    CookingDevices theDevice;
+    Oven theDevice;
 
-    public InterruptOven(CookingDevices newDevice){
+    public InterruptOven(Oven newDevice){
 
         theDevice = newDevice;  //this is a command Object
 
@@ -12,6 +12,13 @@ public class InterruptOven implements Command {
     public void execute() {
 
         theDevice.interrupt();
+
+    }
+
+    @Override
+    public void undo() {
+
+        //Was soll ich hier undoen?
 
     }
 }

@@ -1,8 +1,8 @@
 public class StartOven implements Command {
 
-    CookingDevices theDevice;
+    Oven theDevice;
 
-    public StartOven(CookingDevices newDevice){
+    public StartOven(Oven newDevice){
 
         theDevice = newDevice;  //this is a command Object
 
@@ -13,5 +13,10 @@ public class StartOven implements Command {
 
         theDevice.start();
 
+    }
+
+    @Override
+    public void undo() {
+        theDevice.interrupt();
     }
 }

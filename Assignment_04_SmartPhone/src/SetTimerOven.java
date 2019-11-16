@@ -1,9 +1,9 @@
 public class SetTimerOven implements Command {
 
-    CookingDevices theDevice;
+    Oven theDevice;
     private int timer;
 
-    public SetTimerOven(CookingDevices newDevice, int timerVal){
+    public SetTimerOven(Oven newDevice, int timerVal){
 
         theDevice = newDevice;  //this is a command Object
         this.timer = timerVal;
@@ -14,6 +14,13 @@ public class SetTimerOven implements Command {
     public void execute() {
 
         theDevice.setTimer(timer);
+
+    }
+
+    @Override
+    public void undo() {
+
+        theDevice.setTimer(0);
 
     }
 }

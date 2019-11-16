@@ -1,9 +1,9 @@
 public class SetTemperatureOven implements Command {
 
-    CookingDevices theDevice;
+    Oven theDevice;
     private int temperature;
 
-    public SetTemperatureOven(CookingDevices newDevice, int temperatureVal){
+    public SetTemperatureOven(Oven newDevice, int temperatureVal){
 
         theDevice = newDevice;  //this is a command Object
         this.temperature = temperatureVal;
@@ -14,6 +14,13 @@ public class SetTemperatureOven implements Command {
     public void execute() {
 
         theDevice.setTemperature(temperature);
+
+    }
+
+    @Override
+    public void undo() {
+
+        theDevice.setTemperature(0);
 
     }
 }

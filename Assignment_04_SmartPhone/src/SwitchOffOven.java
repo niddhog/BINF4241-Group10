@@ -1,8 +1,8 @@
 public class SwitchOffOven implements Command {
 
-    CookingDevices theDevice;
+    Oven theDevice;
 
-    public SwitchOffOven(CookingDevices newDevice){
+    public SwitchOffOven(Oven newDevice){
 
         theDevice = newDevice;  //this is a command Object
 
@@ -12,6 +12,13 @@ public class SwitchOffOven implements Command {
     public void execute() {
 
         theDevice.switchOff();
+
+    }
+
+    @Override
+    public void undo() {
+
+        theDevice.switchOn();
 
     }
 }

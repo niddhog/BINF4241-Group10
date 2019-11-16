@@ -1,8 +1,8 @@
 public class CheckTimerOven implements Command {
 
-    CookingDevices theDevice;
+    Oven theDevice;
 
-    public CheckTimerOven(CookingDevices newDevice){
+    public CheckTimerOven(Oven newDevice){
 
         theDevice = newDevice;  //this is a command Object
 
@@ -12,6 +12,13 @@ public class CheckTimerOven implements Command {
     public void execute() {
 
         theDevice.checkTimer();
+
+    }
+
+    @Override
+    public void undo() {
+
+        //Was soll ich hier undoen?
 
     }
 }
