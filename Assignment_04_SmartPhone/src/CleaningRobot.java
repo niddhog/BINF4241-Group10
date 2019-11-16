@@ -60,7 +60,28 @@ public class CleaningRobot implements RoboticDevices, AllDevices {
 
     @Override
     public void displayFunctionMenu() {
-
+        System.out.print("\n");
+        System.out.println("|||||||||||||||||||||||||||||");
+        System.out.println("|    CLEANING ROBOT MENU    |");
+        System.out.println("|||||||||||||||||||||||||||||");
+        System.out.println("+---------------------------+");
+        System.out.println("|       0. set Timer        |");
+        System.out.println("+---------------------------+");
+        System.out.println("|     1. start cleaning     |");
+        System.out.println("+---------------------------+");
+        System.out.println("| 2. check cleaning progress|");
+        System.out.println("+---------------------------+");
+        System.out.println("|  3. check battery status  |");
+        System.out.println("+---------------------------+");
+        System.out.println("|  4. check charging status |");
+        System.out.println("+---------------------------+");
+        System.out.println("|    5. complete cleaning   |");
+        System.out.println("+---------------------------+");
+        System.out.println("|       6. Interrupt        |");
+        System.out.println("+---------------------------+");
+        System.out.println("|          7. Back          |");
+        System.out.println("+---------------------------+");
+        System.out.print("\n");
     }
 
     @Override

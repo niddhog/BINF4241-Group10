@@ -1,9 +1,11 @@
 public class WashingMachine implements ProgrammableDevices, AllDevices, StationaryDevices, HeatBasedDevices {
 
     private int deviceNr;
+    private boolean isOn;
 
     public WashingMachine(){
         this.deviceNr = SmartPhone.DEVICE_NR;
+        this.isOn = false;
         SmartPhone.DEVICE_NR++;
     }
 
@@ -38,10 +40,6 @@ public class WashingMachine implements ProgrammableDevices, AllDevices, Stationa
         return false;
     }
 
-    @Override
-    public void displayFunctionMenu() {
-
-    }
 
     @Override
     public String toString(){
@@ -66,5 +64,41 @@ public class WashingMachine implements ProgrammableDevices, AllDevices, Stationa
     @Override
     public void setTemperature(int value) {
 
+    }
+
+    @Override
+    public void displayFunctionMenu() {
+        if(isOn){
+            System.out.print("\n");
+            System.out.println("|||||||||||||||||||||||||||||");
+            System.out.println("|    WASHING MACHINE MENU   |");
+            System.out.println("|||||||||||||||||||||||||||||");
+            System.out.println("+---------------------------+");
+            System.out.println("|       0. switch off       |");
+            System.out.println("+---------------------------+");
+            System.out.println("|         1. start          |");
+            System.out.println("+---------------------------+");
+            System.out.println("|     2. select Degrees     |");
+            System.out.println("+---------------------------+");
+            System.out.println("|      3. select Modus      |");
+            System.out.println("+---------------------------+");
+            System.out.println("|       5. interrupt        |");
+            System.out.println("+---------------------------+");
+            System.out.println("|          6. Back          |");
+            System.out.println("+---------------------------+");
+            System.out.print("\n");
+        }
+        else{
+            System.out.print("\n");
+            System.out.println("|||||||||||||||||||||||||||||");
+            System.out.println("|    WASHING MACHINE MENU   |");
+            System.out.println("|||||||||||||||||||||||||||||");
+            System.out.println("+---------------------------+");
+            System.out.println("|       0. switch on        |");
+            System.out.println("+---------------------------+");
+            System.out.println("|          1. back          |");
+            System.out.println("+---------------------------+");
+            System.out.print("\n");
+        }
     }
 }

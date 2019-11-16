@@ -19,9 +19,8 @@ public class UseSmartPhone {
             displayMainMenu();
             int userInput = createUserInput();
             menuDepth++;
-
-            if(oven.getDeviceNr()==userInput){
-                while(true){
+            while(true){
+                if(oven.getDeviceNr()==userInput){
                     oven.displayFunctionMenu();
                     int userInputDepth2 = createUserInput();
                     if(userInputDepth2==0){
@@ -45,16 +44,16 @@ public class UseSmartPhone {
                         }
                     }
                     else if(userInputDepth2==2){
-                        System.out.println("bug");
+                        System.out.println("implement more");
                     }
                     else if(userInputDepth2==3){
-                        System.out.println("bug");
+                        System.out.println("implement more");
                     }
                     else if(userInputDepth2==4){
-                        System.out.println("bug");
+                        System.out.println("implement more");
                     }
                     else if(userInputDepth2==5){
-                        System.out.println("bug");
+                        System.out.println("implement more");
                     }
                     else if(userInputDepth2==6){
                         menuDepth--;
@@ -64,23 +63,153 @@ public class UseSmartPhone {
                         System.out.println("This function does not exists, please select again");
                     }
                 }
-            }
-            else if(microWave.getDeviceNr()==userInput){
+                else if(microWave.getDeviceNr()==userInput){
+                    microWave.displayFunctionMenu();
+                    int userInputDepth2 = createUserInput();
+                    if(userInputDepth2==0){
+
+                    }
+                    else if(userInputDepth2==1){
+                        if(!microWave.getIsOn()){  //device is currently off, so this is Back Button
+                            menuDepth--;
+                            break;
+                        }
+                        else{
+                            //todo other Button Function of this position when Oven is On
+                        }
+                    }
+                    else if(userInputDepth2==2){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==3){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==4){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==5){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==6){
+                        menuDepth--;
+                        break;
+                    }
+                    else{
+                        System.out.println("This function does not exists, please select again");
+                    }
+                }
+                else if(dishWasher.getDeviceNr()==userInput){
+                    dishWasher.displayFunctionMenu();
+                    int userInputDepth2 = createUserInput();
+                    if(userInputDepth2==0){
+
+                    }
+                    else if(userInputDepth2==1){
+                        if(!dishWasher.getIsOn()){  //device is currently off, so this is Back Button
+                            menuDepth--;
+                            break;
+                        }
+                        else{
+                            //todo other Button Function of this position when Oven is On
+                        }
+                    }
+                    else if(userInputDepth2==2){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==3){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==4){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==5){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==6){
+                        menuDepth--;
+                        break;
+                    }
+                    else{
+                        System.out.println("This function does not exists, please select again");
+                    }
+                }
+                else if(washingMachine.getDeviceNr()==userInput){
+                    washingMachine.displayFunctionMenu();
+                    int userInputDepth2 = createUserInput();
+                    if(userInputDepth2==0){
+
+                    }
+                    else if(userInputDepth2==1){
+                        if(!washingMachine.getIsOn()){  //device is currently off, so this is Back Button
+                            menuDepth--;
+                            break;
+                        }
+                        else{
+                            //todo other Button Function of this position when Oven is On
+                        }
+                    }
+                    else if(userInputDepth2==2){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==3){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==4){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==5){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==6){
+                        menuDepth--;
+                        break;
+                    }
+                    else{
+                        System.out.println("This function does not exists, please select again");
+                    }
+                }
+                else if(cleaningRobot.getDeviceNr()==userInput){
+                    cleaningRobot.displayFunctionMenu();
+                    int userInputDepth2 = createUserInput();
+                    if(userInputDepth2==0){
+
+                    }
+                    else if(userInputDepth2==1){
+                        if(!cleaningRobot.getIsOn()){  //device is currently off, so this is Back Button
+                            menuDepth--;
+                            break;
+                        }
+                        else{
+                            //todo other Button Function of this position when Oven is On
+                        }
+                    }
+                    else if(userInputDepth2==2){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==3){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==4){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==5){
+                        System.out.println("implement more");
+                    }
+                    else if(userInputDepth2==6){
+                        menuDepth--;
+                        break;
+                    }
+                    else{
+                        System.out.println("This function does not exists, please select again");
+                    }
+                }
+                else{
+                    menuDepth--;
+                    System.out.println("This Device does not exists, please select again");
+                }
 
             }
-            else if(dishWasher.getDeviceNr()==userInput){
 
-            }
-            else if(washingMachine.getDeviceNr()==userInput){
-
-            }
-            else if(cleaningRobot.getDeviceNr()==userInput){
-
-            }
-            else{
-                menuDepth--;
-                System.out.println("This Device does not exists, please select again");
-            }
         }
 
 
@@ -115,7 +244,7 @@ public class UseSmartPhone {
 
 
     private static void displayMainMenu(){
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i <= SmartPhone.DEVICE_NR; i++){
             System.out.println("+---------------------------+");
             if(oven.getDeviceNr()==i){
                 System.out.println(oven);
