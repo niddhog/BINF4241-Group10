@@ -55,10 +55,6 @@ public class WashingMachine implements ProgrammableDevices, AllDevices, Stationa
         return "| " + deviceNr + ". Access WASHING MACHINE |";
     }
 
-    @Override
-    public void setTimer(int value, boolean undo) {
-        //todo timer is based on the program
-    }
 
     @Override
     public void checkTimer() {

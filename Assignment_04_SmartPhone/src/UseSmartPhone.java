@@ -33,7 +33,9 @@ public class UseSmartPhone {
                             deviceButtons.press();
                         }
                         else{  //SWITCH OFF
-                            //todo implement Off Switch
+                            SwitchOffOven offCommand = new SwitchOffOven(oven);
+                            deviceButtons.addButtonCommand(offCommand);
+                            deviceButtons.press();
                         }
                     }
                     else if(userInputDepth2==1){  //BACK
@@ -49,30 +51,30 @@ public class UseSmartPhone {
                     }
                     else if(userInputDepth2==2){  //SET TEMPERATURE
                         int userInputDepth3 = createUserInput(4);
-                        SetTemperatureOven setTimeCommand = new SetTemperatureOven(oven,userInputDepth3);
-                        deviceButtons.addButtonCommand(setTimeCommand);
+                        SetTemperatureOven setTempCommand = new SetTemperatureOven(oven,userInputDepth3);
+                        deviceButtons.addButtonCommand(setTempCommand);
                         deviceButtons.press();
                     }
                     else if(userInputDepth2==3){  //SELECT PROGRAM
                         oven.displayPrograms();
                         int userInputDepth4 = createUserInput(5);
-                        SelectProgramOven onCommand = new SelectProgramOven(oven,userInputDepth4);
-                        deviceButtons.addButtonCommand(onCommand);
+                        SelectProgramOven programmComman = new SelectProgramOven(oven,userInputDepth4);
+                        deviceButtons.addButtonCommand(programmComman);
                         deviceButtons.press();
                     }
                     else if(userInputDepth2==4){  //START COOKING
-                        StartOven onCommand = new StartOven(oven);
-                        deviceButtons.addButtonCommand(onCommand);
+                        StartOven startCommand = new StartOven(oven);
+                        deviceButtons.addButtonCommand(startCommand);
                         deviceButtons.press();
                     }
                     else if(userInputDepth2==5){  //CHECK TIMER
-                        CheckTimerOven setTimeCommand = new CheckTimerOven(oven);
-                        deviceButtons.addButtonCommand(setTimeCommand);
+                        CheckTimerOven checkTimeCommand = new CheckTimerOven(oven);
+                        deviceButtons.addButtonCommand(checkTimeCommand);
                         deviceButtons.press();
                     }
                     else if(userInputDepth2==6){  //INTERRUPT
-                        InterruptOven setTimeCommand = new InterruptOven(oven);
-                        deviceButtons.addButtonCommand(setTimeCommand);
+                        InterruptOven interruptCommand = new InterruptOven(oven);
+                        deviceButtons.addButtonCommand(interruptCommand);
                         deviceButtons.press();
                     }
                     else if(userInputDepth2==7){  //BACK
@@ -89,30 +91,54 @@ public class UseSmartPhone {
                     microWave.displayFunctionMenu();
                     int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
-
+                        if(!microWave.getIsOn()){  //SWITCH ON
+                            SwitchOnMicrowave onCommand = new SwitchOnMicrowave(microWave);
+                            deviceButtons.addButtonCommand(onCommand);
+                            deviceButtons.press();
+                        }
+                        else{  //SWITCH OFF
+                            SwitchOffMicro offCommand = new SwitchOffMicro(microWave);
+                            deviceButtons.addButtonCommand(offCommand);
+                            deviceButtons.press();
+                        }
                     }
-                    else if(userInputDepth2==1){
+                    else if(userInputDepth2==1){  //BACK
                         if(!microWave.getIsOn()){  //device is currently off, so this is Back Button
                             break;
                         }
-                        else{
-
+                        else{  //SET TIMER
+                            int userInputDepth3 = createUserInput(3);
+                            SetTimerMicro setTimeCommand = new SetTimerMicro(microWave,userInputDepth3);
+                            deviceButtons.addButtonCommand(setTimeCommand);
+                            deviceButtons.press();
                         }
                     }
-                    else if(userInputDepth2==2){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==2){  //SET TEMPERATURE
+                        int userInputDepth3 = createUserInput(4);
+                        SetTemperatureMicro setTempCommand = new SetTemperatureMicro(microWave,userInputDepth3);
+                        deviceButtons.addButtonCommand(setTempCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==3){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==3){  //START BAKING
+                        StartMicro startCommand = new StartMicro(microWave);
+                        deviceButtons.addButtonCommand(startCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==4){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==4){  //CHECK TIMER
+                        CheckTimerMicro checkTimeCommand = new CheckTimerMicro(microWave);
+                        deviceButtons.addButtonCommand(checkTimeCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==5){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==5){  //INTERRUPT
+                        InterruptMicro interruptCommand = new InterruptMicro(microWave);
+                        deviceButtons.addButtonCommand(interruptCommand);
+                        deviceButtons.press();
                     }
                     else if(userInputDepth2==6){
                         break;
+                    }
+                    else if(userInputDepth2==-1){  //UNDO
+                        deviceButtons.pressUndo();
                     }
                     else{
                         System.out.println("This function does not exists, please select again");
@@ -122,32 +148,47 @@ public class UseSmartPhone {
                     dishWasher.displayFunctionMenu();
                     int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
-
+                        if(!dishWasher.getIsOn()){  //SWITCH ON
+                            SwitchOnDishwasher onCommand = new SwitchOnDishwasher(dishWasher);
+                            deviceButtons.addButtonCommand(onCommand);
+                            deviceButtons.press();
+                        }
+                        else{  //SWITCH OFF
+                            SwitchOffDishwasher offCommand = new SwitchOffDishwasher(dishWasher);
+                            deviceButtons.addButtonCommand(offCommand);
+                            deviceButtons.press();
+                        }
                     }
-                    else if(userInputDepth2==1){
+                    else if(userInputDepth2==1){  //BACK
                         if(!dishWasher.getIsOn()){  //device is currently off, so this is Back Button
                             break;
                         }
-                        else{
-
+                        else{  //START DISHWASHER
+                            StartDishwasher startCommand = new StartDishwasher(dishWasher);
+                            deviceButtons.addButtonCommand(startCommand);
+                            deviceButtons.press();
                         }
                     }
-                    else if(userInputDepth2==2){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==2){  //CHOOSE PROGRAM
+                        dishWasher.displayPrograms();
+                        int userInputDepth4 = createUserInput(5);
+                        SelectProgramDishwasher programCommand = new SelectProgramDishwasher(dishWasher,userInputDepth4);
+                        deviceButtons.addButtonCommand(programCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==3){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==3){  //CHECK TIMER
+                        CheckTimerDishwasher checkTimeCommand = new CheckTimerDishwasher(dishWasher);
+                        deviceButtons.addButtonCommand(checkTimeCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==4){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==4){  //INTERRUPT
+                        InterruptDishwasher interruptCommand = new InterruptDishwasher(dishWasher);
+                        deviceButtons.addButtonCommand(interruptCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==5){
-                        System.out.println("implement more");
-                    }
-                    else if(userInputDepth2==6){
+                    else if(userInputDepth2==5){  //BACK
                         break;
                     }
-
                     else{
                         System.out.println("This function does not exists, please select again");
                     }
@@ -238,11 +279,11 @@ public class UseSmartPhone {
         /*
         CookingDevices newDevice = Util.SmartPhone.getDevice();  //returns all Devices linked to the Util.SmartPhone
 
-        Commands.SwitchOnOven onCommand = new Commands.SwitchOnOven(newDevice);
+        Commands.Oven.SwitchOnOven onCommand = new Commands.Oven.SwitchOnOven(newDevice);
         DeviceButton turnOnPressed = new DeviceButton(onCommand);
         turnOnPressed.press();
 
-        Commands.SwitchOffOven offCommand = new Commands.SwitchOffOven(newDevice);
+        Commands.Oven.SwitchOffOven offCommand = new Commands.Oven.SwitchOffOven(newDevice);
         DeviceButton turnOffPressed = new DeviceButton(offCommand);
         turnOffPressed.press();
 
@@ -319,7 +360,7 @@ public class UseSmartPhone {
                 input = userInput.nextLine();
             }
             else if (menuDepth == 5){
-                System.out.println("Select a cooking program (Enter the corresponding #): ");
+                System.out.println("Select a specific program (Enter the corresponding #): ");
                 input = userInput.nextLine();
             }
             if(validateInput(input)){

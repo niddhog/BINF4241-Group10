@@ -2,10 +2,11 @@ package Devices;
 
 import Interfaces.AllDevices;
 import Interfaces.RoboticDevices;
+import Interfaces.TimeableDevices;
 import Util.SmartPhone;
 import Util.MyThread;
 
-public class CleaningRobot implements RoboticDevices, AllDevices {
+public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevices {
 
     private int deviceNr;
 

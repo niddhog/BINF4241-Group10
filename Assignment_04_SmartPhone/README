@@ -1,2 +1,5 @@
 Dear TA's
-In here go the information about Assignment 4 as soon as we're done with it
+UNDO: Each and every Command inputted by the user is stored in a command list. The Undo Function undoes the last
+command of this list and removes it from the list. Like this, each and every command ever committed by the user
+can be undone
+
