@@ -1,8 +1,8 @@
-public class setInterrupted implements Command{
+public class setInterruptedOven implements Command{
     Oven oven;
     boolean interrupted;
 
-    public setInterrupted(Oven oven, boolean interrupted){
+    public setInterruptedOven(Oven oven, boolean interrupted){
         this.oven=oven;
         this.interrupted=interrupted;
     }

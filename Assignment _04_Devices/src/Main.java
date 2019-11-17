@@ -15,7 +15,7 @@ public class Main {
             System.out.println("4 : Washmachine");
             System.out.println("5 : Cleaning Robot");
 
-            System.out.println("Which device do you want to start?");
+            System.out.println("Which device do you want to start? \n Choose a number to access the device.");
             Scanner scanner = new Scanner(System.in);
             String log = scanner.nextLine();
 
@@ -33,6 +33,9 @@ public class Main {
             }
             else if(log.equals("5")) {
                 cleaningRobotThread.run();
+            }
+            else{
+                System.out.println("Your choice was invalid.");
             }
         }
 

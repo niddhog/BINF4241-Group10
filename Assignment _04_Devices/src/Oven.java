@@ -2,13 +2,17 @@ public class Oven {
     private boolean on;
     private int timer;
     private int temperature;
-    private String[] program;
+    private String[] program = {"grill", "ventilated", "lower heat only", "upper and lower heat"};
+    private String currentProgram;
     private boolean cooking;
     private int checkTimer;
     private boolean interrupted;
 
     public Oven(){
-
+        on = false;
+        timer = 0;
+        temperature = 0;
+        cooking = false;
     }
 
     public boolean isOn() {
@@ -41,6 +45,14 @@ public class Oven {
 
     public String[] getProgram() {
         return program;
+    }
+
+    public String getCurrentProgram() {
+        return currentProgram;
+    }
+
+    public void setCurrentProgram(String currentProgram) {
+        this.currentProgram = currentProgram;
     }
 
     public int getCheckTimer() {
