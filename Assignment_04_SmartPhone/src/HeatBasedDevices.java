@@ -1,3 +1,3 @@
 public interface HeatBasedDevices {
-    public void setTemperature(int value);
+    public void setTemperature(int value, boolean undo);
 }

@@ -35,12 +35,12 @@ public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevice
 
 
     @Override
-    public void setTimer(int value) {
+    public void setTimer(int value, boolean undo) {
 
     }
 
     @Override
-    public void setTemperature(int value) {
+    public void setTemperature(int value, boolean undo) {
 
     }
 
@@ -52,6 +52,11 @@ public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevice
     @Override
     public void checkTimer() {
 
+    }
+
+    @Override
+    public long calculateTime() {
+        return 0;
     }
 
     @Override

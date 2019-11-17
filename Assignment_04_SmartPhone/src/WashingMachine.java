@@ -47,7 +47,7 @@ public class WashingMachine implements ProgrammableDevices, AllDevices, Stationa
     }
 
     @Override
-    public void setTimer(int value) {
+    public void setTimer(int value, boolean undo) {
         //todo timer is based on the program
     }
 
@@ -57,12 +57,22 @@ public class WashingMachine implements ProgrammableDevices, AllDevices, Stationa
     }
 
     @Override
-    public void selectProgram(int value) {
+    public long calculateTime() {
+        return 0;
+    }
+
+    @Override
+    public void selectProgram(int value, boolean undo) {
 
     }
 
     @Override
-    public void setTemperature(int value) {
+    public void displayPrograms() {
+
+    }
+
+    @Override
+    public void setTemperature(int value, boolean undo) {
 
     }
 

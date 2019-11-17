@@ -18,14 +18,17 @@ public class DeviceButtons {
     public void press(){
 
         commandList.get(commandList.size()-1).execute();
-
     }
 
     public void pressUndo(){
-
-        commandList.get(commandList.size()-1).execute();
-        commandList.remove(commandList.size()-1);
-
+        if(commandList.size()==0){
+            System.out.println("No further Commands can be undone!");
+        }
+        else{
+            System.out.println("The command: " +  commandList.get(commandList.size()-1) + " has been undone!");
+            commandList.get(commandList.size()-1).undo();
+            commandList.remove(commandList.size()-1);
+        }
     }
 
 

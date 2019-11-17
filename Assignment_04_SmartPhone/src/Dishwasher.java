@@ -47,7 +47,7 @@ public class Dishwasher implements ProgrammableDevices, AllDevices, StationaryDe
     }
 
     @Override
-    public void setTimer(int value) {
+    public void setTimer(int value, boolean undo) {
         //todo the timer is set depending on the current selected program
     }
 
@@ -57,7 +57,17 @@ public class Dishwasher implements ProgrammableDevices, AllDevices, StationaryDe
     }
 
     @Override
-    public void selectProgram(int value) {
+    public long calculateTime() {
+        return 0;
+    }
+
+    @Override
+    public void selectProgram(int value, boolean undo) {
+
+    }
+
+    @Override
+    public void displayPrograms() {
 
     }
 

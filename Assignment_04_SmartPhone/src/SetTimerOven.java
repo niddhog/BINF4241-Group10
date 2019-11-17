@@ -13,14 +13,14 @@ public class SetTimerOven implements Command {
     @Override
     public void execute() {
 
-        theDevice.setTimer(timer);
+        theDevice.setTimer(timer,false);
 
     }
 
     @Override
     public void undo() {
 
-        theDevice.setTimer(0);
+        theDevice.setTimer(-1,true);
 
     }
 }

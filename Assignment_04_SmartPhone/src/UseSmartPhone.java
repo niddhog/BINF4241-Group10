@@ -3,7 +3,6 @@ import java.util.Scanner;
 import java.util.List;
 
 public class UseSmartPhone {
-    private static int menuDepth = 0;
     private static Oven oven = SmartPhone.getOven();
     private static MicroWave microWave = SmartPhone.getMicroWave();
     private static Dishwasher dishWasher = SmartPhone.getDishwasher();
@@ -18,51 +17,65 @@ public class UseSmartPhone {
 
         while(true){  //Starts the main Loop
             displayMainMenu();
-            int userInput = createUserInput();
-            menuDepth++;
+            int userInput = createUserInput(1);
             while(true){
                 if(oven.getDeviceNr()==userInput){
                     oven.displayFunctionMenu();
-                    int userInputDepth2 = createUserInput();
-                    if(userInputDepth2==0){
-                        if(!oven.getIsOn()){  //device is currently off
+                    int userInputDepth2 = createUserInput(2);
+                    if(userInputDepth2==0){  //SWITCH ON
+                        if(!oven.getIsOn()){
                             SwitchOnOven onCommand = new SwitchOnOven(oven);
                             deviceButtons.addButtonCommand(onCommand);
                             deviceButtons.press();
-
                         }
-                        else{
+                        else{  //SWITCH OFF
                             //todo implement Off Switch
-
                         }
                     }
-                    else if(userInputDepth2==1){
+                    else if(userInputDepth2==1){  //BACK
                         if(!oven.getIsOn()){  //device is currently off, so this is Back Button
-                            menuDepth--;
                             break;
                         }
-                        else{
-
+                        else{  //SET TIMER
+                            int userInputDepth3 = createUserInput(3);
+                            SetTimerOven setTimeCommand = new SetTimerOven(oven,userInputDepth3);
+                            deviceButtons.addButtonCommand(setTimeCommand);
+                            deviceButtons.press();
                         }
                     }
-                    else if(userInputDepth2==2){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==2){  //SET TEMPERATURE
+                        int userInputDepth3 = createUserInput(4);
+                        SetTemperatureOven setTimeCommand = new SetTemperatureOven(oven,userInputDepth3);
+                        deviceButtons.addButtonCommand(setTimeCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==3){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==3){  //SELECT PROGRAM
+                        oven.displayPrograms();
+                        int userInputDepth4 = createUserInput(5);
+                        SelectProgramOven onCommand = new SelectProgramOven(oven,userInputDepth4);
+                        deviceButtons.addButtonCommand(onCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==4){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==4){  //START COOKING
+                        StartOven onCommand = new StartOven(oven);
+                        deviceButtons.addButtonCommand(onCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==5){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==5){  //CHECK TIMER
+                        CheckTimerOven setTimeCommand = new CheckTimerOven(oven);
+                        deviceButtons.addButtonCommand(setTimeCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==6){
-                        menuDepth--;
+                    else if(userInputDepth2==6){  //INTERRUPT
+                        InterruptOven setTimeCommand = new InterruptOven(oven);
+                        deviceButtons.addButtonCommand(setTimeCommand);
+                        deviceButtons.press();
+                    }
+                    else if(userInputDepth2==7){  //BACK
                         break;
                     }
-                    else if(userInputDepth2==-1){
-                        //Todo Implement Undo function
+                    else if(userInputDepth2==-1){  //UNDO
+                        deviceButtons.pressUndo();
                     }
                     else{
                         System.out.println("This function does not exists, please select again");
@@ -70,13 +83,12 @@ public class UseSmartPhone {
                 }
                 else if(microWave.getDeviceNr()==userInput){
                     microWave.displayFunctionMenu();
-                    int userInputDepth2 = createUserInput();
+                    int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
 
                     }
                     else if(userInputDepth2==1){
                         if(!microWave.getIsOn()){  //device is currently off, so this is Back Button
-                            menuDepth--;
                             break;
                         }
                         else{
@@ -96,7 +108,6 @@ public class UseSmartPhone {
                         System.out.println("implement more");
                     }
                     else if(userInputDepth2==6){
-                        menuDepth--;
                         break;
                     }
                     else{
@@ -105,13 +116,12 @@ public class UseSmartPhone {
                 }
                 else if(dishWasher.getDeviceNr()==userInput){
                     dishWasher.displayFunctionMenu();
-                    int userInputDepth2 = createUserInput();
+                    int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
 
                     }
                     else if(userInputDepth2==1){
                         if(!dishWasher.getIsOn()){  //device is currently off, so this is Back Button
-                            menuDepth--;
                             break;
                         }
                         else{
@@ -131,7 +141,6 @@ public class UseSmartPhone {
                         System.out.println("implement more");
                     }
                     else if(userInputDepth2==6){
-                        menuDepth--;
                         break;
                     }
 
@@ -141,13 +150,12 @@ public class UseSmartPhone {
                 }
                 else if(washingMachine.getDeviceNr()==userInput){
                     washingMachine.displayFunctionMenu();
-                    int userInputDepth2 = createUserInput();
+                    int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
 
                     }
                     else if(userInputDepth2==1){
                         if(!washingMachine.getIsOn()){  //device is currently off, so this is Back Button
-                            menuDepth--;
                             break;
                         }
                         else{
@@ -167,7 +175,6 @@ public class UseSmartPhone {
                         System.out.println("implement more");
                     }
                     else if(userInputDepth2==6){
-                        menuDepth--;
                         break;
                     }
                     else{
@@ -176,13 +183,12 @@ public class UseSmartPhone {
                 }
                 else if(cleaningRobot.getDeviceNr()==userInput){
                     cleaningRobot.displayFunctionMenu();
-                    int userInputDepth2 = createUserInput();
+                    int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
 
                     }
                     else if(userInputDepth2==1){
                         if(!cleaningRobot.getIsOn()){  //device is currently off, so this is Back Button
-                            menuDepth--;
                             break;
                         }
                         else{
@@ -202,7 +208,6 @@ public class UseSmartPhone {
                         System.out.println("implement more");
                     }
                     else if(userInputDepth2==6){
-                        menuDepth--;
                         break;
                     }
                     else{
@@ -214,7 +219,6 @@ public class UseSmartPhone {
                     break;
                 }
                 else{
-                    menuDepth--;
                     System.out.println("This Device does not exists, please select again");
                     break;
                 }
@@ -289,24 +293,31 @@ public class UseSmartPhone {
     }
 
 
-    private static int createUserInput(){
+    private static int createUserInput(int menuDepth){
         Scanner userInput = new Scanner(System.in);
         String input = null;
 
         while (true){
-            if(menuDepth == 0){
+            if(menuDepth == 1){
                 System.out.println("Select your Device (Enter the corresponding #): ");
                 input = userInput.nextLine();
             }
-            else if (menuDepth == 1){
+            else if (menuDepth == 2){
                 System.out.println("Select a device functionality (Enter the corresponding #): ");
                 input = userInput.nextLine();
             }
-            else if (menuDepth == 2){
-                System.out.println("Set the functionality (Please enter a whole Number): ");
+            else if (menuDepth == 3){
+                System.out.println("Set the timer (Seconds, enter natural numbers only): ");
                 input = userInput.nextLine();
             }
-
+            else if (menuDepth == 4){
+                System.out.println("Set the Temperature (Degrees Celsius, enter natural numbers only): ");
+                input = userInput.nextLine();
+            }
+            else if (menuDepth == 5){
+                System.out.println("Select a cooking program (Enter the corresponding #): ");
+                input = userInput.nextLine();
+            }
             if(validateInput(input)){
                 return Integer.parseInt(input);
             }
@@ -322,4 +333,5 @@ public class UseSmartPhone {
             return false;
         }
     }
+
 }

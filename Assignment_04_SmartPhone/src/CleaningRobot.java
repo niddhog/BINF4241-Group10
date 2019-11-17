@@ -39,13 +39,18 @@ public class CleaningRobot implements RoboticDevices, AllDevices {
     }
 
     @Override
-    public void setTimer(int value) {
+    public void setTimer(int value, boolean undo) {
 
     }
 
     @Override
     public void checkTimer() {
         //todo check to see when robo needs to go back to charging
+    }
+
+    @Override
+    public long calculateTime() {
+        return 0;
     }
 
     @Override

@@ -18,7 +18,7 @@ public class InterruptOven implements Command {
     @Override
     public void undo() {
 
-        //Was soll ich hier undoen?
+        theDevice.start();
 
     }
 }

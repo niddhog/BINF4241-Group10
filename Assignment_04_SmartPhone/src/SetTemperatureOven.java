@@ -13,14 +13,12 @@ public class SetTemperatureOven implements Command {
     @Override
     public void execute() {
 
-        theDevice.setTemperature(temperature);
+        theDevice.setTemperature(temperature, false);
 
     }
 
     @Override
     public void undo() {
-
-        theDevice.setTemperature(0);
-
+        theDevice.setTemperature(-1, true);
     }
 }

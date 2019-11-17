@@ -17,8 +17,6 @@ public class CheckTimerOven implements Command {
 
     @Override
     public void undo() {
-
-        //Was soll ich hier undoen?
-
+        //this just gets removed from the commandList,nothing more
     }
 }

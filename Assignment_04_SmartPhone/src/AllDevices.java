@@ -5,6 +5,7 @@ public interface AllDevices {
     public void displayFunctionMenu();
     public void start();
     public void interrupt();
-    public void setTimer(int value);
+    public void setTimer(int value, boolean undo);
     public void checkTimer();
+    public long calculateTime();
 }
