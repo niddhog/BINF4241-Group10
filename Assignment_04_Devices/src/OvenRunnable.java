@@ -14,7 +14,8 @@ public class OvenRunnable implements Runnable {
         Timer mt1 = new Timer();
         Thread rt1 = null;         // Thread 1
 
-        long timestamp = System.currentTimeMillis();     // Pointer to current time for Thread 1
+        long start = System.currentTimeMillis();     // Pointer to current time for Thread 1
+        long end = System.currentTimeMillis();
 
         while (true) {
 
