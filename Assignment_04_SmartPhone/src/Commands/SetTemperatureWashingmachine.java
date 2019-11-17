@@ -18,12 +18,12 @@ public class SetTemperatureWashingmachine implements Command {
     @Override
     public void execute() {
 
-        theDevice.setTemperature(temperature, false);
+        theDevice.selectDegree(temperature, false);
 
     }
 
     @Override
     public void undo() {
-        theDevice.setTemperature(-1, true);
+        theDevice.selectDegree(-1, true);
     }
 }

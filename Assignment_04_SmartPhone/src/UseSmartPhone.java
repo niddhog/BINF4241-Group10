@@ -58,8 +58,8 @@ public class UseSmartPhone {
                     else if(userInputDepth2==3){  //SELECT PROGRAM
                         oven.displayPrograms();
                         int userInputDepth4 = createUserInput(5);
-                        SelectProgramOven programmComman = new SelectProgramOven(oven,userInputDepth4);
-                        deviceButtons.addButtonCommand(programmComman);
+                        SelectProgramOven programCommand = new SelectProgramOven(oven,userInputDepth4);
+                        deviceButtons.addButtonCommand(programCommand);
                         deviceButtons.press();
                     }
                     else if(userInputDepth2==4){  //START COOKING
@@ -197,29 +197,49 @@ public class UseSmartPhone {
                     washingMachine.displayFunctionMenu();
                     int userInputDepth2 = createUserInput(2);
                     if(userInputDepth2==0){
-
+                        if(!washingMachine.getIsOn()){  //SWITCH ON
+                            SwitchOnWashingmachine onCommand = new SwitchOnWashingmachine(washingMachine);
+                            deviceButtons.addButtonCommand(onCommand);
+                            deviceButtons.press();
+                        }
+                        else{  //SWITCH OFF
+                            SwitchOffWashingmachine offCommand = new SwitchOffWashingmachine(washingMachine);
+                            deviceButtons.addButtonCommand(offCommand);
+                            deviceButtons.press();
+                        }
                     }
                     else if(userInputDepth2==1){
-                        if(!washingMachine.getIsOn()){  //device is currently off, so this is Back Button
+                        if(!washingMachine.getIsOn()){  //BACK
                             break;
                         }
-                        else{
-
+                        else{  //START
+                            StartWashingmachine startCommand = new StartWashingmachine(washingMachine);
+                            deviceButtons.addButtonCommand(startCommand);
+                            deviceButtons.press();
                         }
                     }
-                    else if(userInputDepth2==2){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==2){  //SELECT DEGREES
+                        washingMachine.displayDegreeSelection();
+                        int userInputDepth3 = createUserInput(6);
+                        SetTemperatureWashingmachine setTempCommand = new SetTemperatureWashingmachine(washingMachine,
+                                userInputDepth3);
+                        deviceButtons.addButtonCommand(setTempCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==3){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==3){  //SELECT PROGRAM
+                        washingMachine.displayPrograms();
+                        int userInputDepth4 = createUserInput(5);
+                        SelectProgramWashingmachine programCommand = new SelectProgramWashingmachine(washingMachine,
+                                userInputDepth4);
+                        deviceButtons.addButtonCommand(programCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==4){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==4){  //INTERRUPT
+                        InterruptWashingmachine interruptCommand = new InterruptWashingmachine(washingMachine);
+                        deviceButtons.addButtonCommand(interruptCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==5){
-                        System.out.println("implement more");
-                    }
-                    else if(userInputDepth2==6){
+                    else if(userInputDepth2==5){  //BACK
                         break;
                     }
                     else{
@@ -361,6 +381,10 @@ public class UseSmartPhone {
             }
             else if (menuDepth == 5){
                 System.out.println("Select a specific program (Enter the corresponding #): ");
+                input = userInput.nextLine();
+            }
+            else if (menuDepth == 6){
+                System.out.println("Select the desired Degree Celsius for your washing (Enter the corresponding #): ");
                 input = userInput.nextLine();
             }
             if(validateInput(input)){

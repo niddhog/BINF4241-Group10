@@ -7,6 +7,5 @@ public interface AllDevices {
     public void displayFunctionMenu();
     public void start();
     public void interrupt();
-    public void checkTimer();
     public long calculateTime();
 }

@@ -3,10 +3,11 @@ package Devices;
 import Interfaces.AllDevices;
 import Interfaces.ProgrammableDevices;
 import Interfaces.StationaryDevices;
+import Interfaces.TimeableDevices;
 import Util.SmartPhone;
 import Util.MyThread;
 
-public class Dishwasher implements ProgrammableDevices, AllDevices, StationaryDevices {
+public class Dishwasher implements ProgrammableDevices, AllDevices, StationaryDevices, TimeableDevices {
 
     private int deviceNr;
     private boolean isOn;
@@ -114,6 +115,11 @@ public class Dishwasher implements ProgrammableDevices, AllDevices, StationaryDe
                 System.out.println("This Program is not available! Program was set to NULL");
             }
         }
+    }
+
+    @Override
+    public void setTimer(int val, boolean undo) {
+
     }
 
     @Override
