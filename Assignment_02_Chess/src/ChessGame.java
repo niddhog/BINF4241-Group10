@@ -151,8 +151,15 @@ public class ChessGame {
                     case'8':
                         x=true;
                 }
+<<<<<<< Updated upstream
                 if (start.length() == 2 && x == true && y == true){
                     return start;
+=======
+
+
+                if(coordinatesNotOnBoard(end)){
+                    continue;}
+>>>>>>> Stashed changes
 
                 }
                 else {
@@ -202,6 +209,12 @@ public class ChessGame {
                 System.out.println("Your position is incorrect. Choose an input of length 2 with a " +
                         "combination of the named squares of the board.");
             }
+<<<<<<< Updated upstream
+=======
+            Move.move(gameBoard, start, end);
+            gameBoard.printBoard();
+
+>>>>>>> Stashed changes
         }
     }
 
