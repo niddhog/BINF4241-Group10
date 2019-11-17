@@ -9,6 +9,7 @@ public class UseSmartPhone {
     private static Dishwasher dishWasher = SmartPhone.getDishwasher();
     private static WashingMachine washingMachine = SmartPhone.getWashingMaschine();
     private static CleaningRobot cleaningRobot = SmartPhone.getCleaningRobot();
+    private static DeviceButtons deviceButtons = new DeviceButtons();
     //Todo Make Singletons out of these 5 Classes
 
     public static void main(String[] args) {
@@ -26,8 +27,9 @@ public class UseSmartPhone {
                     if(userInputDepth2==0){
                         if(!oven.getIsOn()){  //device is currently off
                             SwitchOnOven onCommand = new SwitchOnOven(oven);
-                            DeviceButton turnOnPressed = new DeviceButton(onCommand);
-                            turnOnPressed.press();
+                            deviceButtons.addButtonCommand(onCommand);
+                            deviceButtons.press();
+
                         }
                         else{
                             //todo implement Off Switch
@@ -40,7 +42,7 @@ public class UseSmartPhone {
                             break;
                         }
                         else{
-                            //todo other Button Function of this position when Oven is On
+
                         }
                     }
                     else if(userInputDepth2==2){
@@ -59,6 +61,9 @@ public class UseSmartPhone {
                         menuDepth--;
                         break;
                     }
+                    else if(userInputDepth2==-1){
+                        //Todo Implement Undo function
+                    }
                     else{
                         System.out.println("This function does not exists, please select again");
                     }
@@ -75,7 +80,7 @@ public class UseSmartPhone {
                             break;
                         }
                         else{
-                            //todo other Button Function of this position when Oven is On
+
                         }
                     }
                     else if(userInputDepth2==2){
@@ -110,7 +115,7 @@ public class UseSmartPhone {
                             break;
                         }
                         else{
-                            //todo other Button Function of this position when Oven is On
+
                         }
                     }
                     else if(userInputDepth2==2){
@@ -129,6 +134,7 @@ public class UseSmartPhone {
                         menuDepth--;
                         break;
                     }
+
                     else{
                         System.out.println("This function does not exists, please select again");
                     }
@@ -145,7 +151,7 @@ public class UseSmartPhone {
                             break;
                         }
                         else{
-                            //todo other Button Function of this position when Oven is On
+
                         }
                     }
                     else if(userInputDepth2==2){
@@ -180,7 +186,7 @@ public class UseSmartPhone {
                             break;
                         }
                         else{
-                            //todo other Button Function of this position when Oven is On
+
                         }
                     }
                     else if(userInputDepth2==2){
@@ -203,9 +209,14 @@ public class UseSmartPhone {
                         System.out.println("This function does not exists, please select again");
                     }
                 }
+                else if(userInput==-1){
+                    //Todo -1 triggers the Undo function
+                    break;
+                }
                 else{
                     menuDepth--;
                     System.out.println("This Device does not exists, please select again");
+                    break;
                 }
 
             }
@@ -262,7 +273,6 @@ public class UseSmartPhone {
                 System.out.println(cleaningRobot);
             }
         }
-        System.out.println("+---------------------------+");
         System.out.println("\n");
     }
 
@@ -274,7 +284,8 @@ public class UseSmartPhone {
         System.out.println("  \\___ \\| '_ ` _ \\ / _` | '__| __|  __  |/ _ \\| '_ ` _ \\ / _ \\ / /| | | | | | | | | |");
         System.out.println("  ____) | | | | | | (_| | |  | |_| |  | | (_) | | | | | |  __// /_| |_| | |_| | |_| |");
         System.out.println(" |_____/|_| |_| |_|\\__,_|_|   \\__|_|  |_|\\___/|_| |_| |_|\\___|____|\\___/ \\___/ \\___/ ");
-        System.out.println("\n");
+        System.out.println("             Hint: Enter -1 whenever you want to undo the last command");
+        System.out.print("\n");
     }
 
 

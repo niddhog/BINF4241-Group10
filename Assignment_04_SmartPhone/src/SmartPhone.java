@@ -6,7 +6,7 @@ public class SmartPhone {
     public static int DEVICE_NR = 0;
 
     //All possible Devices the SmartPhone can control must be implemented in here
-    public static List<AllDevices> getDevices(){
+    /*public static List<AllDevices> getDevices(){
         List<AllDevices> deviceList = new ArrayList<>();  //create List with all Cooking Dev.
         Oven oven = new Oven();
         MicroWave microWave = new MicroWave();
@@ -21,7 +21,7 @@ public class SmartPhone {
         deviceList.add(cleaningRobot);
 
         return deviceList;
-    }
+    }*/
 
     public static Oven getOven(){
         return new Oven();
