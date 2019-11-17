@@ -1,3 +1,5 @@
+package Interfaces;
+
 //Interface for the following receivers: Cleaning Robot
 public interface RoboticDevices {
     public void checkBatteryStatus();

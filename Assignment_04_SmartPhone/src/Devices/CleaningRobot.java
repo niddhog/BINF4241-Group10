@@ -1,3 +1,10 @@
+package Devices;
+
+import Interfaces.AllDevices;
+import Interfaces.RoboticDevices;
+import Util.SmartPhone;
+import Util.MyThread;
+
 public class CleaningRobot implements RoboticDevices, AllDevices {
 
     private int deviceNr;

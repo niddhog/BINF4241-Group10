@@ -1,3 +1,5 @@
+package Util;
+
 public class MyThread implements Runnable {
 
     private boolean running;    // represent the state of the thread

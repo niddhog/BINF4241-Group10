@@ -1,3 +1,7 @@
+package Commands;
+import Interfaces.Command;
+import Devices.Oven;
+
 public class CheckTimerOven implements Command {
 
     Oven theDevice;

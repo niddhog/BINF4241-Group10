@@ -1,6 +1,10 @@
 //This is the main Application #IDEA: SINGLETON for each Device (there shouldn't be 2 Ovens)
+import Commands.*;
+import Devices.*;
+import Util.DeviceButtons;
+import Util.SmartPhone;
+
 import java.util.Scanner;
-import java.util.List;
 
 public class UseSmartPhone {
     private static Oven oven = SmartPhone.getOven();
@@ -12,7 +16,7 @@ public class UseSmartPhone {
     //Todo Make Singletons out of these 5 Classes
 
     public static void main(String[] args) {
-        //List<AllDevices> deviceList = SmartPhone.getDevices();
+        //List<Interfaces.AllDevices> deviceList = Util.SmartPhone.getDevices();
         displayTitle();
 
         while(true){  //Starts the main Loop
@@ -232,20 +236,20 @@ public class UseSmartPhone {
 
 
         /*
-        CookingDevices newDevice = SmartPhone.getDevice();  //returns all Devices linked to the SmartPhone
+        CookingDevices newDevice = Util.SmartPhone.getDevice();  //returns all Devices linked to the Util.SmartPhone
 
-        SwitchOnOven onCommand = new SwitchOnOven(newDevice);
+        Commands.SwitchOnOven onCommand = new Commands.SwitchOnOven(newDevice);
         DeviceButton turnOnPressed = new DeviceButton(onCommand);
         turnOnPressed.press();
 
-        SwitchOffOven offCommand = new SwitchOffOven(newDevice);
+        Commands.SwitchOffOven offCommand = new Commands.SwitchOffOven(newDevice);
         DeviceButton turnOffPressed = new DeviceButton(offCommand);
         turnOffPressed.press();
 
         //-------------------------------------------------------
 
-        Oven oven = new Oven();
-        MicroWave microWave = new MicroWave();
+        Devices.Oven oven = new Devices.Oven();
+        Devices.MicroWave microWave = new Devices.MicroWave();
 
         List<CookingDevices> cookingDevices = new ArrayList<CookingDevices>();  //create List with all Cooking Dev.
         cookingDevices.add(oven);

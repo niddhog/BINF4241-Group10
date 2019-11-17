@@ -1,3 +1,5 @@
+package Interfaces;
+
 public interface AllDevices {
 
     public int getDeviceNr();

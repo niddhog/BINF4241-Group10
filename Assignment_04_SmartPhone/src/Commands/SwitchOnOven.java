@@ -1,3 +1,8 @@
+package Commands;
+
+import Interfaces.Command;
+import Devices.Oven;
+
 public class SwitchOnOven implements Command {
 
     Oven theDevice;

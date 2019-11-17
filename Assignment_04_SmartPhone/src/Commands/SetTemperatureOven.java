@@ -1,3 +1,8 @@
+package Commands;
+
+import Interfaces.Command;
+import Devices.Oven;
+
 public class SetTemperatureOven implements Command {
 
     Oven theDevice;

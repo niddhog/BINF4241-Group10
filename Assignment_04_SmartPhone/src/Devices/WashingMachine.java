@@ -1,26 +1,42 @@
-public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevices {
+package Devices;
 
-    private int timer;  //Variable holds the timer value in seconds
-    private int temperature;  //Temperature in degree celsius
+import Interfaces.AllDevices;
+import Interfaces.HeatBasedDevices;
+import Interfaces.ProgrammableDevices;
+import Interfaces.StationaryDevices;
+import Util.SmartPhone;
+import Util.MyThread;
+
+public class WashingMachine implements ProgrammableDevices, AllDevices, StationaryDevices, HeatBasedDevices {
+
     private int deviceNr;
     private boolean isOn;
 
-    public MicroWave(){
-        this.timer = 0;
-        this.temperature = 0;
-        this.isOn = false;
+    public WashingMachine(){
         this.deviceNr = SmartPhone.DEVICE_NR;
+        this.isOn = false;
         SmartPhone.DEVICE_NR++;
     }
 
     @Override
+    public void start() {
+
+    }
+
+    @Override
     public void switchOn() {
-        System.out.println("Microwave is ON");
+
     }
 
     @Override
     public void switchOff() {
-        System.out.println("Microwave is OFF");
+
+    }
+
+
+    @Override
+    public void interrupt() {
+
     }
 
     @Override
@@ -35,7 +51,32 @@ public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevice
 
 
     @Override
+    public String toString(){
+        return "| " + deviceNr + ". Access WASHING MACHINE |";
+    }
+
+    @Override
     public void setTimer(int value, boolean undo) {
+        //todo timer is based on the program
+    }
+
+    @Override
+    public void checkTimer() {
+        //todo not mentioned in the Assignment but makes sense obviously
+    }
+
+    @Override
+    public long calculateTime() {
+        return 0;
+    }
+
+    @Override
+    public void selectProgram(int value, boolean undo) {
+
+    }
+
+    @Override
+    public void displayPrograms() {
 
     }
 
@@ -45,47 +86,20 @@ public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevice
     }
 
     @Override
-    public void start() {
-
-    }
-
-    @Override
-    public void checkTimer() {
-
-    }
-
-    @Override
-    public long calculateTime() {
-        return 0;
-    }
-
-    @Override
-    public void interrupt() {
-
-    }
-
-    @Override
-    public String toString(){
-        return "| " + deviceNr + ". Access MICROWAVE       |";
-    }
-
-    @Override
     public void displayFunctionMenu() {
         if(isOn){
             System.out.print("\n");
             System.out.println("|||||||||||||||||||||||||||||");
-            System.out.println("|       MICROWAVE MENU      |");
+            System.out.println("|    WASHING MACHINE MENU   |");
             System.out.println("|||||||||||||||||||||||||||||");
             System.out.println("+---------------------------+");
             System.out.println("|       0. switch off       |");
             System.out.println("+---------------------------+");
-            System.out.println("|       1. set timer        |");
+            System.out.println("|         1. start          |");
             System.out.println("+---------------------------+");
-            System.out.println("|    2. set temperature     |");
+            System.out.println("|     2. select Degrees     |");
             System.out.println("+---------------------------+");
-            System.out.println("|     3. start baking       |");
-            System.out.println("+---------------------------+");
-            System.out.println("|      4. check timer       |");
+            System.out.println("|      3. select Modus      |");
             System.out.println("+---------------------------+");
             System.out.println("|       5. interrupt        |");
             System.out.println("+---------------------------+");
@@ -96,7 +110,7 @@ public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevice
         else{
             System.out.print("\n");
             System.out.println("|||||||||||||||||||||||||||||");
-            System.out.println("|       MICROWAVE MENU      |");
+            System.out.println("|    WASHING MACHINE MENU   |");
             System.out.println("|||||||||||||||||||||||||||||");
             System.out.println("+---------------------------+");
             System.out.println("|       0. switch on        |");
@@ -105,7 +119,5 @@ public class MicroWave implements HeatBasedDevices, AllDevices, StationaryDevice
             System.out.println("+---------------------------+");
             System.out.print("\n");
         }
-
     }
-
 }

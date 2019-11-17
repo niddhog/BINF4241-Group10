@@ -1,3 +1,7 @@
+package Util;
+
+import Interfaces.Command;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -5,7 +9,7 @@ import java.util.List;
 
 public class DeviceButtons {
 
-    //Command specificCommand;
+    //Interfaces.Command specificCommand;
     List<Command> commandList;
 
 

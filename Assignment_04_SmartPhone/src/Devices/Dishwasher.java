@@ -1,3 +1,11 @@
+package Devices;
+
+import Interfaces.AllDevices;
+import Interfaces.ProgrammableDevices;
+import Interfaces.StationaryDevices;
+import Util.SmartPhone;
+import Util.MyThread;
+
 public class Dishwasher implements ProgrammableDevices, AllDevices, StationaryDevices {
 
     private int deviceNr;

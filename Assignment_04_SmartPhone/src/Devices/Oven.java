@@ -1,6 +1,13 @@
-//This is the receiver Oven
+package Devices;//This is the receiver Devices.Oven
 
-public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,ProgrammableDevices {
+import Interfaces.AllDevices;
+import Interfaces.HeatBasedDevices;
+import Interfaces.ProgrammableDevices;
+import Interfaces.StationaryDevices;
+import Util.SmartPhone;
+import Util.MyThread;
+
+public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices, ProgrammableDevices {
 
     private int timer;  //Variable holds the timer value in seconds
     private int temperature;  //Temperature in degree celsius
@@ -43,7 +50,7 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
                 }else{
                     program = null;
                 }
-                System.out.println("Oven program set to " + program.toString() + "!");
+                System.out.println("Devices.Oven program set to " + program.toString() + "!");
             }catch (NullPointerException e){
                 System.out.println("This Program is not available! Program was set to NULL");
             }
@@ -81,7 +88,7 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
             }
         }
         else{
-            System.out.println("The Oven Timer was set to: " + value + " seconds!");
+            System.out.println("The Devices.Oven Timer was set to: " + value + " seconds!");
             timer = value;
         }
     }
@@ -93,10 +100,10 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
         }
         else{
             if(value<=0){
-                System.out.println("Temperature can't fall below 0 in this Oven!");
+                System.out.println("Temperature can't fall below 0 in this Devices.Oven!");
             }
             else{
-                System.out.println("The Oven Temperature was set to: " + value + " Degrees Celsius!");
+                System.out.println("The Devices.Oven Temperature was set to: " + value + " Degrees Celsius!");
                 temperature = value;
             }
         }
@@ -105,11 +112,11 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
     @Override
     public void start() {
         if(ovenThread.isRunning()){  //Cooking Thread is currently running
-            System.out.println("The Oven is already running! Time left for cooking is: " + calculateTime() + "!");
+            System.out.println("The Devices.Oven is already running! Time left for cooking is: " + calculateTime() + "!");
         }
         else{  //Not all Parameters have been set
             if(temperature==-1 || timer == -1 || program == null){
-                System.out.print("Oven can't start. Please first set the ");
+                System.out.print("Devices.Oven can't start. Please first set the ");
                 if(temperature == -1){
                     System.out.print("[Temperature] ");
                 }
@@ -126,7 +133,7 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
                 rt = new Thread(ovenThread, "ovenThread");
                 elapsed = System.currentTimeMillis();  //at this time the Thread started
                 rt.start();
-                System.out.println("The Oven has started!");
+                System.out.println("The Devices.Oven has started!");
             }
         }
     }
@@ -137,7 +144,7 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
             System.out.println("Time left for cooking is: " + calculateTime() + "!");
         }
         else{
-            System.out.println("Oven Timer set to: " + timer);
+            System.out.println("Devices.Oven Timer set to: " + timer);
         }
     }
 
@@ -153,10 +160,10 @@ public class Oven implements HeatBasedDevices, AllDevices, StationaryDevices,Pro
             temperature = -1;
             timer = -1;
             program = null;
-            System.out.println("The Oven has stopped running!");
+            System.out.println("The Devices.Oven has stopped running!");
         }
         else{
-            System.out.println("The Oven is currently not running. Please start it first!");
+            System.out.println("The Devices.Oven is currently not running. Please start it first!");
         }
     }
 
