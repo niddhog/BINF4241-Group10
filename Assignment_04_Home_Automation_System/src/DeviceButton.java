@@ -1,6 +1,6 @@
 //invoker, beschwörer
 
-import Interfaces.Command;
+import Commands.Command;
 
 public class DeviceButton {
 

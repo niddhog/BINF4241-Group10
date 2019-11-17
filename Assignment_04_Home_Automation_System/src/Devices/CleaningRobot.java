@@ -2,15 +2,23 @@ package Devices;
 
 import Interfaces.TimerInterface;
 
-public class CleaningRobot implements TimerInterface {
+public class CleaningRobot extends MasterDevice implements TimerInterface{
+
+    public CleaningRobot(String name){
+        super.setName(name);
+    }
 
     @Override
-    public int upTimer() {
+    public int checkTimer() {
         return 0;
     }
 
     @Override
-    public void setTimer(int s) {
+    public void upTimer() {
+    }
+
+    @Override
+    public void resetTimer() {
 
     }
 }

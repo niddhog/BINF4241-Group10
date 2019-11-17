@@ -1,7 +1,6 @@
 package Commands;
 
 import Enumerations.OvenPrograms;
-import Interfaces.Command;
 import Interfaces.ProgramInterface;
 
 public class SetProgram implements Command {

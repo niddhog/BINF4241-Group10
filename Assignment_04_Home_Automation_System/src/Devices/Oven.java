@@ -1,9 +1,10 @@
 package Devices;
 
-import Interfaces.*;
-import Enumerations.OvenPrograms;
 
-public class Oven implements OnOffInterface, TemperatureInterface, StartStopProgramInterface , TimerInterface, ProgramInterface {
+import Enumerations.OvenPrograms;
+import Interfaces.*;
+
+public class Oven extends MasterDevice implements OnOffInterface, TemperatureInterface, StartStopProgramInterface, TimerInterface, ProgramInterface, InterruptInterface {
 
     private boolean isOn = false;
     private boolean running = false;
@@ -12,11 +13,29 @@ public class Oven implements OnOffInterface, TemperatureInterface, StartStopProg
     private int temperature;
     private OvenPrograms program;
 
-    @Override
-    public void switchOn() {isOn = true; System.out.println("Devices.Oven is On");}
+    public Oven(String name){
+        super.setName(name);
+    }
 
     @Override
-    public void switchOff() {isOn = false; System.out.println("Devices.Oven is Off");}
+    public void switchOn() {
+        if(!isOn && !running) {
+            isOn = true;
+        }
+        else{
+            System.out.println("Oven is already On.");
+        }
+    }
+
+    @Override
+    public void switchOff() {
+        if(isOn && !running) {
+            isOn = false;
+        }
+        else{
+            System.out.println("Oven is already Off");
+        }
+    }
 
     @Override
     public void start() {
@@ -33,6 +52,7 @@ public class Oven implements OnOffInterface, TemperatureInterface, StartStopProg
             System.out.println("Program not set");
         }
         else{
+            lastTimer = timer;
             this.running = true;
         }
     }
@@ -41,16 +61,22 @@ public class Oven implements OnOffInterface, TemperatureInterface, StartStopProg
     public void stop() {
         if(this.running) {
             this.running = false;
+            // TODO: add something to distinguish between stop and interrupt....
         }
     }
 
     @Override
-    public void upTimer() {
-        this.timer += 10;
+    public int checkTimer() {
+        return timer;
     }
 
     @Override
-    public void setTimer(int s) {this.timer = s;}
+    public void upTimer() {
+        this.timer += 60;
+    }
+
+    @Override
+    public void resetTimer() {this.timer = 0;}
 
     @Override
     public void upTemperature() {
@@ -65,5 +91,13 @@ public class Oven implements OnOffInterface, TemperatureInterface, StartStopProg
     @Override
     public void setProgram(OvenPrograms prog) {
         this.program = prog;
+    }
+
+    @Override
+    public void interrupt() {
+        if(running && timer!=0 && isOn){
+            this.running = false;
+            // TODO: add something to distinguish between stop and interrupt....
+        }
     }
 }

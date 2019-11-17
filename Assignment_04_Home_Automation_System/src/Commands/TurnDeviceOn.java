@@ -1,6 +1,5 @@
 package Commands;
 
-import Interfaces.Command;
 import Interfaces.OnOffInterface;
 
 public class TurnDeviceOn implements Command {

@@ -1,6 +1,5 @@
 package Commands;
 
-import Interfaces.Command;
 import Interfaces.TemperatureInterface;
 
 public class DownTemperature implements Command {

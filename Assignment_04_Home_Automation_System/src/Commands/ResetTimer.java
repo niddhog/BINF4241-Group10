@@ -2,16 +2,16 @@ package Commands;
 
 import Interfaces.TimerInterface;
 
-public class UpTimer implements Command {
+public class ResetTimer implements Command {
 
     TimerInterface device;
 
-    public UpTimer(TimerInterface newDevice){
+    public ResetTimer(TimerInterface newDevice){
         this.device = newDevice;
     }
 
     @Override
     public void execute() {
-        device.upTimer();
+        device.resetTimer();
     }
 }
