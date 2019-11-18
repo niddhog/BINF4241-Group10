@@ -17,15 +17,11 @@ public class SetTimerRobo implements Command {
 
     @Override
     public void execute() {
-
         theDevice.setTimer(timer,false);
-
     }
 
     @Override
     public void undo() {
-
         theDevice.setTimer(-1,true);
-
     }
 }

@@ -15,7 +15,7 @@ public class CompleteCleaningRobo implements Command {
     @Override
     public void execute() {
 
-        theDevice.checkTimer();
+        theDevice.continueWork();
 
     }
 

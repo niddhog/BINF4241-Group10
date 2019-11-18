@@ -16,15 +16,11 @@ public class InterruptRobo implements Command {
 
     @Override
     public void execute() {
-
         theDevice.interrupt();
-
     }
 
     @Override
     public void undo() {
-
         theDevice.start();
-
     }
 }

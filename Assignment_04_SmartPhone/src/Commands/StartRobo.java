@@ -15,9 +15,7 @@ public class StartRobo implements Command {
 
     @Override
     public void execute() {
-
         theDevice.start();
-
     }
 
     @Override

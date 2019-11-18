@@ -15,7 +15,7 @@ public class CheckBatteryChargingRobo implements Command {
     @Override
     public void execute() {
 
-        theDevice.checkTimer();
+        theDevice.checkBatteryCharging();
 
     }
 

@@ -1,4 +1,4 @@
-//This is the main Application #IDEA: SINGLETON for each Device (there shouldn't be 2 Ovens)
+package Util;//This is the main Application #IDEA: SINGLETON for each Device (there shouldn't be 2 Ovens)
 import Commands.*;
 import Devices.*;
 import Util.DeviceButtons;
@@ -249,30 +249,43 @@ public class UseSmartPhone {
                 else if(cleaningRobot.getDeviceNr()==userInput){
                     cleaningRobot.displayFunctionMenu();
                     int userInputDepth2 = createUserInput(2);
-                    if(userInputDepth2==0){
-
+                    if(userInputDepth2==0){  //SET TIMER
+                        int userInputDepth3 = createUserInput(3);
+                        SetTimerRobo setTimeCommand = new SetTimerRobo(cleaningRobot,userInputDepth3);
+                        deviceButtons.addButtonCommand(setTimeCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==1){
-                        if(!cleaningRobot.getIsOn()){  //device is currently off, so this is Back Button
-                            break;
-                        }
-                        else{
-
-                        }
+                    else if(userInputDepth2==1){  //START CLEANING
+                        StartRobo startCommand = new StartRobo(cleaningRobot);
+                        deviceButtons.addButtonCommand(startCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==2){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==2){  //CHECK CLEANING PROGRESS
+                        CheckCompletionRobo checkProgressCommand = new CheckCompletionRobo(cleaningRobot);
+                        deviceButtons.addButtonCommand(checkProgressCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==3){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==3){  //CHECK BATTERY STATUS
+                        CheckBatteryStatusRobo checkBStatusCommand = new CheckBatteryStatusRobo(cleaningRobot);
+                        deviceButtons.addButtonCommand(checkBStatusCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==4){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==4){  //CHECK CHARGING STATUS
+                        CheckBatteryChargingRobo checkCStatusCommand = new CheckBatteryChargingRobo(cleaningRobot);
+                        deviceButtons.addButtonCommand(checkCStatusCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==5){
-                        System.out.println("implement more");
+                    else if(userInputDepth2==5){  //COMPLETE CLEANING
+                        CompleteCleaningRobo completeCommand = new CompleteCleaningRobo(cleaningRobot);
+                        deviceButtons.addButtonCommand(completeCommand);
+                        deviceButtons.press();
                     }
-                    else if(userInputDepth2==6){
+                    else if(userInputDepth2==6){  //INTERRUPT
+                        InterruptRobo interruptCommand = new InterruptRobo(cleaningRobot);
+                        deviceButtons.addButtonCommand(interruptCommand);
+                        deviceButtons.press();
+                    }
+                    else if(userInputDepth2==7){  //BACK
                         break;
                     }
                     else{
@@ -401,6 +414,10 @@ public class UseSmartPhone {
         }catch(NumberFormatException e){
             return false;
         }
+    }
+
+    public static CleaningRobot getRobo(){
+        return cleaningRobot;
     }
 
 }
