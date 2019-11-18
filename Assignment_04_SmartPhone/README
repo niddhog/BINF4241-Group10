@@ -1,5 +1,8 @@
 Dear TA's
-UNDO: Each and every Command inputted by the user is stored in a command list. The Undo Function undoes the last
-command of this list and removes it from the list. Like this, each and every command ever committed by the user
-can be undone
+UNDO FUNCTION: Trigger this function by entering -1! Each and every Command inputted by the user is stored in a command list. The Undo
+ unction undoes the last command of this list and removes it from the list. Like this, each and every command ever
+ committed by the user can be undone
 
+TIME: Threads are used to monitor time
+
+PATTERNS: The Command Pattern was implemented
