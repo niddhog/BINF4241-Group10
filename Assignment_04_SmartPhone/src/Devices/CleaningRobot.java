@@ -33,7 +33,7 @@ public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevice
         this.completionThread = new roboProgressThread();
         this.batteryChargeThread = new RoboRechargeThread();
         this.elapsed = System.currentTimeMillis();
-        cleaningCompletion = 90;
+        cleaningCompletion = 0;
         batteryStatus = 100;
     }
 
