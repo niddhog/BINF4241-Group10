@@ -189,6 +189,9 @@ public class UseSmartPhone {
                     else if(userInputDepth2==5){  //BACK
                         break;
                     }
+                    else if(userInputDepth2==-1){  //UNDO
+                        deviceButtons.pressUndo();
+                    }
                     else{
                         System.out.println("This function does not exists, please select again");
                     }
@@ -242,6 +245,9 @@ public class UseSmartPhone {
                     else if(userInputDepth2==5){  //BACK
                         break;
                     }
+                    else if(userInputDepth2==-1){  //UNDO
+                        deviceButtons.pressUndo();
+                    }
                     else{
                         System.out.println("This function does not exists, please select again");
                     }
@@ -284,6 +290,9 @@ public class UseSmartPhone {
                         InterruptRobo interruptCommand = new InterruptRobo(cleaningRobot);
                         deviceButtons.addButtonCommand(interruptCommand);
                         deviceButtons.press();
+                    }
+                    else if(userInputDepth2==-1){  //UNDO
+                        deviceButtons.pressUndo();
                     }
                     else if(userInputDepth2==7){  //BACK
                         break;

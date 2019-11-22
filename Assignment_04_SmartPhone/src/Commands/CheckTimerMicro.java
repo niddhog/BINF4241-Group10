@@ -21,6 +21,6 @@ public class CheckTimerMicro implements Command {
 
     @Override
     public void undo() {
-        //this just gets removed from the commandList,nothing more
+        //this just gets removed from the commandList,nothing gets returned
     }
 }

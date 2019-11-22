@@ -2,8 +2,8 @@ package Util;
 
 public class MyThread implements Runnable {
 
-    private boolean running;    // represent the state of the thread
-    private int seconds;           // represent the time of life of the thread
+    public boolean running;    // represent the state of the thread
+    public int seconds;           // represent the time of life of the thread
 
 
     public MyThread(){

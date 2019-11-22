@@ -1,24 +1,18 @@
 package Util;
 import Devices.CleaningRobot;
 
-public class roboBatteryThread implements Runnable {
-
-    private boolean running;    // represent the state of the thread
-    private int seconds;           // represent the time of life of the thread
+public class RoboProgressThread extends MyThread {
 
 
-    public roboBatteryThread(){
-        seconds = 0;
-        running = false;
-    }
-
-
+    @Override
     public boolean isRunning(){
         return running;
     }  //Check it thread is running
 
+
+    @Override
     public void setTime(int timeInMillis){
-        seconds = timeInMillis * 1221;
+        seconds = timeInMillis * 719;
     }
 
 
@@ -28,7 +22,7 @@ public class roboBatteryThread implements Runnable {
             running = true;
             Thread.sleep(seconds);
             running = false;
-            System.out.println("ROBOT *BEEP*: BATTERY EMPTY");
+            System.out.println("ROBOT *BEEP*: CLEANING COMPLETE");
             CleaningRobot robo = UseSmartPhone.getRobo();
             robo.interrupt();
         } catch (InterruptedException e) {

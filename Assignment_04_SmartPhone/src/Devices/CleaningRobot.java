@@ -13,12 +13,12 @@ public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevice
     private int cleaningCompletion;
     public int batteryStatus;
 
-    private roboTimeThread roboTimerThread;  //TIMER
+    private RoboTimeThread roboTimerThread;  //TIMER
     private Thread rt;
     private long elapsed;
-    private roboBatteryThread batteryDischargeThread;  //DECREASE BATTERY
+    private RoboBatteryThread batteryDischargeThread;  //DECREASE BATTERY
     private Thread rt2;
-    private roboProgressThread completionThread;  //INCREASE PROGRESSION
+    private RoboProgressThread completionThread;  //INCREASE PROGRESSION
     private Thread rt3;
     private RoboRechargeThread batteryChargeThread;  //INCREASE BATTERY
     private Thread rt4;
@@ -28,9 +28,9 @@ public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevice
         this.isOn = false;
         this.deviceNr = SmartPhone.DEVICE_NR;
         SmartPhone.DEVICE_NR++;
-        this.roboTimerThread = new roboTimeThread();
-        this.batteryDischargeThread = new roboBatteryThread();
-        this.completionThread = new roboProgressThread();
+        this.roboTimerThread = new RoboTimeThread();
+        this.batteryDischargeThread = new RoboBatteryThread();
+        this.completionThread = new RoboProgressThread();
         this.batteryChargeThread = new RoboRechargeThread();
         this.elapsed = System.currentTimeMillis();
         cleaningCompletion = 0;
@@ -74,9 +74,13 @@ public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevice
         if(batteryDischargeThread.isRunning()){
             System.out.println("The Cleaning Robot Battery is at " + calculateBattery() + "%!");
         }
+        else if(batteryChargeThread.isRunning()){
+            System.out.println("The Cleaning Robot is currently being recharged at the Station! Battery at: " +
+                    calculateBatteryCharge() + "%!");
+        }
         else{
-            System.out.println("The Cleaning Robot is currently being recharged at the Station! Battery at: ");
-            //Todo print Current Charge Status
+            System.out.println("The Battery is fully Charged!");
+
         }
     }
 
@@ -135,20 +139,20 @@ public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevice
             roboTimerThread = null;
             rt.interrupt();
             rt = null;
-            roboTimerThread = new roboTimeThread();
+            roboTimerThread = new RoboTimeThread();
             rt = new Thread(roboTimerThread, "timerThread");
             timer = -1;  //Timer always gets reset if interrupted
 
             batteryDischargeThread = null;
             rt2.interrupt();
             rt2 = null;
-            batteryDischargeThread = new roboBatteryThread();
+            batteryDischargeThread = new RoboBatteryThread();
             rt2 = new Thread(batteryDischargeThread, "batteryDThread");
 
             completionThread = null;
             rt3.interrupt();
             rt3 = null;
-            completionThread = new roboProgressThread();
+            completionThread = new RoboProgressThread();
             rt3 = new Thread(batteryDischargeThread, "completionThread");
 
             elapsed = System.currentTimeMillis();  //at this time the Thread for Recharge Starts
@@ -186,7 +190,7 @@ public class CleaningRobot implements RoboticDevices, AllDevices, TimeableDevice
 
     @Override
     public void checkTimer() {
-        //todo check to see when robo needs to go back to charging
+        //Not Used in this implementation
     }
 
     @Override

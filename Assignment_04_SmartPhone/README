@@ -3,6 +3,8 @@ UNDO FUNCTION: Trigger this function by entering -1! Each and every Command inpu
  unction undoes the last command of this list and removes it from the list. Like this, each and every command ever
  committed by the user can be undone
 
-TIME: Threads are used to monitor time
+TIME: Threads are used to monitor time. Each specific Thread is a child and inherits from MyThread
 
-PATTERNS: The Command Pattern was implemented
+PATTERNS: The Command Pattern was implemented. We discussed about implementing the Singleton Pattern for Devices
+but decided against it as it is uncertain if there are, for example, more than just 1 cleaning Robots per
+household

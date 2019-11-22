@@ -21,6 +21,6 @@ public class InterruptRobo implements Command {
 
     @Override
     public void undo() {
-        theDevice.start();
+        theDevice.continueWork();
     }
 }

@@ -1,22 +1,15 @@
 package Util;
 import Devices.CleaningRobot;
 
-public class RoboRechargeThread implements Runnable {
-
-    private boolean running;    // represent the state of the thread
-    private int seconds;           // represent the time of life of the thread
+public class RoboRechargeThread extends MyThread {
 
 
-    public RoboRechargeThread(){
-        seconds = 0;
-        running = false;
-    }
-
-
+    @Override
     public boolean isRunning(){
         return running;
     }  //Check it thread is running
 
+    @Override
     public void setTime(int timeInMillis){
         seconds = timeInMillis * 250;
     }

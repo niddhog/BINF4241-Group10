@@ -21,6 +21,6 @@ public class CompleteCleaningRobo implements Command {
 
     @Override
     public void undo() {
-        //Todo implenet undo behaviour (opposite of complete prolly Interupt)
+        theDevice.interrupt();
     }
 }
