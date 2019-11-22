@@ -8,3 +8,6 @@ TIME: Threads are used to monitor time. Each specific Thread is a child and inhe
 PATTERNS: The Command Pattern was implemented. We discussed about implementing the Singleton Pattern for Devices
 but decided against it as it is uncertain if there are, for example, more than just 1 cleaning Robots per
 household
+
+CLASS DIAGRAM: It's helpful to save the .SVG files locally. The files can be opened by any internet browser to
+scale the class diagrams and take a better look at it.
