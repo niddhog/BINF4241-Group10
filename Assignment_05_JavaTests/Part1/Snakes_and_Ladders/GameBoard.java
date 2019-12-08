@@ -1,8 +1,24 @@
+package Snakes_and_Ladders;
+
+import java.lang.reflect.Array;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
 
+/**
+ *
+ * @author Christian, Thanh Cong, Filip
+ * @version 1.0
+ *
+ * The Gameboard class contains the main process.
+ */
+
 public class GameBoard {
+
+    /**
+     *
+     * @param args main process for the whole game flow
+     */
 
     public static void main(String[] args) {
         //INITIAL GAME SETUP///////////////////////////////////////
@@ -11,11 +27,11 @@ public class GameBoard {
         int boardSize = setBoardSize(); //Input -> int boardSize = ;
         int nrOfSnakes = boardSize/11; //# Math.round(boardSize/11)snakes
         int nrOfLadders = boardSize/7; //# Math.round(boardSize/7)ladders
-        square[] table = setBoardSquares(boardSize,nrOfSnakes,nrOfLadders); //Array length == boardSize; square objects
+        square[] table = setBoardSquares(boardSize,nrOfSnakes,nrOfLadders); //Array length == boardSize; Snakes_and_Ladders.square objects
         ////////////////////////////////////////////////////////////
 
-        System.out.print("Initial State: \t"); //print initial state with board and players on the first square
-        stateOfTurn(p, boardSize, playerNames, table); //initial state: players on the first square
+        System.out.print("Initial State: \t"); //print initial state with board and players on the first Snakes_and_Ladders.square
+        stateOfTurn(p, boardSize, playerNames, table); //initial state: players on the first Snakes_and_Ladders.square
 
         while(true) {//while game not over
             int overCounter;
@@ -60,6 +76,13 @@ public class GameBoard {
         }
     }
 
+    /**
+     * Takes as input an integer between 2 and 4 and the loop ends. If it's not an integer, then the exeption will be
+     * caught or if the integer is too big or too small and both cases stay in the loop.
+     *
+     * @return if it's not an integer within the range, then a message returns, else the given integer input returns
+     * @exception InputMismatchException if the input is a invalid input of the type integer
+     */
 
     public static int setPlayerNumber(){
         while (true){
@@ -80,6 +103,11 @@ public class GameBoard {
         }
     }
 
+    /**
+     *
+     * @param p is the number of players, which participate the game
+     * @return an {@link Array} of {@link Player}s with their names
+     */
 
     public static Player[] setPlayerName(int p){
         Player[] playerArray = new Player[p]; //initialize Snakes_and_Ladders.Player array of size p
@@ -104,6 +132,12 @@ public class GameBoard {
         return playerArray;
     }
 
+    /**
+     * We consider to set a minimum of fields to add at least one ladder. We know, it's not necessary to set
+     * this restriction, otherwise a too small board doesn't look funny at all.
+     * @return an integer with at least 7 fields
+     * @throws InputMismatchException occurs if the user input is doesn't match the integer type
+     */
 
     public static int setBoardSize(){
         while (true){
@@ -126,6 +160,13 @@ public class GameBoard {
         }
     }
 
+    /**
+     *
+     * @param boardSize is the size of the board, which given from the user input by {@link #setBoardSize()}
+     * @param nrOfSnakes is the number of snakes, which will be set on the board, calculated by {@link #setBoardSize()}/11
+     * @param nrOfLadders is the number of ladders, which will be set on the board, calculated by {@link #setBoardSize()}/7
+     * @return a board with all {@link square}
+     */
 
     public static square[] setBoardSquares(int boardSize,int nrOfSnakes, int nrOfLadders) {
         int tempStart, tempEnd;
@@ -164,6 +205,12 @@ public class GameBoard {
         return boardGame;
     }
 
+    /**
+     *set a range of integer numbers to pick randomly an integer within the range
+     * @param min integer can also be picked and is smaller or equal than max
+     * @param max integer can also be picked and is greater or equal than min
+     * @return a random integer between a range of two integers
+     */
 
     public static int randInt(int min, int max) {
         if (min > max) {
@@ -172,6 +219,15 @@ public class GameBoard {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
+
+    /**
+     *
+     * @param p is the number of players, which participate the game
+     * @param boardSize is the size of the board, which given from the user input by {@link #setBoardSize()}
+     * @param players is an {@link Array} of {@link Player}s with their names
+     * @param table is a board with all {@link square}
+     */
+
 
     public static void stateOfTurn(int p, int boardSize, Player[] players, square[] table){
 
@@ -199,6 +255,11 @@ public class GameBoard {
         System.out.print("\n");
     }
 
+    /**
+     *
+     * @param test takes a {@link square}
+     * @return <code>true</code>, if it's a {@link SnakeSquare}, <code>true</code> if it's not a {@link SnakeSquare}
+     */
 
     public static boolean isSnake(square test){
         if(test instanceof SnakeSquare){
@@ -209,6 +270,11 @@ public class GameBoard {
         }
     }
 
+    /**
+     *
+     * @param test takes a {@link square}
+     * @return <code>true</code>, if it's a {@link LadderSquare}, <code>true</code> if it's not a {@link LadderSquare}
+     */
 
     public static boolean isLadder(square test){
         if(test instanceof LadderSquare){
@@ -219,6 +285,16 @@ public class GameBoard {
         }
     }
 
+    /**
+     *
+     * @param image is an {@link Array} of integers of the position number of {@link square#squareNr}
+     * @param tempArray is a new empty {@link Array} of the length of the current image with 2 less squares
+     * @param tempStart is a random integer between the range of the position of the second {@link square}
+     *                  and the third last {@link square}
+     * @param tempEnd is a random integer between tempStart+1 and the position of the second last {@link square}
+     * @param type provides the string "ladder" or "snake"
+     * @return an {@link Array} without the two square positions, which part of a "snake" or "ladder"
+     */
 
     public static int[] resizeArray(int[] image, int[] tempArray, int tempStart, int tempEnd, String type){
         int count = 0;

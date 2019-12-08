@@ -40,40 +40,10 @@ public class PieceSet {
 ```
 
 ```java
-public class InitBoard { //puts pieces of the players on the board
-
-    public static void init(Board board, Player p1, Player p2){
-        .
-        .
-        .
-               Iterator blackIterator = blackSet.createIterator();
-        Iterator whiteIterator = whiteSet.createIterator();
-
-        //setup White pieces, works
-        for(int i=0; i<2; i++){
-            for(int j=0; j<8; j++) {
-                if (whiteIterator.hasNext()) {
-                    board.getBoard()[j][i].setPieceOnSquare(whiteIterator.next());
-                }
-            }
-        }
-
-        //setup Black pieces, works
-
-        for(int i=0; i<2; i++){
-            for(int j=0; j<8; j++) {
-                if(blackIterator.hasNext()) {
-                    board.getBoard()[7 - j][7 - i].setPieceOnSquare(blackIterator.next());
-                }
-            }
-        }
-    }
-}
-
 ```
 ## Part 02
 
-First state is the initialization of the board. Afterwards our board changes only if a piece will be removed or a piece get placed on a new square. So, our sequence considers the initialization, the inputs for the collision test to validate the move of the piece for removing enemy piece and/or set the piece on another square of the board. 
+First state is the initialization of the board. Afterwards our board changes only if a piece will be removed or a piece get placed on a new Snakes_and_Ladders.square. So, our sequence considers the initialization, the inputs for the collision test to validate the move of the piece for removing enemy piece and/or set the piece on another Snakes_and_Ladders.square of the board. 
 
 #### class diagram
 
