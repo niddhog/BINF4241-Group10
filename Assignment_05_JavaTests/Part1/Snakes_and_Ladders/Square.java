@@ -2,6 +2,12 @@ package Snakes_and_Ladders;//subclasses: snake, ladder
 //String ladder = "->";
 //String snake = "<-";
 
+/**
+ * @author Christian
+ * @author Thanh Cong
+ * @author Filip
+ */
+
 class square {
     public int squareNr; //placement position on board
     public int occupied; //0 = free 1 = occupied

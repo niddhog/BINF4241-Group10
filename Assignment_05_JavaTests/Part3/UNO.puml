@@ -1,0 +1,108 @@
+@startuml
+
+interface runnable
+
+UNOMain - runnable
+Player -- Card
+Deck -- Card
+UNOMain - Player
+UNOMain - Deck
+Player - UNOGameState
+
+runnable <|-- caughtThreadEvent
+Card <|-- Wild
+Card <|-- Wild_Draw_Four
+Card <|-- Reverse
+Card <|-- Skip
+Card <|-- Draw_Two
+
+class UNOMain{
+Player[] players
+numberOfPlayers()
+setPlayerName(String name, int turnOrder)
+createDeck()
+shuffle()
+caughtUNO(integer turnOrder)
+}
+
+class caughtThreadEvent{
+run()
+}
+
+class UNOGameState{
+Symbol symbol
+Color color
+boolean clockwise
+nextPlayer()
+performDraw()
+}
+
+class Player {
+ArrayList<Card> hand
+String name
+int turnOrder
+boolean uno
+int scoreBoard
+setStartingHand()
+draw()
+playCard(integer i)
+removeCard(integer i)
+addScore()
+}
+
+class Card {
+Color color
+Symbol symbol
+canPlayedOnTop()
+performAction()
+}
+
+class Wild{
+performAction()
+}
+class Wild_Draw_Four{
+performAction()
+}
+class Draw_Two{
+performAction()
+}
+class Reverse{
+performAction()
+}
+class Skip{
+performAction()
+}
+
+class Deck {
+ArrayList<Card> cards
+addCard(Card card)
+removeCard(integer i)
+}
+
+enum Color {
+RED
+BLUE
+YELLOW
+GREEN
+BLACK
+}
+
+enum Symbol {
+ZERO
+ONE
+TWO
+THREE
+FOUR
+FIVE
+SIX
+SEVEN
+EIGHT
+NINE
+REVERSE
+SKIP
+DRAW_TWO
+WILD
+WILD_DRAW_FOUR
+}
+
+@enduml

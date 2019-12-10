@@ -7,7 +7,9 @@ import java.util.Random;
 
 /**
  *
- * @author Christian, Thanh Cong, Filip
+ * @author Christian
+ * @author Thanh Cong
+ * @author Filip
  * @version 1.0
  *
  * The Gameboard class contains the main process.

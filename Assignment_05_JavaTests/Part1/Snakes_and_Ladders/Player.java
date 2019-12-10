@@ -1,7 +1,9 @@
 package Snakes_and_Ladders;
 
 /**
- * @author Christian, Thanh Cong, Filip
+ * @author Christian
+ * @author Thanh Cong
+ * @author Filip
  * @version 1.0
  */
 

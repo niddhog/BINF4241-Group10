@@ -24,8 +24,16 @@ public class JavaTest {
 
     private GameBoard board;
 
+    /**
+     * In case we would take a closer look to the properties of exceptions
+     */
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    /**
+     * For the unit testing we need preparation to test the methods.
+     */
 
     @Before
     public void setup(){board = new GameBoard();}
@@ -45,6 +53,10 @@ public class JavaTest {
     }
     */
 
+    /**
+     * It tests, whether the user input is equal to the number of players
+     */
+
     @Test
     public void numberOfPlayers(){
     GameBoard board = new GameBoard();
@@ -55,6 +67,10 @@ public class JavaTest {
 
     Assert.assertEquals(2, board.setPlayerNumber());
     }
+
+    /**
+     * {@link #anyStringName()} tests, if the names of the players are saved correctly within the array
+     */
 
     @Test
     public void anyStringName(){
@@ -89,8 +105,12 @@ public class JavaTest {
     }
      */
 
+    /**
+     * {@link #leastBoardSize()} tests, if the expected user input is correct
+     */
+
     @Test
-    public void leastBoardSize(){
+        public void leastBoardSize(){
     GameBoard board = new GameBoard();
 
     String user = "7";
@@ -99,6 +119,10 @@ public class JavaTest {
 
     Assert.assertEquals(7, board.setBoardSize());
     }
+
+    /**
+     * {@link #rantIntWrongMinMax()} throws an exception by asserting the integer min is greater than max
+     */
 
     @Test
     public void rantIntWrongMinMax(){
@@ -110,6 +134,10 @@ public class JavaTest {
     thrown.expectMessage("max has to be greater equal to min");
     board.randInt(min, max);
     }
+
+    /**
+     * {@link #rantIntBetweenMinMax()} tests, if the random picked integer is within the given range
+     */
 
     @Test
     public void rantIntBetweenMinMax(){
@@ -127,6 +155,10 @@ public class JavaTest {
 
     }
 
+    /**
+     * {@link #isSnakeSquare()} tests the method, whether a {@link square} is a {@link SnakeSquare} or not
+     */
+
     @Test
     public void isSnakeSquare(){
     GameBoard board = new GameBoard();
@@ -140,10 +172,15 @@ public class JavaTest {
                     new LadderSquare(5, 0, 4),
                     new square(6, 0)};
     Assert.assertTrue(board.isSnake(table[2]));
+    Assert.assertFalse(board.isSnake(table[1]));
     }
 
+    /**
+     * {@link #isLadderSquare()} tests the method, whether a {@link square} is a {@link LadderSquare} or not
+     */
+
     @Test
-    public void isLadder(){
+    public void isLadderSquare(){
     GameBoard board = new GameBoard();
 
         square[] table = new square[]
@@ -155,7 +192,12 @@ public class JavaTest {
                         new LadderSquare(5, 0, 4),
                         new square(6, 0)};
     Assert.assertTrue(board.isLadder(table[5]));
+        Assert.assertFalse(board.isLadder(table[3]));
     }
+
+    /**
+     * {@link #resizeArray()} tests, whether the length and the correct positions are in the new array
+     */
 
     @Test
     public void resizeArray() {
