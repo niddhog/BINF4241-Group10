@@ -17,7 +17,10 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 
 /**
- * @author Christian, Thanh Cong, Filip
+ * @author Christian
+ * @author Thanh Cong
+ * @author Filip
+ * @version 1.0
  */
 
 public class JavaTest {

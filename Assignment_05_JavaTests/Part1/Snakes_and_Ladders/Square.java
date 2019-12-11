@@ -6,6 +6,7 @@ package Snakes_and_Ladders;//subclasses: snake, ladder
  * @author Christian
  * @author Thanh Cong
  * @author Filip
+ * @version 1.0
  */
 
 class square {
