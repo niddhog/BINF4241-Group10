@@ -40,7 +40,7 @@ class square {
 
     /**
      *
-     * @return
+     * @return the unique position on the board
      */
 
     public int getSquareNr() {return squareNr; }
